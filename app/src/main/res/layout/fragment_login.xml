@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="io.github.vzer.sharevegetable.account.LoginFragment"
     tools:showIn="@layout/activity_account">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/edit_account_phone"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edit_account_password"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_account_submit"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/txt_go_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_14"
+        android:text="@string/label_go_register" />
+
+    <ProgressBar
+        android:id="@+id/progress_loading"
+        android:visibility="gone"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+</LinearLayout>

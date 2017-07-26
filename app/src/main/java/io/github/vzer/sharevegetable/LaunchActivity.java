@@ -1,24 +1,33 @@
 package io.github.vzer.sharevegetable;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import io.github.vzer.common.app.BaseActivity;
+import io.github.vzer.common.app.ToolbarActivity;
+import io.github.vzer.sharevegetable.account.AccountActivity;
 
 public class LaunchActivity extends BaseActivity {
 
+
     @Override
-    protected void initDatas() {
+    protected void initData() {
 
     }
 
     @Override
-    public void initWidet() {
-
+    public void initWidget() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                AccountActivity.show(LaunchActivity.this);
+            }
+        }, 1000);
     }
 
     @Override
     protected void initWindows() {
-
     }
 
     @Override

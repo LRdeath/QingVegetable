@@ -5,4 +5,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_phone">手机</string>
+    <string name="label_password">密码</string>
+    <string name="label_go_register">没有账户？去注册</string>
+    <string name="label_verification">验证码</string>
+    <string name="label_go_login">已有账号？去登录</string>
+    <string name="label_register">注册</string>
+    <string name="label_login">登录</string>
 </resources>

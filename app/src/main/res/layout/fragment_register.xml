@@ -4,10 +4,41 @@
     android:layout_height="match_parent"
     tools:context="io.github.vzer.sharevegetable.account.RegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:id="@+id/edit_account_phone"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edit_account_verification"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edit_account_password"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edit_account_re_password"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_account_submit"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="match_parent" />
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/txt_go_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_14"
+        android:text="@string/label_go_register" />
+
+    <ProgressBar
+        android:id="@+id/progress_loading"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
 
 </FrameLayout>
