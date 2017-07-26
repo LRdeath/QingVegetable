@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">蔬菜</string>
+    <string name="title_order">订单</string>
+    <string name="title_discover">发现</string>
+    <string name="title_mine">我的</string>
+
+    <string name="title_select_gallery">选择照片</string>
+    <string name="title_assist_permissions">授予权限</string>
+
+</resources>
