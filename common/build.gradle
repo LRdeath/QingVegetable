@@ -29,6 +29,8 @@ dependencies {
     })
     implementation 'com.android.support:appcompat-v7:26.0.0-beta2'
     testImplementation 'junit:junit:4.12'
+
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
-    implementation project(':lang')
+
+    compile project(':lang')
 }

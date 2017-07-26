@@ -29,8 +29,10 @@ dependencies {
     })
     implementation 'com.android.support:appcompat-v7:26.0.0-beta2'
     testImplementation 'junit:junit:4.12'
+
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
-    implementation project(':common')
+
+    compile project(':common')
 }
