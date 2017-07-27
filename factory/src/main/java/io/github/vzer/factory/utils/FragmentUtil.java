@@ -1,6 +1,7 @@
 package io.github.vzer.factory.utils;
 
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import io.github.vzer.common.app.BaseActivity;
@@ -16,10 +17,10 @@ public class FragmentUtil {
     /**
      * 添加Fragment
      */
-    public static void add(BaseActivity context, int viewId, Fragment fragment) {
+    public static void add(BaseActivity context, int viewId, Fragment fragment, @Nullable String tag) {
         context.getSupportFragmentManager()
                 .beginTransaction()
-                .add(viewId,fragment)
+                .add(viewId, fragment, tag)
                 .commit();
     }
 
@@ -36,7 +37,7 @@ public class FragmentUtil {
     /**
      * 隐藏Fragment
      */
-    public static void hide(BaseActivity context, Fragment fragment) {
+    public static void hideFragment(BaseActivity context, Fragment fragment) {
         context.getSupportFragmentManager()
                 .beginTransaction()
                 .hide(fragment)
@@ -46,7 +47,7 @@ public class FragmentUtil {
     /**
      * 展示Fragment
      */
-    public static void show(BaseActivity context, Fragment fragment) {
+    public static void showFragment(BaseActivity context, Fragment fragment) {
         context.getSupportFragmentManager()
                 .beginTransaction()
                 .show(fragment)

@@ -8,7 +8,7 @@ import io.github.vzer.common.factory.presenter.BaseContract;
  * email yangcihang@hrsoft.net
  */
 
-public class ShoppingContract {
+public interface ShoppingContract {
     interface View extends BaseContract.View<Presenter> {
 
     }

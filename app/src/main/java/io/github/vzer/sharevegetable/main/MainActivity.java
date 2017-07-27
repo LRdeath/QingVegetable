@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initWidget() {
         FragmentUtil.add(this, R.id.frame_content, new VegetableFragment(), VEGETABLE_TAG);
+        changeVegetableMenuState();
     }
 
     @Override
