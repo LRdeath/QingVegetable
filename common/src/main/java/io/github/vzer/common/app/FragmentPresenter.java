@@ -39,10 +39,6 @@ public abstract class FragmentPresenter<Presenter extends BaseContract.Presenter
 
     }
 
-    @Override
-    public void showLoading() {
-    }
-
     /**
      * 设置对presenter的引用
      * @param presenter P层引用

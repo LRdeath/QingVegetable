@@ -24,18 +24,33 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         super(mView);
     }
 
-    @Override
-    public void register(String phone, String password, String code) {
 
+    @Override
+    public void register(String phone, String password, String rePassword, String code) {
+        //P层启动方法
+        start();
     }
 
+    /**
+     * 注册成功
+     *
+     * @param user 返回的User
+     */
+    @Override
+    public void onDataLoaded(User user) {
+        RegisterContract.View view = mView;
+        if (view == null) return;
+
+        //通知注册成功
+        view.registerSuccess();
+    }
 
     /**
      * 数据加载失败
      * @param error 错误信息id
      */
     @Override
-    public void onFailedloaded(int error) {
+    public void onFailedLoaded(int error) {
         //拿到V层,V层不存在,不做任何操作;
         RegisterContract.View view = mView;
         if (view ==null)return;
@@ -44,12 +59,5 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         ToastUtil.showToast(error);
     }
 
-    /**
-     * 注册成功
-     * @param user 返回的User
-     */
-    @Override
-    public void onDataLoaded(User user) {
 
-    }
 }

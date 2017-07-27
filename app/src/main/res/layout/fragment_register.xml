@@ -1,9 +1,12 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.github.vzer.sharevegetable.account.RegisterFragment">
-
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="io.github.vzer.sharevegetable.account.LoginFragment"
+    tools:showIn="@layout/activity_account">
 
     <EditText
         android:id="@+id/edit_account_phone"
@@ -11,24 +14,24 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edit_account_verification"
-        android:layout_width="@dimen/edit_account_width"
-        android:layout_height="wrap_content" />
-
-    <EditText
         android:id="@+id/edit_account_password"
         android:layout_width="@dimen/edit_account_width"
         android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edit_account_confirm_password"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edit_account_re_password"
+        android:id="@+id/edit_account_verify"
         android:layout_width="@dimen/edit_account_width"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btn_account_submit"
         android:layout_width="@dimen/edit_account_width"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/txt_go_login"
         android:layout_width="wrap_content"
@@ -38,7 +41,9 @@
 
     <ProgressBar
         android:id="@+id/progress_loading"
+        android:visibility="gone"
+        android:progressTint="@color/colorPrimary"
         android:layout_width="50dp"
-        android:layout_height="50dp" />
-
-</FrameLayout>
+        android:layout_height="50dp"
+        tools:ignore="UnusedAttribute" />
+</LinearLayout>

@@ -7,6 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -20,7 +25,6 @@ import butterknife.Unbinder;
 
 public abstract class Fragment extends android.support.v4.app.Fragment {
     private View mRoot;
-    protected Unbinder mRootUnbinder;
 
     @Override
     public void onAttach(Context context) {
@@ -34,8 +38,8 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
         int layId = getContentLayoutId();
         if (mRoot == null) {
             View root = inflater.inflate(layId, container, false);
-            mRootUnbinder = ButterKnife.bind(this, root);
-            initWidet(root);
+
+            initWidget(root);
             mRoot = root;
         } else {
             if (mRoot.getParent() != null) {
@@ -43,35 +47,34 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
                 ((ViewGroup) mRoot.getParent()).removeView(mRoot);
             }
         }
-
         return mRoot;
     }
 
     /**
      * BaseActivity onCreate（）执行完后回调这个方法
      *
-     * @param savedInstanceState
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initDatas();
+        initData();
     }
 
     /**
      * 初始化数据
      */
-    protected abstract void initDatas();
+    protected abstract void initData();
 
     /**
      * 初始化控件
      */
-    protected abstract void initWidet(View root);
+    protected void initWidget(View root) {
+        ButterKnife.bind(this, root);
+    }
 
 
     /**
      * 初始化相关参数Bundle
-     * @param arguments
      */
     protected abstract void initArgs(Bundle arguments);
 

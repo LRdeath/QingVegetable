@@ -35,4 +35,5 @@ ext{
     butterknifeVersion = '8.6.0'
     retrofitVersion = '2.1.0'
     gsonVersion = '2.8.0'
+    glideVersion = '3.7.0'
 }

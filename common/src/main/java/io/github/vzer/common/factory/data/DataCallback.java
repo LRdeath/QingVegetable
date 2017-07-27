@@ -30,6 +30,6 @@ public interface DataCallback {
      *
      */
     interface FailedCallback{
-        void onFailedloaded(@StringRes int error);
+        void onFailedLoaded(@StringRes int error);
     }
 }

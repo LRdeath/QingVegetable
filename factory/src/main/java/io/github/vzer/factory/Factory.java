@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import io.github.vzer.common.app.Application;
+import io.github.vzer.factory.utils.CacheUtil;
 
 /**
  * @author: Vzer.
@@ -15,6 +16,7 @@ public class Factory {
 
     private final Gson gson;
     private static Factory instance;//单例模式
+    private static CacheUtil cacheUtil;
 
     static {
         instance = new Factory();
@@ -25,6 +27,7 @@ public class Factory {
      */
     public static void setup() {
         // TODO: 2017/7/25  数据库的初始化
+
     }
 
     public Factory() {
@@ -41,7 +44,7 @@ public class Factory {
      *
      * @return
      */
-    public static Application app() {
+    public static Application getAppInstance() {
         return Application.getInstance();
     }
 
@@ -52,5 +55,15 @@ public class Factory {
      */
     public static Gson getGson() {
         return instance.gson;
+    }
+
+    /**
+     * 缓存初始化
+     */
+    public static CacheUtil getCacheUtil() {
+        if (cacheUtil == null) {
+            cacheUtil = CacheUtil.get(getAppInstance().getFilesDir());
+        }
+        return cacheUtil;
     }
 }

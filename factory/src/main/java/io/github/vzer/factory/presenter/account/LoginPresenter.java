@@ -5,6 +5,7 @@ import io.github.vzer.common.factory.presenter.BasePresenter;
 import io.github.vzer.factory.data.AccountHelper;
 import io.github.vzer.factory.model.db.User;
 import io.github.vzer.factory.model.account.LoginModel;
+import io.github.vzer.factory.utils.ToastUtil;
 
 /**
  * @author: Vzer.
@@ -13,7 +14,7 @@ import io.github.vzer.factory.model.account.LoginModel;
  */
 
 public class LoginPresenter extends BasePresenter<LoginContract.View>
-        implements LoginContract.Presenter,DataCallback.Callback<User> {
+        implements LoginContract.Presenter, DataCallback.Callback<User> {
 
 
     /**
@@ -29,24 +30,33 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
     @Override
     public void login(String phone, String password) {
         // TODO: 2017/7/25 对登陆信息的格式进行判断
-
-
+        start();
         LoginModel model = new LoginModel(phone,password);
         //调用M层对登陆请求进行处理
         AccountHelper.login(model,this);
-        //如果登录成功过
-        mView.loginSuccess();
+
+
     }
 
 
     @Override
     public void onDataLoaded(User user) {
+        LoginContract.View view = mView;
+        //如果view不存在,不做任何操作
+        if (view == null) return;
 
+        //通知V层登录成功
+        mView.loginSuccess();
     }
 
 
     @Override
-    public void onFailedloaded(int error) {
+    public void onFailedLoaded(int error) {
+        LoginContract.View view = mView;
+        //如果view不存在,不做任何操作
+        if (view == null) return;
 
+        //提示错误信息
+        ToastUtil.showToast(error);
     }
 }

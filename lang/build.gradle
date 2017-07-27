@@ -28,6 +28,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
+    compile "com.android.support:design:$rootProject.ext.supportVersion"
+    compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+
     implementation 'com.android.support:appcompat-v7:26.0.0-beta2'
     testImplementation 'junit:junit:4.12'
 }

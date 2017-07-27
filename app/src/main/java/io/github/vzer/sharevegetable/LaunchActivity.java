@@ -22,6 +22,7 @@ public class LaunchActivity extends BaseActivity {
             @Override
             public void run() {
                 AccountActivity.show(LaunchActivity.this);
+                finish();
             }
         }, 1000);
     }

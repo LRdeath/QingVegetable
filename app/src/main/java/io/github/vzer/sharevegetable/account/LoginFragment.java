@@ -2,7 +2,9 @@ package io.github.vzer.sharevegetable.account;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.main.MainActivity;
 
 /**
+ * 登录Fragment V层
  * @author: Vzer.
  * @date: 2017/7/25. 17.01
  * @email: vzer@qq.com
@@ -31,6 +34,8 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
     EditText passwordEdit;
     @BindView(R.id.txt_go_register)
     TextView goRegisterTxt;
+    @BindView(R.id.btn_account_submit)
+    Button submitBtn;
     @BindView(R.id.progress_loading)
     ProgressBar loadingProgress;
 
@@ -46,12 +51,14 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
     void submit() {
         String phone = phoneEdit.getText().toString();
         String password = passwordEdit.getText().toString();
+        Log.d("TAG", "OnClick");
         //通知P层进行登录
         mPresenter.login(phone, password);
     }
 
     @OnClick(R.id.txt_go_register)
     void goRegister() {
+        Log.d("TAG", "OnClick");
         mTrigger.triggerView();
     }
 
@@ -76,20 +83,41 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
         return new LoginPresenter(this);
     }
 
+    /**
+     * 显示进度条,使其他控件失效
+     */
     @Override
     public void showLoading() {
         passwordEdit.setEnabled(false);
         phoneEdit.setEnabled(false);
         goRegisterTxt.setEnabled(false);
+        submitBtn.setEnabled(false);
         loadingProgress.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 显示提示信息后,恢复控件使用
+     */
+    @Override
+    public void showError(int strId) {
+        super.showError(strId);
+        passwordEdit.setEnabled(true);
+        phoneEdit.setEnabled(true);
+        goRegisterTxt.setEnabled(true);
+        submitBtn.setEnabled(true);
+
+        //loadingProgress.setVisibility(View.GONE);
     }
 
     @Override
     protected void initData() {
+        Log.d("TAG", String.valueOf(passwordEdit.getId()));
     }
+
 
     @Override
     protected void initWidget(View root) {
+        super.initWidget(root);
     }
 
     @Override

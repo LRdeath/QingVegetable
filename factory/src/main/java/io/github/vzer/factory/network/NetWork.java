@@ -48,9 +48,10 @@ public class NetWork {
                         builder.addHeader("Content-Type","application/json");
                         Request newRequest = builder.build();//重建请求
 
-                        return chain.proceed(request);
+                        return chain.proceed(newRequest);
                     }
-                }).build();
+                })
+                .build();
 
         instance.retrofit = new Retrofit.Builder()
                 .baseUrl(CommonConstant.API_URL)

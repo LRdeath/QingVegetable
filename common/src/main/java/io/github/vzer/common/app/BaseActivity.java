@@ -25,8 +25,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             int layId = getContentLayoutId();
             setContentView(layId);
             ButterKnife.bind(this);
-            initWidet();
-            initDatas();
+            initWidget();
+            initData();
         }else {
             finish();
         }
@@ -46,12 +46,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 初始化数据
      */
-    protected abstract void initDatas();
+    protected abstract void initData();
 
     /**
      * 初始化控件
      */
-    public abstract void initWidet();
+    public abstract void initWidget();
 
     /**
      * 初始化窗口
@@ -61,7 +61,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 获取当前界面资源id
      *
-     * @return
      */
     protected abstract int getContentLayoutId();
 
