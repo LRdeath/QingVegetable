@@ -27,7 +27,7 @@ public class AccountActivity extends BaseActivity implements AccountTrigger {
     public void initWidget() {
         //初始化当前加载的 Fragment
         mCurFragment = mLoginFragment = new LoginFragment();
-        FragmentUtil.add(this, R.id.account_container, mCurFragment);
+        FragmentUtil.add(this, R.id.account_container, mCurFragment,null);
     }
     @Override
     protected void initWindows() {

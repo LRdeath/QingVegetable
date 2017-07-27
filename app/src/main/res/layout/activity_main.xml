@@ -1,9 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="io.github.vzer.sharevegetable.main.MainActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="io.github.vzer.sharevegetable.main.MainActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/view_divider">
+    </FrameLayout>
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignTop="@id/ly_bottom_menu"
+        android:background="@color/line_shadow"/>
+
+    <LinearLayout
+        android:id="@+id/ly_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ly_menu_vegetable"
+            style="@style/tab_menu_item">
+
+            <ImageView
+                android:id="@+id/img_tab_vegetable"
+                android:layout_width="24dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bg_vegetable_menu_selector"/>
+
+            <TextView
+                android:id="@+id/txt_tab_vegetable"
+                style="@style/tab_menu_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_tab_vegetable"
+                android:textColor="@color/def_text_menu_selector"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_menu_order"
+            style="@style/tab_menu_item">
+
+            <ImageView
+                android:id="@+id/img_tab_order"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_vegetable_menu_selector"/>
+
+            <TextView
+                android:id="@+id/txt_tab_order"
+                style="@style/tab_menu_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_tab_order"
+                android:textColor="@color/def_text_menu_selector"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_empty"
+            style="@style/tab_menu_item">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_menu_find"
+            style="@style/tab_menu_item">
+
+            <ImageView
+                android:id="@+id/img_tab_find"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_find_menu_selector"/>
+
+            <TextView
+                android:id="@+id/txt_tab_find"
+                style="@style/tab_menu_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_tab_find"
+                android:textColor="@color/def_text_menu_selector"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_menu_mine"
+            style="@style/tab_menu_item">
+
+            <ImageView
+                android:id="@+id/img_tab_mine"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_mine_menu_selector"/>
+
+            <TextView
+                android:id="@+id/txt_tab_mine"
+                style="@style/tab_menu_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_tab_mine"
+                android:textColor="@color/def_text_menu_selector"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

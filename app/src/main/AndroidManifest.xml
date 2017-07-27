@@ -21,7 +21,9 @@
             android:name=".account.AccountActivity"
             android:label="@string/title_activity_account"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".main.MainActivity"></activity>
+        <activity android:name=".main.MainActivity">
+        </activity>
+        <activity android:name=".shopping.ShoppingActivity"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,15 @@
 package io.github.vzer.common.app;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import io.github.vzer.common.R;
 import io.github.vzer.common.factory.presenter.BaseContract;
 
 /**
  * MVP模式中 V层中 Fragmente
+ *
  * @author: Vzer.
  * @date: 2017/7/25.
  * @email: vzer@qq.com
@@ -26,12 +29,14 @@ public abstract class FragmentPresenter<Presenter extends BaseContract.Presenter
 
     /**
      * 初始化Presenter
+     *
      * @return Presenter
      */
     protected abstract Presenter initPresenter();
 
     /**
      * 默认Toast显示错误信息
+     *
      * @param strId 字符串资源id
      */
     @Override
@@ -41,6 +46,7 @@ public abstract class FragmentPresenter<Presenter extends BaseContract.Presenter
 
     /**
      * 设置对presenter的引用
+     *
      * @param presenter P层引用
      */
     @Override

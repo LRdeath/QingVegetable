@@ -1,6 +1,7 @@
 package io.github.vzer.factory.utils;
 
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import io.github.vzer.common.app.BaseActivity;
@@ -15,22 +16,16 @@ import io.github.vzer.common.app.BaseActivity;
 public class FragmentUtil {
     /**
      * 添加Fragment
-     * @param context
-     * @param viewId
-     * @param fragment
      */
-    public static void add(BaseActivity context, int viewId, Fragment fragment) {
+    public static void add(BaseActivity context, int viewId, Fragment fragment, @Nullable String tag) {
         context.getSupportFragmentManager()
                 .beginTransaction()
-                .add(viewId,fragment)
+                .add(viewId,fragment, tag)
                 .commit();
     }
 
     /**
      * 替换Fragment
-     * @param context
-     * @param viewId
-     * @param fragment
      */
     public static void replace(BaseActivity context, int viewId, Fragment fragment) {
         context.getSupportFragmentManager()
@@ -39,4 +34,33 @@ public class FragmentUtil {
                 .commit();
     }
 
+    /**
+     * 展示指定的fragment
+     */
+    public static void showFragment(BaseActivity context,Fragment fragment) {
+        context.getSupportFragmentManager()
+                .beginTransaction()
+                .show(fragment)
+                .commit();
+    }
+
+    /**
+     * 隐藏指定的fragment
+     */
+    public static void hideFragment(BaseActivity context,Fragment fragment) {
+        context.getSupportFragmentManager()
+                .beginTransaction()
+                .hide(fragment)
+                .commit();
+    }
+
+    /**
+     * 隐藏当前view中的fragment
+     */
+    public static void hideCurrentFragment(BaseActivity context,int viewId) {
+        context.getSupportFragmentManager()
+                .beginTransaction()
+                .hide(context.getSupportFragmentManager().findFragmentById(viewId))
+                .commit();
+    }
 }

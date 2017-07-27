@@ -10,5 +10,19 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">#fff</item>
     </style>
-
+    <!--底部tab 样式-->
+    <style name="tab_menu_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <!--底部text 样式-->
+    <style name="tab_menu_text">
+        <item name="android:textSize">@dimen/tab_menu_text_size</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
 </resources>
