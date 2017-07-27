@@ -101,11 +101,11 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
     @Override
     public void showError(int strId) {
         super.showError(strId);
+
         passwordEdit.setEnabled(true);
         phoneEdit.setEnabled(true);
         goRegisterTxt.setEnabled(true);
         submitBtn.setEnabled(true);
-
         //loadingProgress.setVisibility(View.GONE);
     }
 
