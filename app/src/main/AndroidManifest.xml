@@ -23,7 +23,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".main.MainActivity">
         </activity>
-        <activity android:name=".shopping.ShoppingActivity"></activity>
+        <activity android:name=".shopping.ShoppingActivity" />
+        <activity android:name=".account.RetriveActivity" />
     </application>
 
 </manifest>

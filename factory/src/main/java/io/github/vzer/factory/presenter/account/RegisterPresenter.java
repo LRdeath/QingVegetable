@@ -31,6 +31,11 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         start();
     }
 
+    @Override
+    public void postVerify(String phone) {
+
+    }
+
     /**
      * 注册成功
      *
@@ -42,7 +47,7 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         if (view == null) return;
 
         //通知注册成功
-        view.registerSuccess();
+        //view.registerSuccess();
     }
 
     /**

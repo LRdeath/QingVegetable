@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#5ffc64</color>
-    <color name="colorPrimaryDark">#3c7636</color>
+    <color name="colorPrimary">#1FBC5B</color>
+    <color name="colorPrimaryDark">#169B49</color>
     <color name="colorAccent">#45c24c</color>
 
     <!--字体颜色-->
@@ -12,7 +12,11 @@
     <color name="tab_menu_text_normal">#FF9B9B9B</color>
     <color name="tab_menu_text_selected">#FF169B49</color>
 
+    <color name="btn_txt_primary">#ffffff</color>
+    <color name="btn_txt_disable">#9D9D9D</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="line_shadow">#FF9D9D9D</color>
+    <color name="btn_disable">#D1D1D1</color>
+    <color name="div_color">#C9C9C9</color>
 </resources>

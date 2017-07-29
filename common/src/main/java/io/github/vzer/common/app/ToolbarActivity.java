@@ -1,7 +1,7 @@
 package io.github.vzer.common.app;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import butterknife.ButterKnife;
 import io.github.vzer.common.R;
-import io.github.vzer.common.app.BaseActivity;
 
 /**
  * @author: Vzer.
@@ -40,10 +40,11 @@ public abstract class ToolbarActivity extends BaseActivity {
      */
     private View getToolbarView() {
         LayoutInflater inflater = getLayoutInflater();
-        RelativeLayout viewRoot = (RelativeLayout) inflater.inflate(R.layout.base_toolbar_layout, null);
-        FrameLayout viewContainer = (FrameLayout) viewRoot.findViewById(R.id.view_container);
+        @SuppressLint("InflateParams") RelativeLayout viewRoot = (RelativeLayout) inflater.inflate(R.layout.base_toolbar_layout, null);
+        FrameLayout viewContainer = viewRoot.findViewById(R.id.view_container);
         viewContainer.addView(inflater.inflate(getContentLayoutId(), null));
         initToolbar(viewRoot);
+        ButterKnife.bind(this, viewRoot);
         initWidget();
         return viewRoot;
     }
@@ -54,7 +55,7 @@ public abstract class ToolbarActivity extends BaseActivity {
      * @param root 页面rootView
      */
     private void initToolbar(View root) {
-        toolbar = (Toolbar) root.findViewById(R.id.toolbar);
+        toolbar = root.findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

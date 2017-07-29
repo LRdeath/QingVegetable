@@ -4,46 +4,132 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context="io.github.vzer.sharevegetable.account.LoginFragment"
-    tools:showIn="@layout/activity_account">
+    android:padding="@dimen/len_8"
+    tools:context="io.github.vzer.sharevegetable.account.LoginFragment">
 
-    <EditText
-        android:id="@+id/edit_account_phone"
-        android:layout_width="@dimen/edit_account_width"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_16"
+        android:layout_marginRight="@dimen/len_16"
+        android:layout_marginTop="@dimen/len_16"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/len_8"
+        android:paddingTop="@dimen/len_8">
 
-    <EditText
-        android:id="@+id/edit_account_password"
-        android:layout_width="@dimen/edit_account_width"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/edit_account_confirm_password"
-        android:layout_width="@dimen/edit_account_width"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/len_4">
 
-    <EditText
-        android:id="@+id/edit_account_verify"
-        android:layout_width="@dimen/edit_account_width"
-        android:layout_height="wrap_content" />
+            <ImageView
+                style="@style/imge_account"
+                android:src="@drawable/ic_account_phone" />
 
-    <Button
-        android:id="@+id/btn_account_submit"
-        android:layout_width="@dimen/edit_account_width"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/edit_account_phone"
+                style="@style/edit_account"
+                android:hint="@string/label_phone"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <View style="@style/view_div_black" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/len_4">
+
+            <ImageView
+                style="@style/imge_account"
+                android:src="@drawable/ic_account_phone" />
+
+            <EditText
+                android:id="@+id/edit_account_verify"
+                style="@style/edit_account"
+                android:hint="@string/label_verification"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btn_account_get_verify"
+                style="@style/btn_verify" />
+
+        </FrameLayout>
+
+        <View style="@style/view_div_black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/len_4">
+
+            <ImageView
+                style="@style/imge_account"
+                android:src="@drawable/ic_account_phone" />
+
+            <EditText
+                android:id="@+id/edit_account_password"
+                style="@style/edit_account"
+                android:hint="@string/label_password"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <View style="@style/view_div_black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/len_4">
+
+            <ImageView
+                style="@style/imge_account"
+                android:src="@drawable/ic_account_phone" />
+
+            <EditText
+                android:id="@+id/edit_account_confirm_password"
+                style="@style/edit_account"
+                android:hint="@string/label_confirm_password"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <View style="@style/view_div_black" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txt_go_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/font_14"
+        style="@style/txt_account"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/len_32"
+        android:layout_marginRight="@dimen/len_32"
         android:text="@string/label_go_login" />
 
     <ProgressBar
         android:id="@+id/progress_loading"
-        android:visibility="gone"
+        android:layout_width="@dimen/len_64"
+        android:layout_height="@dimen/len_64"
+        android:layout_gravity="center_horizontal"
         android:progressTint="@color/colorPrimary"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:visibility="gone"
         tools:ignore="UnusedAttribute" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_account_submit"
+        android:layout_width="@dimen/edit_account_width"
+        android:layout_height="@dimen/len_40"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/len_32"
+        android:background="@drawable/bg_btn_account_selector"
+        android:enabled="false"
+        android:text="@string/label_register"
+        android:textColor="@color/def_btn_text_selector" />
+
 </LinearLayout>

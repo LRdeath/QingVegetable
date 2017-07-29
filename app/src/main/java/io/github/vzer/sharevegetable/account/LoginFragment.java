@@ -2,6 +2,8 @@ package io.github.vzer.sharevegetable.account;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +26,7 @@ import io.github.vzer.sharevegetable.main.MainActivity;
  * @email: vzer@qq.com
  */
 public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
-        implements LoginContract.View {
+        implements LoginContract.View, TextWatcher {
 
     private AccountTrigger mTrigger;
 
@@ -36,6 +38,8 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
     TextView goRegisterTxt;
     @BindView(R.id.btn_account_submit)
     Button submitBtn;
+    @BindView(R.id.txt_go_retrive)
+    TextView goRetriveTxt;
     @BindView(R.id.progress_loading)
     ProgressBar loadingProgress;
 
@@ -46,20 +50,32 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
         mTrigger = (AccountTrigger) context;
     }
 
-    //登录点击事件
+    /**
+     * 登录点击事件
+     */
     @OnClick(R.id.btn_account_submit)
     void submit() {
         String phone = phoneEdit.getText().toString();
         String password = passwordEdit.getText().toString();
-        Log.d("TAG", "OnClick");
+
         //通知P层进行登录
         mPresenter.login(phone, password);
     }
 
+    /**
+     * 跳转注册页面 点击事件
+     */
     @OnClick(R.id.txt_go_register)
     void goRegister() {
-        Log.d("TAG", "OnClick");
         mTrigger.triggerView();
+    }
+
+    /**
+     * 跳转找回密码 点击事件
+     */
+    @OnClick(R.id.txt_go_retrive)
+    void goRetrive() {
+        RetriveActivity.show(getContext());
     }
 
 
@@ -92,6 +108,7 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
         phoneEdit.setEnabled(false);
         goRegisterTxt.setEnabled(false);
         submitBtn.setEnabled(false);
+        goRetriveTxt.setEnabled(false);
         loadingProgress.setVisibility(View.VISIBLE);
     }
 
@@ -101,12 +118,12 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
     @Override
     public void showError(int strId) {
         super.showError(strId);
-
+        goRetriveTxt.setEnabled(true);
         passwordEdit.setEnabled(true);
         phoneEdit.setEnabled(true);
         goRegisterTxt.setEnabled(true);
         submitBtn.setEnabled(true);
-        //loadingProgress.setVisibility(View.GONE);
+        loadingProgress.setVisibility(View.GONE);
     }
 
     @Override
@@ -118,9 +135,28 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
+        passwordEdit.addTextChangedListener(this);
+        phoneEdit.addTextChangedListener(this);
     }
 
     @Override
     protected void initArgs(Bundle arguments) {
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        if (phoneEdit.getText().toString().isEmpty() || passwordEdit.getText().toString().isEmpty())
+            submitBtn.setEnabled(false);
+        else submitBtn.setEnabled(true);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
     }
 }

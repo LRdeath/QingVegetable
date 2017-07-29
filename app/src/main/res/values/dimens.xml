@@ -1,5 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--状态栏高度-->
+    <dimen name="statusBarSize">25dp</dimen>
+    <!--状态栏+标题栏高度-->
+    <dimen name="actionBarWithStatusBarSize">73dp</dimen>
+    <!--默认字体大小-->
+    <dimen name="fontNameSize">15sp</dimen>
+
+    <dimen name="tab_menu_text_size">12sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="edit_account_width">128dp</dimen>
+    <dimen name="edit_account_width">196dp</dimen>
+
     <dimen name="font_14">14sp</dimen>
+    <dimen name="len_8">8dp</dimen>
+    <dimen name="len_32">32dp</dimen>
+    <dimen name="len_20">20dp</dimen>
+    <dimen name="len_56">56dp</dimen>
+    <dimen name="font_12">12sp</dimen>
+    <dimen name="len_80">80dp</dimen>
+    <dimen name="len_88">88dp</dimen>
+    <dimen name="len_96">96dp</dimen>
+    <dimen name="len_40">40dp</dimen>
+    <dimen name="len_16">16dp</dimen>
+    <dimen name="len_24">24dp</dimen>
+    <dimen name="len_64">64dp</dimen>
+    <dimen name="len_4">4dp</dimen>
+    <dimen name="len_2">2dp</dimen>
 </resources>

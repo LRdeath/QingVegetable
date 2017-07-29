@@ -14,6 +14,9 @@ public interface RegisterContract {
     interface Presenter extends BaseContract.Presenter{
         //进行注册
         void register(String phone, String password, String rePassword, String code);
+
+        //获取验证码
+        void postVerify(String phone);
     }
     interface View extends BaseContract.View<Presenter>{
         //注册成功

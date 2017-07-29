@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--toolbar style-->
+    <style name="toolbar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/textPrimary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <color name="colorPrimary">#1FBC5B</color>
+    <color name="textPrimary">#fff</color>
+</resources>

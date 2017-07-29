@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--底部tab 样式-->
+    <style name="tab_menu_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <!--底部text 样式-->
+    <style name="tab_menu_text">
+        <item name="android:textSize">@dimen/tab_menu_text_size</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
+    <!--账户editText样式-->
+    <style name="edit_account">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/len_8</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <!--账户TextView 跳转样式-->
+    <style name="txt_account">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>]
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/def_text_account_selector</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+    <!--账户icon ImageView样式-->
+    <style name="imge_account">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_width">@dimen/len_20</item>
+        <item name="android:layout_height">@dimen/len_20</item>
+        <item name="android:layout_marginLeft">@dimen/len_8</item>
+        <item name="android:layout_marginRight">@dimen/len_8</item>
+    </style>
+
+    <style name="view_div_black">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/div_color</item>
+        <item name="android:layout_marginTop">@dimen/len_2</item>
+        <item name="android:layout_marginBottom">@dimen/len_2</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/len_40
+        </item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/len_8</item>
+    </style>
+
+    <style name="btn_verify">
+        <item name="android:layout_width">@dimen/len_96</item>
+        <item name="android:layout_height">@dimen/len_32</item>
+        <item name="android:layout_gravity">end|center_vertical</item>
+        <item name="android:background">@drawable/bg_btn_account_selector</item>
+        <item name="android:textColor">@color/def_btn_text_selector</item>
+        <item name="android:textSize">@dimen/font_12</item>
+    </style>
+</resources>

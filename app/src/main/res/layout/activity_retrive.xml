@@ -51,13 +51,8 @@
 
             <Button
                 android:id="@+id/btn_account_get_verify"
-                android:layout_width="@dimen/len_96"
-                android:layout_height="@dimen/len_32"
-                android:layout_gravity="end|center_vertical"
-                android:background="@drawable/bg_btn_account_selector"
-                android:text="@string/label_get_verify"
-                android:textColor="@color/def_btn_text_selector"
-                android:textSize="@dimen/font_12" />
+                style="@style/btn_verify"
+                android:text="@string/label_get_verify" />
 
         </FrameLayout>
 
@@ -124,7 +119,7 @@
         android:layout_marginBottom="@dimen/len_32"
         android:background="@drawable/bg_btn_account_selector"
         android:enabled="false"
-        android:text="@string/label_register"
+        android:text="@string/label_retrive"
         android:textColor="@color/def_btn_text_selector" />
 
 </LinearLayout>

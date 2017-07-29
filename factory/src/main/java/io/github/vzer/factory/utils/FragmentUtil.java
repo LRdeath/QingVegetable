@@ -27,10 +27,10 @@ public class FragmentUtil {
     /**
      * 替换Fragment
      */
-    public static void replace(BaseActivity context, int viewId, Fragment fragment) {
+    public static void replace(BaseActivity context, int viewId, Fragment fragment, @Nullable String tag) {
         context.getSupportFragmentManager()
                 .beginTransaction()
-                .replace(viewId,fragment)
+                .replace(viewId, fragment, tag)
                 .commit();
     }
 

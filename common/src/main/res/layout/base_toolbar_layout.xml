@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,8 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        style="@style/toolbar"></android.support.v7.widget.Toolbar>
+        style="@style/toolbar"
+        app:navigationIcon="@drawable/ic_back" />
 
     <View
         android:id="@+id/view_toolbar_shadow"
@@ -19,6 +21,6 @@
         android:id="@+id/view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/view_toolbar_shadow"></FrameLayout>
+        android:layout_below="@id/view_toolbar_shadow" />
 
 </RelativeLayout>

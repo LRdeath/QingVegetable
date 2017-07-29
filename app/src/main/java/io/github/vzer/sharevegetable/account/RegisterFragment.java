@@ -3,7 +3,12 @@ package io.github.vzer.sharevegetable.account;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,7 +27,7 @@ import io.github.vzer.sharevegetable.main.MainActivity;
  * @date: 2017/7/25. 21.01
  * @email: vzer@qq.com
  */
-public class RegisterFragment extends FragmentPresenter<RegisterContract.Presenter> implements RegisterContract.View {
+public class RegisterFragment extends FragmentPresenter<RegisterContract.Presenter> implements RegisterContract.View, TextWatcher {
 
 
     private AccountTrigger mTrigger;
@@ -37,8 +42,12 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
     EditText rePasswordEdit;
     @BindView(R.id.progress_loading)
     ProgressBar loadingProgress;
+    @BindView(R.id.btn_account_submit)
+    Button submitBtn;
     @BindView(R.id.txt_go_login)
     TextView goLoginTxt;
+    @BindView(R.id.btn_account_get_verify)
+    Button getVerifyBtn;
 
     @Override
     public void onAttach(Context context) {
@@ -53,11 +62,17 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
     }
 
 
+    /**
+     * 跳转到登录界面
+     */
     @OnClick(R.id.txt_go_login)
     void go_login() {
         mTrigger.triggerView();
     }
 
+    /**
+     * 注册点击事件处理
+     */
     @OnClick(R.id.btn_account_submit)
     void submit() {
         String phone = phoneEdit.getText().toString();
@@ -67,9 +82,31 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
         //通知P层进行注册
         mPresenter.register(phone, password, verifi, rePassword);
     }
+
+    @OnClick(R.id.btn_account_get_verify)
+    void getVerify() {
+        String phone = phoneEdit.getText().toString();
+        mPresenter.postVerify(phone);
+        getVerifyBtn.setEnabled(false);
+        Handler handler = new Handler();
+        for (int i = 59; i > 0; i--) {
+            final int finalI = i;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getVerifyBtn.setText("还剩" + finalI + "秒");
+                    if (finalI == 1) {
+                        getVerifyBtn.setText("重新获取");
+                        getVerifyBtn.setEnabled(true);
+                    }
+                }
+            }, (60 - i) * 1000);
+        }
+
+    }
+
     /**
      * 注册成功的处理方法
-     * P层回调此方法
      */
     @Override
     public void registerSuccess() {
@@ -118,6 +155,10 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
+        passwordEdit.addTextChangedListener(this);
+        verifyEdit.addTextChangedListener(this);
+        phoneEdit.addTextChangedListener(this);
+        rePasswordEdit.addTextChangedListener(this);
     }
 
     @Override
@@ -126,4 +167,31 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
     }
 
 
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        //设置 获取验证码 btn能否点击
+        if (phoneEdit.getText().toString().isEmpty()) {
+            getVerifyBtn.setEnabled(false);
+            submitBtn.setEnabled(false);
+            return;
+        } else getVerifyBtn.setEnabled(true);
+
+        //设置重置Btn 能否点击
+        if (phoneEdit.getText().toString().isEmpty() ||
+                verifyEdit.getText().toString().isEmpty() ||
+                passwordEdit.getText().toString().isEmpty() ||
+                rePasswordEdit.getText().toString().isEmpty()) {
+            submitBtn.setEnabled(false);
+        } else submitBtn.setEnabled(true);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
 }
