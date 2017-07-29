@@ -1,10 +1,8 @@
 package io.github.vzer.sharevegetable;
 
-import android.os.Bundle;
 import android.os.Handler;
 
 import io.github.vzer.common.app.BaseActivity;
-import io.github.vzer.common.app.ToolbarActivity;
 import io.github.vzer.sharevegetable.account.AccountActivity;
 
 public class LaunchActivity extends BaseActivity {

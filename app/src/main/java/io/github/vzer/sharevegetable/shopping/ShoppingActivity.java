@@ -1,6 +1,9 @@
 package io.github.vzer.sharevegetable.shopping;
 
+import io.github.vzer.common.app.ActivityPresenter;
 import io.github.vzer.common.app.BaseActivity;
+import io.github.vzer.common.app.ToolbarActivityPresenter;
+import io.github.vzer.factory.presenter.shopping.ShoppingContract;
 import io.github.vzer.sharevegetable.R;
 
 /**
@@ -9,7 +12,25 @@ import io.github.vzer.sharevegetable.R;
  * email yangcihang@hrsoft.net
  */
 
-public class ShoppingActivity extends BaseActivity {
+public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.Presenter>
+        implements ShoppingContract.View {
+
+
+    @Override
+    public void showError(int strId) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public ShoppingContract.Presenter initPresenter() {
+        return null;
+    }
+
     @Override
     protected void initData() {
 
@@ -17,7 +38,7 @@ public class ShoppingActivity extends BaseActivity {
 
     @Override
     public void initWidget() {
-
+        setActivityTitle(getResources().getString(R.string.title_shopping));
     }
 
     @Override

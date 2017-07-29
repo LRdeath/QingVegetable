@@ -9,7 +9,6 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.BaseActivity;
-import io.github.vzer.common.app.Fragment;
 import io.github.vzer.factory.utils.FragmentUtil;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
@@ -45,6 +44,8 @@ public class MainActivity extends BaseActivity {
     LinearLayout orderLayout;
     @BindView(R.id.ly_menu_vegetable)
     LinearLayout vegetableLayout;
+    @BindView(R.id.img_shopping)
+    ImageView shoppingImg;
     private static final String ORDER_TAG = "order";
     private static final String FIND_TAG = "find";
     private static final String VEGETABLE_TAG = "vegetable";
@@ -111,6 +112,15 @@ public class MainActivity extends BaseActivity {
         replaceCurrentFragment(R.id.ly_menu_mine);
         changeMineMenuState();
     }
+
+    /**
+     * 点击购物按钮
+     */
+    @OnClick(R.id.img_shopping)
+    void onShoppingClicked() {
+        startActivity(new Intent(this, ShoppingActivity.class));
+    }
+
 
     /**
      * 展示当前的fragment
@@ -209,7 +219,7 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 清楚所有状态
+     * 清除所有状态
      */
     private void clearAllState() {
         vegetableTxt.setSelected(false);

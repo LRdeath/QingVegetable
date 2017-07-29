@@ -16,6 +16,27 @@
         <item name="android:textSize">@dimen/tab_menu_text_size</item>
         <item name="android:layout_marginTop">2dp</item>
     </style>
+    <!--mine页面item的样式-->
+    <style name="mine_item">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_height">@dimen/mine_item_height</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="mine_item_label_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_mine_item</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:layout_marginLeft">@dimen/margin_left_mine_text</item>
+    </style>
+
+    <style name="mine_item_content_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_mine_item</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
 
     <!--账户editText样式-->
     <style name="edit_account">
@@ -52,7 +73,8 @@
         <item name="android:layout_marginBottom">@dimen/len_2</item>
         <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/len_40
         </item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/len_8</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/len_8
+        </item>
     </style>
 
     <style name="btn_verify">

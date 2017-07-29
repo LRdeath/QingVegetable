@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--状态栏高度-->
     <dimen name="statusBarSize">25dp</dimen>
@@ -7,7 +6,6 @@
     <!--默认字体大小-->
     <dimen name="fontNameSize">15sp</dimen>
 
-    <dimen name="tab_menu_text_size">12sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="edit_account_width">196dp</dimen>
 
@@ -26,4 +24,10 @@
     <dimen name="len_64">64dp</dimen>
     <dimen name="len_4">4dp</dimen>
     <dimen name="len_2">2dp</dimen>
+
+    <dimen name="tab_menu_text_size">12sp</dimen>
+    <dimen name="label_text_size">18sp</dimen>
+    <dimen name="text_mine_item">14sp</dimen>
+    <dimen name="mine_item_height">48dp</dimen>
+    <dimen name="margin_left_mine_text">46dp</dimen>
 </resources>

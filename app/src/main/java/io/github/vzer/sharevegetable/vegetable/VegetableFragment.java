@@ -2,6 +2,7 @@ package io.github.vzer.sharevegetable.vegetable;
 
 import android.os.Bundle;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
 import io.github.vzer.sharevegetable.R;
@@ -15,7 +16,6 @@ import io.github.vzer.sharevegetable.R;
 public class VegetableFragment extends FragmentPresenter<VegetableContract.Presenter>implements VegetableContract.View{
     @Override
     public void showLoading() {
-
     }
 
     @Override
