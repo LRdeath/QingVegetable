@@ -13,6 +13,17 @@ public interface MineContract  {
 
     }
     interface Presenter extends BaseContract.Presenter{
+        void goLogin();
 
+        /**
+         * 修改性别，男为true，女为false
+         *
+         * @param sex
+         */
+        void changeSex(boolean sex);
+
+        void changeUserName(String newUserName);
+
+        void changeTrueName(String newTrueName);
     }
 }

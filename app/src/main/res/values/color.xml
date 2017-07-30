@@ -24,4 +24,5 @@
     <color name="btn_txt_disable">#9D9D9D</color>
     <color name="btn_disable">#D1D1D1</color>
     <color name="div_color">#C9C9C9</color>
+    <color name="text_order_selected">#FF169B49</color>
 </resources>

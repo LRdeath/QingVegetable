@@ -8,5 +8,4 @@ package io.github.vzer.factory.constant;
  */
 
 public class KeyConstant {
-
 }

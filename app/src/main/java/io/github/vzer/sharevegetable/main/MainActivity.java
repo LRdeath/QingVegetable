@@ -9,6 +9,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.BaseActivity;
+import io.github.vzer.common.widget.NewTip;
 import io.github.vzer.factory.utils.FragmentUtil;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
@@ -46,6 +47,8 @@ public class MainActivity extends BaseActivity {
     LinearLayout vegetableLayout;
     @BindView(R.id.img_shopping)
     ImageView shoppingImg;
+    @BindView(R.id.tip_sum)
+    NewTip sumTip;
     private static final String ORDER_TAG = "order";
     private static final String FIND_TAG = "find";
     private static final String VEGETABLE_TAG = "vegetable";
@@ -58,7 +61,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
     }
 
     @Override
