@@ -1,6 +1,7 @@
 package io.github.vzer.sharevegetable.find;
 
 import android.os.Bundle;
+import android.view.View;
 
 import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.factory.presenter.find.FindContract;
@@ -26,6 +27,11 @@ public class FindFragment extends FragmentPresenter<FindContract.Presenter> impl
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    protected void initWidget(View root) {
 
     }
 

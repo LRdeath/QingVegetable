@@ -16,6 +16,7 @@ import butterknife.OnClick;
 import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.factory.presenter.account.LoginContract;
 import io.github.vzer.factory.presenter.account.LoginPresenter;
+import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.main.MainActivity;
 
@@ -123,6 +124,8 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
         phoneEdit.setEnabled(true);
         goRegisterTxt.setEnabled(true);
         submitBtn.setEnabled(true);
+        //提示错误信息
+        ToastUtil.showToast(strId);
         loadingProgress.setVisibility(View.GONE);
     }
 
@@ -134,7 +137,6 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
 
     @Override
     protected void initWidget(View root) {
-        super.initWidget(root);
         passwordEdit.addTextChangedListener(this);
         phoneEdit.addTextChangedListener(this);
     }
@@ -157,6 +159,5 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
 
     @Override
     public void afterTextChanged(Editable editable) {
-
     }
 }

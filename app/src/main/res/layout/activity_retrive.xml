@@ -3,15 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context="io.github.vzer.sharevegetable.account.LoginFragment"
-    tools:showIn="@layout/activity_account">
+    tools:context="io.github.vzer.sharevegetable.account.LoginFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_account_retrive" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/len_16"
-        android:layout_marginRight="@dimen/len_16"
+        android:layout_marginLeft="@dimen/len_72"
+        android:layout_marginRight="@dimen/len_72"
         android:layout_marginTop="@dimen/len_16"
         android:orientation="vertical"
         android:paddingBottom="@dimen/len_8"
@@ -23,13 +28,16 @@
             android:orientation="horizontal"
             android:padding="@dimen/len_4">
 
-            <ImageView style="@style/imge_account"
-                android:src="@drawable/ic_account_phone"/>
+            <ImageView
+                style="@style/imge_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_account_phone" />
 
-            <EditText
+            <io.github.vzer.common.widget.ClearEditText
                 android:id="@+id/edit_account_phone"
                 style="@style/edit_account"
-                android:hint="@string/label_phone"
+                android:hint="@string/hint_phone"
                 android:inputType="phone" />
         </LinearLayout>
 
@@ -38,12 +46,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/len_4"
             android:padding="@dimen/len_4">
 
-            <ImageView style="@style/imge_account"
-                android:src="@drawable/ic_account_phone"/>
+            <ImageView
+                style="@style/imge_account"
+                android:src="@drawable/ic_account_verify" />
 
-            <EditText
+            <io.github.vzer.common.widget.ClearEditText
                 android:id="@+id/edit_account_verify"
                 style="@style/edit_account"
                 android:hint="@string/label_verification"
@@ -61,16 +71,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/len_4"
             android:orientation="horizontal"
             android:padding="@dimen/len_4">
 
-            <ImageView style="@style/imge_account"
-                android:src="@drawable/ic_account_phone"/>
+            <ImageView
+                style="@style/imge_account"
+                android:src="@drawable/ic_account_password" />
 
-            <EditText
+            <io.github.vzer.common.widget.ClearEditText
                 android:id="@+id/edit_account_password"
                 style="@style/edit_account"
-                android:hint="@string/label_new_password"
+                android:hint="@string/hint_password"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -79,13 +91,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/len_4"
             android:orientation="horizontal"
             android:padding="@dimen/len_4">
 
-            <ImageView style="@style/imge_account"
-                android:src="@drawable/ic_account_phone"/>
+            <ImageView
+                style="@style/imge_account"
+                android:src="@drawable/ic_account_password" />
 
-            <EditText
+            <io.github.vzer.common.widget.ClearEditText
                 android:id="@+id/edit_account_confirm_password"
                 style="@style/edit_account"
                 android:hint="@string/label_confirm_password"
@@ -116,7 +130,7 @@
         android:layout_width="@dimen/edit_account_width"
         android:layout_height="@dimen/len_40"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/len_32"
+        android:layout_marginBottom="@dimen/len_40"
         android:background="@drawable/bg_btn_account_selector"
         android:enabled="false"
         android:text="@string/label_retrive"

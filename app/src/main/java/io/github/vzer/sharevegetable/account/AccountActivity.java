@@ -2,7 +2,6 @@ package io.github.vzer.sharevegetable.account;
 
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.FrameLayout;
@@ -13,7 +12,6 @@ import io.github.vzer.common.app.Fragment;
 import io.github.vzer.factory.utils.FragmentUtil;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
-import retrofit2.http.Body;
 
 public class AccountActivity extends BaseActivity implements AccountTrigger {
     private boolean isReCreate = false;
@@ -98,7 +96,7 @@ public class AccountActivity extends BaseActivity implements AccountTrigger {
         FragmentUtil.replace(this, R.id.account_container, mCurFragment, mCurTag);
     }
 
-    private long exittime = 0;
+    private long exit_time = 0;
 
     /**
      * 返回键监听
@@ -106,11 +104,11 @@ public class AccountActivity extends BaseActivity implements AccountTrigger {
     @Override
     public void onBackPressed() {
         long cur = System.currentTimeMillis();
-        if (cur - exittime < 2000) {
+        if (cur - exit_time < 2000) {
             super.onBackPressed();
         } else {
             ToastUtil.showToast(R.string.toast_exit);
-            exittime = cur;
+            exit_time = cur;
         }
     }
 }

@@ -44,9 +44,10 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
     @BindView(R.id.btn_account_get_verify)
     Button getVerifyBtn;
 
-    public static void show(Context context){
-        context.startActivity(new Intent(context,RetriveActivity.class));
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, RetriveActivity.class));
     }
+
     @Override
     protected void initData() {
 
@@ -55,7 +56,8 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
     @Override
     public void initWidget() {
         this.setActivityTitle(getResources().getString(R.string.label_retrive));
-
+        submitBtn.addTextChangedListener(this);
+        phoneEdit.addTextChangedListener(this);
     }
 
     @Override
@@ -89,6 +91,8 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
         String phone = phoneEdit.getText().toString();
         mPresenter.postVerify(phone);
         getVerifyBtn.setEnabled(false);
+
+        isWaiting = true;//更新等待读秒状态
         Handler handler = new Handler();
         for (int i = 59; i > 0; i--) {
             final int finalI = i;
@@ -98,6 +102,7 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
                     getVerifyBtn.setText("还剩" + finalI + "秒");
                     if (finalI == 1) {
                         getVerifyBtn.setText("重新获取");
+                        isWaiting = false;
                         getVerifyBtn.setEnabled(true);
                     }
                 }
@@ -119,6 +124,8 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
      */
     @Override
     public void showError(int strId) {
+        //提示错误信息
+        ToastUtil.showToast(strId);
         passwordEdit.setEnabled(false);
         phoneEdit.setEnabled(false);
         verifyEdit.setEnabled(false);
@@ -155,14 +162,18 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
 
     }
 
+    private boolean isWaiting = false;//等待读秒状态
+
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        //设置 获取验证码 btn能否点击
-        if (phoneEdit.getText().toString().isEmpty()) {
-            getVerifyBtn.setEnabled(false);
-            submitBtn.setEnabled(false);
-            return;
-        } else getVerifyBtn.setEnabled(true);
+        //设置 获取验证码 btn能否点击,等待读秒中不进行判断
+        if (!isWaiting) {
+            if (phoneEdit.getText().toString().isEmpty()) {
+                getVerifyBtn.setEnabled(false);
+                submitBtn.setEnabled(false);
+                return;
+            } else getVerifyBtn.setEnabled(true);
+        }
 
         //设置重置Btn 能否点击
         if (phoneEdit.getText().toString().isEmpty() ||

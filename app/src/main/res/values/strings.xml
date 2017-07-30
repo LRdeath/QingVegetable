@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShareVegetable</string>
+    <string name="app_name">秦  菜</string>
     <string name="title_activity_account">AccountActivity</string>
     <string name="action_settings">Settings</string>
 
@@ -9,7 +9,7 @@
     <string name="label_password">密码</string>
     <string name="label_confirm_password">确认密码</string>
     <string name="label_go_register">新用户注册</string>
-    <string name="label_verification">验证码</string>
+    <string name="label_verification">  验证码</string>
     <string name="label_go_login">已有账号？去登录</string>
     <string name="label_register">注册</string>
     <string name="label_login">登录</string>
@@ -17,6 +17,8 @@
     <string name="text_tab_order">订单</string>
     <string name="text_tab_find">发现</string>
     <string name="text_tab_mine">我的</string>
+    <string name="hint_phone">请输入11位手机号</string>
+    <string name="hint_password">请输入6–20位密码</string>
     <!--各个页面的label-->
     <string name="label_vegetable">秦菜</string>
     <string name="label_order">订单</string>

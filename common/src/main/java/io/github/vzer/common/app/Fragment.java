@@ -38,7 +38,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
         int layId = getContentLayoutId();
         if (mRoot == null) {
             View root = inflater.inflate(layId, container, false);
-
+            ButterKnife.bind(this, root);
             initWidget(root);
             mRoot = root;
         } else {
@@ -68,9 +68,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
     /**
      * 初始化控件
      */
-    protected void initWidget(View root) {
-        ButterKnife.bind(this, root);
-    }
+    protected abstract void initWidget(View root);
 
 
     /**

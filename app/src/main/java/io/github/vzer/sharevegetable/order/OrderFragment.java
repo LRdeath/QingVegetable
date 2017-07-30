@@ -49,11 +49,11 @@ public class OrderFragment extends FragmentPresenter<OrderContract.Presenter> im
 
     @Override
     protected void initWidget(View root) {
-        super.initWidget(root);
         adapter = new OrderViewPagerAdapter(getFragmentManager());
         orderVp.setAdapter(adapter);
         orderTab.setupWithViewPager(orderVp);
     }
+
 
     @Override
     protected void initArgs(Bundle arguments) {

@@ -9,6 +9,8 @@ import io.github.vzer.factory.model.account.LoginModel;
 import io.github.vzer.factory.model.account.RegisterModel;
 import io.github.vzer.factory.network.NetWork;
 import io.github.vzer.factory.network.RemoteService;
+import io.github.vzer.factory.presenter.account.RegisterPresenter;
+import io.github.vzer.factory.presenter.account.RetrivePresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +48,27 @@ public class AccountHelper {
                     }
                 });*/
         callback.onDataLoaded(null);
+
+    }
+
+    /**
+     * 注册
+     */
+    public static void register(RegisterModel model, RegisterPresenter registerPresenter) {
+
+    }
+
+    /**
+     * 重置密码 网络请求
+     */
+    public static void resetPassword(RegisterModel model, RetrivePresenter retrivePresenter) {
+
+    }
+
+    /**
+     * 获取验证码 网络请求
+     */
+    public static void postVerify(String phone) {
 
     }
 }

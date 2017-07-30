@@ -18,6 +18,7 @@ import butterknife.OnClick;
 import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.factory.presenter.account.RegisterContract;
 import io.github.vzer.factory.presenter.account.RegisterPresenter;
+import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.main.MainActivity;
 
@@ -88,6 +89,8 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
         String phone = phoneEdit.getText().toString();
         mPresenter.postVerify(phone);
         getVerifyBtn.setEnabled(false);
+
+        isWaiting = true;//更新等待读秒状态
         Handler handler = new Handler();
         for (int i = 59; i > 0; i--) {
             final int finalI = i;
@@ -96,11 +99,13 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
                 public void run() {
                     getVerifyBtn.setText("还剩" + finalI + "秒");
                     if (finalI == 1) {
+                        isWaiting = false;
                         getVerifyBtn.setText("重新获取");
                         getVerifyBtn.setEnabled(true);
                     }
                 }
             }, (60 - i) * 1000);
+            // TODO: 2017/7/30 handler内存泄漏
         }
 
     }
@@ -139,6 +144,8 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
         verifyEdit.setEnabled(true);
         rePasswordEdit.setEnabled(true);
         goLoginTxt.setEnabled(true);
+        //提示错误信息
+        ToastUtil.showToast(strId);
         loadingProgress.setVisibility(View.GONE);
     }
 
@@ -154,7 +161,6 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
 
     @Override
     protected void initWidget(View root) {
-        super.initWidget(root);
         passwordEdit.addTextChangedListener(this);
         verifyEdit.addTextChangedListener(this);
         phoneEdit.addTextChangedListener(this);
@@ -172,15 +178,17 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
 
     }
 
+    private boolean isWaiting = false;
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        //设置 获取验证码 btn能否点击
-        if (phoneEdit.getText().toString().isEmpty()) {
-            getVerifyBtn.setEnabled(false);
-            submitBtn.setEnabled(false);
-            return;
-        } else getVerifyBtn.setEnabled(true);
-
+        //设置获取验证码 btn能否点击,等待读秒中不进行判断
+        if (!isWaiting) {
+            if (phoneEdit.getText().toString().isEmpty()) {
+                getVerifyBtn.setEnabled(false);
+                submitBtn.setEnabled(false);
+                return;
+            } else getVerifyBtn.setEnabled(true);
+        }
         //设置重置Btn 能否点击
         if (phoneEdit.getText().toString().isEmpty() ||
                 verifyEdit.getText().toString().isEmpty() ||

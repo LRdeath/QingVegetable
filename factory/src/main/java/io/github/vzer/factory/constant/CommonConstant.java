@@ -13,7 +13,7 @@ public class CommonConstant {
     public static final String API_URL = "https://biubiu.com/";
 
     // 手机号的正则,11位手机号
-   public static final String REGEX_MOBILE = "[1][3,4,5,7,8][0-9]{9}$";
+    public static final String REGEX_MOBILE = "[1][3,4,5,7,8][0-9]{9}$";
 
 
 }

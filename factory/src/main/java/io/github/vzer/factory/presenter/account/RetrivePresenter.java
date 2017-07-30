@@ -1,8 +1,15 @@
 package io.github.vzer.factory.presenter.account;
 
+import android.text.TextUtils;
+
+import java.util.regex.Pattern;
+
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
 import io.github.vzer.factory.R;
+import io.github.vzer.factory.constant.CommonConstant;
+import io.github.vzer.factory.data.AccountHelper;
+import io.github.vzer.factory.model.account.RegisterModel;
 import io.github.vzer.factory.model.db.User;
 import io.github.vzer.factory.utils.ToastUtil;
 
@@ -24,15 +31,54 @@ public class RetrivePresenter extends BasePresenter<RetriveContract.View>
         super(mView);
     }
 
+    /**
+     *
+     * @param phone
+     */
     @Override
     public void postVerify(String phone) {
-        // TODO: 2017/7/29 网络请求 发送短信验证码
+        final RetriveContract.View view =mView;
+        if (!checkMobile(phone)) {
+            //提示手机号格式不对
+            view.showError(R.string.data_account_register_invalid_parameter_mobile);
+        }else {
+            AccountHelper.postVerify(phone);
+        }
     }
 
+    /**
+     * 对输入格式进行判断
+     */
     @Override
     public void resetPassword(String phone, String password, String rePassword, String code) {
-        // TODO: 2017/7/29 网络请求重置密码
+        //得到view接口
+        final RetriveContract.View view =mView;
+        //判断账号密码是否为空
+        if (!checkMobile(phone)) {
+            //提示手机号格式不对
+            view.showError(R.string.data_account_register_invalid_parameter_mobile);
+        } else if (code.length() < 4) {
+            //验证码大于4位
+            view.showError(R.string.data_account_register_invalid_parameter_code);
+        } else if (!password.equals(rePassword)){
+            //俩次输入的密码不一致
+            view.showError(R.string.data_account_register_invalid_parameter_repassword);
+        } else if (password.length() < 6) {
+            //密码需要大于6位
+            view.showError(R.string.data_account_register_invalid_parameter_password);
+        } else {
+            //对数据进行封装
+            RegisterModel model = new RegisterModel(phone, password, code);
+            //传递给Model层,进行注册操作
+            AccountHelper.resetPassword(model, this);
+        }
     }
+
+    private boolean checkMobile(String phone) {
+        //手机号不为空,并且满足格式
+        return !TextUtils.isEmpty(phone) && Pattern.matches(CommonConstant.REGEX_MOBILE, phone);
+    }
+
 
     @Override
     public void onDataLoaded(User user) {

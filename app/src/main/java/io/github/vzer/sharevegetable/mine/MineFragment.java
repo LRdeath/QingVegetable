@@ -80,6 +80,11 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     }
 
     @Override
+    protected void initWidget(View root) {
+
+    }
+
+    @Override
     protected void initArgs(Bundle arguments) {
 
     }

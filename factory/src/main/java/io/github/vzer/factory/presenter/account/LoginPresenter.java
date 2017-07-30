@@ -1,7 +1,13 @@
 package io.github.vzer.factory.presenter.account;
 
+import android.text.TextUtils;
+
+import java.util.regex.Pattern;
+
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
+import io.github.vzer.factory.R;
+import io.github.vzer.factory.constant.CommonConstant;
 import io.github.vzer.factory.data.AccountHelper;
 import io.github.vzer.factory.model.db.User;
 import io.github.vzer.factory.model.account.LoginModel;
@@ -29,13 +35,28 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
 
     @Override
     public void login(String phone, String password) {
-        // TODO: 2017/7/25 对登陆信息的格式进行判断
         start();
-        LoginModel model = new LoginModel(phone,password);
-        //调用M层对登陆请求进行处理
-        AccountHelper.login(model,this);
+        final LoginContract.View view = mView;
+        //判断账号密码是否填写正确
+        if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)) {
+            //账号密码为空
+            view.showError(R.string.data_account_login_invalid_parameter);
+        } else if (!checkMobile(phone) && password.length() < 6) {
+            //格式错误
+            view.showError(R.string.data_account_login_invalid_validate);
+        } else {
+            //对数据进行封装
+            LoginModel model = new LoginModel(phone, password);
+            //网络请求
+            //传递数据,进行登录操作
+            AccountHelper.login(model, this);
+        }
 
+    }
 
+    private boolean checkMobile(String phone) {
+        //手机号不为空,并且满足格式
+        return !TextUtils.isEmpty(phone) && Pattern.matches(CommonConstant.REGEX_MOBILE, phone);
     }
 
 

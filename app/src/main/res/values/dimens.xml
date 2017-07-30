@@ -7,7 +7,7 @@
     <dimen name="fontNameSize">15sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="edit_account_width">196dp</dimen>
+    <dimen name="edit_account_width">216dp</dimen>
 
     <dimen name="font_14">14sp</dimen>
     <dimen name="len_8">8dp</dimen>
@@ -30,4 +30,7 @@
     <dimen name="text_mine_item">14sp</dimen>
     <dimen name="mine_item_height">48dp</dimen>
     <dimen name="margin_left_mine_text">46dp</dimen>
+    <dimen name="len_72">72dp</dimen>
+    <dimen name="font_10">10sp</dimen>
+    <dimen name="len_14">14dp</dimen>
 </resources>
