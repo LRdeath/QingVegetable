@@ -6,6 +6,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yancy.imageselector.ImageSelector;
+import com.yancy.imageselector.ImageSelectorActivity;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.BaseActivity;
