@@ -1,10 +1,7 @@
 package io.github.vzer.common.app;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 
-import io.github.vzer.common.R;
 import io.github.vzer.common.factory.presenter.BaseContract;
 
 /**

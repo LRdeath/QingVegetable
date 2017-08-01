@@ -9,10 +9,10 @@ package io.github.vzer.factory.model.vegetable;
 public class VegetableModel {
     private int pId; //商品id
     private String name; //商品名字
-    private String type; //商品类型
+    private int type; //商品类型
     private double price; //商品价格
     private String standard; //商品规格
-    private String picture;  //商品图片
+    private String pictureUri;  //商品图片
 
     public int getpId() {
         return pId;
@@ -30,11 +30,11 @@ public class VegetableModel {
         this.name = name;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -54,11 +54,11 @@ public class VegetableModel {
         this.standard = standard;
     }
 
-    public String getPicture() {
-        return picture;
+    public String getPictureUri() {
+        return pictureUri;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setPictureUri(String pictureUri) {
+        this.pictureUri = pictureUri;
     }
 }

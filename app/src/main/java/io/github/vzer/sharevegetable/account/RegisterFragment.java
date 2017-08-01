@@ -202,7 +202,7 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (timerVerify ==null)return;
+        if (null == timerVerify) return;
         timerVerify.onFinish();
         timerVerify.cancel();//关闭倒计时器
     }
@@ -225,7 +225,7 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
         @Override
         public void onFinish() {
             isWaiting = false;
-            if (getVerifyBtn==null)return;
+            if (getVerifyBtn == null) return;
             getVerifyBtn.setEnabled(true);
             getVerifyBtn.setText("重新获取");
         }

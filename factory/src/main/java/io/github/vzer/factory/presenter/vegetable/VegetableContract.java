@@ -1,6 +1,12 @@
 package io.github.vzer.factory.presenter.vegetable;
 
+import android.widget.ListView;
+
+import java.util.List;
+
 import io.github.vzer.common.factory.presenter.BaseContract;
+import io.github.vzer.factory.model.vegetable.VegetableModel;
+import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 
 /**
  * @author YangCihang
@@ -10,9 +16,24 @@ import io.github.vzer.common.factory.presenter.BaseContract;
 
 public interface VegetableContract {
     interface View extends BaseContract.View<Presenter> {
-        // TODO: 17/7/27 Vegetable的view层回调方法
+        /**
+         * 加载商品数据成功
+         */
+        void LoadDatasSuccess(List<VegetableModel> vegetableModels);
+        /**
+         * 加载类型数据成功
+         */
+        void LoadTypeSuccess(List<VegetableTypeModel> typeModels);
     }
-    interface Presenter extends BaseContract.Presenter{
-        // TODO: 17/7/27 Vegetable的presenter层回调方法
+
+    interface Presenter extends BaseContract.Presenter {
+        /**
+         * 加载商品数据
+         */
+        void LoadDatas(int typeId);
+        /**
+         * 加载商品类型
+         */
+        void LoadType();
     }
 }

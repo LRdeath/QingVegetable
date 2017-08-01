@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context="io.github.vzer.sharevegetable.vegetable.VegetableFragment">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -13,7 +15,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
@@ -34,11 +36,9 @@
                 android:textSize="18sp" />
 
             <android.support.design.widget.TabLayout
-                android:id="@+id/tab_order"
+                android:id="@+id/tab_vegetable_main"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:paddingRight="@dimen/len_20"
-                android:paddingLeft="@dimen/len_20"
                 android:layout_gravity="bottom"
                 app:tabMode="fixed"
                 android:scrollbarSize="@dimen/len_2"
@@ -46,41 +46,15 @@
                 app:tabSelectedTextColor="@color/white"
                 app:tabTextColor="@color/colorPrimaryLight">
 
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="常用"/>
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="根茎类"/>
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="葱蒜类"/>
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="青菜"/>
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="叶菜类"/>
+
             </android.support.design.widget.TabLayout>
-
-
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcview_vegetable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+   <android.support.v4.view.ViewPager
+       android:id="@+id/vp_vegetable"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </android.support.design.widget.CoordinatorLayout>

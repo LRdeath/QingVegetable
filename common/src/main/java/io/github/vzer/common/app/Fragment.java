@@ -7,13 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Fragment的封装

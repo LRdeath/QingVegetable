@@ -28,7 +28,7 @@
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/bg_account_shade"/>
+            android:background="@drawable/bg_account_shade"/>
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * @author: Vzer.
  * @date: 2017/7/26. 17:46
@@ -107,7 +109,7 @@ public abstract class RecyclerViewAdapter<Data> extends RecyclerView.Adapter<Rec
     public void onBindViewHolder(final ViewHolder<Data> holder, final int position) {
         //ViewHolder绑定数据
         Data data = dataList.get(position);
-        holder.onBind(data);
+        holder.bind(data);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +146,9 @@ public abstract class RecyclerViewAdapter<Data> extends RecyclerView.Adapter<Rec
         private Data mData;
         public ViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
+
         void bind(Data data){
             mData = data;
             onBind(data);
