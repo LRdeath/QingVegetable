@@ -1,10 +1,15 @@
 package io.github.vzer.sharevegetable.vegetable;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.vzer.common.app.FragmentPresenter;
+import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
 import io.github.vzer.sharevegetable.R;
 
@@ -15,6 +20,9 @@ import io.github.vzer.sharevegetable.R;
  */
 
 public class VegetableFragment extends FragmentPresenter<VegetableContract.Presenter>implements VegetableContract.View{
+    @BindView(R.id.rcview_vegetable)
+    RecyclerView rcviewVegetable;
+
     @Override
     public void showLoading() {
     }
@@ -31,7 +39,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
 
     @Override
     protected void initWidget(View root) {
-
+        rcviewVegetable.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override
@@ -42,5 +50,17 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     @Override
     protected int getContentLayoutId() {
         return R.layout.fragment_vegetable;
+    }
+
+    class VegetableViewHolder extends RecyclerViewAdapter.ViewHolder<VegetableModel>{
+
+        public VegetableViewHolder(View itemView) {
+            super(itemView);
+        }
+
+        @Override
+        protected void onBind(VegetableModel vegetableModel) {
+
+        }
     }
 }

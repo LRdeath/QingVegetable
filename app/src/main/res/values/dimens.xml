@@ -10,11 +10,13 @@
     <dimen name="edit_account_width">216dp</dimen>
 
     <dimen name="font_14">14sp</dimen>
+    <dimen name="font_12">12sp</dimen>
+    <dimen name="font_10">10sp</dimen>
+
     <dimen name="len_8">8dp</dimen>
     <dimen name="len_32">32dp</dimen>
     <dimen name="len_20">20dp</dimen>
     <dimen name="len_56">56dp</dimen>
-    <dimen name="font_12">12sp</dimen>
     <dimen name="len_80">80dp</dimen>
     <dimen name="len_88">88dp</dimen>
     <dimen name="len_96">96dp</dimen>
@@ -24,13 +26,17 @@
     <dimen name="len_64">64dp</dimen>
     <dimen name="len_4">4dp</dimen>
     <dimen name="len_2">2dp</dimen>
+    <dimen name="len_72">72dp</dimen>
+    <dimen name="len_14">14dp</dimen>
+    <dimen name="len_128">128dp</dimen>
+    <dimen name="len_160">160dp</dimen>
+    <dimen name="len_264">264dp</dimen>
 
     <dimen name="tab_menu_text_size">12sp</dimen>
     <dimen name="label_text_size">18sp</dimen>
     <dimen name="text_mine_item">14sp</dimen>
     <dimen name="mine_item_height">48dp</dimen>
     <dimen name="margin_left_mine_text">46dp</dimen>
-    <dimen name="len_72">72dp</dimen>
-    <dimen name="font_10">10sp</dimen>
-    <dimen name="len_14">14dp</dimen>
+    <dimen name="font_32">32sp</dimen>
+
 </resources>

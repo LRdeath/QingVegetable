@@ -2,6 +2,7 @@ package io.github.vzer.sharevegetable.account;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,16 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.github.vzer.common.app.ToolbarActivity;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
-import io.github.vzer.common.factory.presenter.BaseContract;
 import io.github.vzer.factory.presenter.account.RetriveContract;
 import io.github.vzer.factory.presenter.account.RetrivePresenter;
 import io.github.vzer.factory.utils.ToastUtil;
+import io.github.vzer.factory.utils.RegexUtil;
 import io.github.vzer.sharevegetable.R;
 
 /**
@@ -29,6 +28,7 @@ import io.github.vzer.sharevegetable.R;
 
 public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Presenter>
         implements RetriveContract.View, TextWatcher {
+    private VerifyDownTimer timerVerify;
     @BindView(R.id.edit_account_phone)
     EditText phoneEdit;
     @BindView(R.id.edit_account_verify)
@@ -56,8 +56,10 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
     @Override
     public void initWidget() {
         this.setActivityTitle(getResources().getString(R.string.label_retrive));
-        submitBtn.addTextChangedListener(this);
+        passwordEdit.addTextChangedListener(this);
+        verifyEdit.addTextChangedListener(this);
         phoneEdit.addTextChangedListener(this);
+        rePasswordEdit.addTextChangedListener(this);
     }
 
     @Override
@@ -77,10 +79,10 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
     void submit() {
         String phone = phoneEdit.getText().toString();
         String password = passwordEdit.getText().toString();
-        String verifi = verifyEdit.getText().toString();
+        String verify = verifyEdit.getText().toString();
         String rePassword = rePasswordEdit.getText().toString();
         //通知P层进行注册
-        mPresenter.resetPassword(phone, password, verifi, rePassword);
+        mPresenter.resetPassword(phone, password, rePassword, verify);
     }
 
     /**
@@ -89,26 +91,17 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
     @OnClick(R.id.btn_account_get_verify)
     void getVerify() {
         String phone = phoneEdit.getText().toString();
-        mPresenter.postVerify(phone);
-        getVerifyBtn.setEnabled(false);
 
-        isWaiting = true;//更新等待读秒状态
-        Handler handler = new Handler();
-        for (int i = 59; i > 0; i--) {
-            final int finalI = i;
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    getVerifyBtn.setText("还剩" + finalI + "秒");
-                    if (finalI == 1) {
-                        getVerifyBtn.setText("重新获取");
-                        isWaiting = false;
-                        getVerifyBtn.setEnabled(true);
-                    }
-                }
-            }, (60 - i) * 1000);
+        if (!RegexUtil.checkMobile(phone)) {
+            //提示手机号格式不对
+            showError(io.github.vzer.factory.R.string.data_account_register_invalid_parameter_mobile);
+        } else {
+            mPresenter.postVerify(phone);
+            getVerifyBtn.setEnabled(false);
+            isWaiting = true;//更新等待读秒状态
+            timerVerify = new VerifyDownTimer(60000,1000);
+            timerVerify.start();
         }
-
     }
 
     /**
@@ -126,10 +119,11 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
     public void showError(int strId) {
         //提示错误信息
         ToastUtil.showToast(strId);
-        passwordEdit.setEnabled(false);
-        phoneEdit.setEnabled(false);
-        verifyEdit.setEnabled(false);
-        rePasswordEdit.setEnabled(false);
+        passwordEdit.setEnabled(true);
+        phoneEdit.setEnabled(true);
+        verifyEdit.setEnabled(true);
+        rePasswordEdit.setEnabled(true);
+        submitBtn.setEnabled(true);
         loadingProgress.setVisibility(View.GONE);
     }
 
@@ -142,6 +136,8 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
         phoneEdit.setEnabled(false);
         verifyEdit.setEnabled(false);
         rePasswordEdit.setEnabled(false);
+        submitBtn.setEnabled(false);
+        getVerifyBtn.setEnabled(false);
         loadingProgress.setVisibility(View.VISIBLE);
     }
 
@@ -187,5 +183,36 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
     @Override
     public void afterTextChanged(Editable editable) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timerVerify ==null)return;
+        //关闭timer
+        timerVerify.cancel();
+    }
+
+    /**
+     * 验证码倒计时器
+     */
+    class VerifyDownTimer extends CountDownTimer {
+
+        public VerifyDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long l) {
+            int i = (int) (l / 1000);
+            getVerifyBtn.setText("还剩" + i + "秒");
+        }
+
+        @Override
+        public void onFinish() {
+            isWaiting = false;
+            getVerifyBtn.setEnabled(true);
+            getVerifyBtn.setText("重新获取");
+        }
     }
 }

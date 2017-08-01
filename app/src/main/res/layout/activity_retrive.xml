@@ -9,8 +9,20 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_account_retrive" />
+        android:layout_height="@dimen/len_64"
+        android:background="@drawable/bg_toolbar" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_account_shade"
+            android:layout_gravity="bottom"
+            />
+        <View
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/white"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,10 +50,11 @@
                 android:id="@+id/edit_account_phone"
                 style="@style/edit_account"
                 android:hint="@string/hint_phone"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:maxLength="11" />
         </LinearLayout>
 
-        <View style="@style/view_div_black" />
+        <View style="@style/view_div_gray" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -53,11 +66,12 @@
                 style="@style/imge_account"
                 android:src="@drawable/ic_account_verify" />
 
-            <io.github.vzer.common.widget.ClearEditText
+            <EditText
                 android:id="@+id/edit_account_verify"
                 style="@style/edit_account"
                 android:hint="@string/label_verification"
-                android:inputType="number" />
+                android:inputType="number"
+                android:maxLength="4" />
 
             <Button
                 android:id="@+id/btn_account_get_verify"
@@ -66,7 +80,7 @@
 
         </FrameLayout>
 
-        <View style="@style/view_div_black" />
+        <View style="@style/view_div_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -83,10 +97,11 @@
                 android:id="@+id/edit_account_password"
                 style="@style/edit_account"
                 android:hint="@string/hint_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:maxLength="20" />
         </LinearLayout>
 
-        <View style="@style/view_div_black" />
+        <View style="@style/view_div_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -103,10 +118,11 @@
                 android:id="@+id/edit_account_confirm_password"
                 style="@style/edit_account"
                 android:hint="@string/label_confirm_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:maxLength="20" />
         </LinearLayout>
 
-        <View style="@style/view_div_black" />
+        <View style="@style/view_div_gray" />
 
     </LinearLayout>
 
@@ -135,5 +151,6 @@
         android:enabled="false"
         android:text="@string/label_retrive"
         android:textColor="@color/def_btn_text_selector" />
+
 
 </LinearLayout>

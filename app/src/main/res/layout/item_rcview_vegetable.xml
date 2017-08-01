@@ -9,7 +9,8 @@
         android:id="@+id/rcview_vegetable_imge"
         android:layout_marginLeft="@dimen/len_20"
         android:layout_width="@dimen/len_80"
-        android:layout_height="@dimen/len_80" />
+        android:layout_height="@dimen/len_80"
+        android:src="@drawable/ic_defaut"/>
 
     <LinearLayout
         android:layout_marginLeft="@dimen/len_14"
@@ -25,7 +26,7 @@
             android:text="娃娃菜"/>
         <TextView
             android:id="@+id/rcview_vegetable_standard"
-            android:layout_marginTop="@dimen/len_8"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_10"
@@ -39,17 +40,25 @@
             <ImageView
                 android:id="@+id/rcview_vegetable_reduce"
                 android:layout_width="@dimen/len_24"
-                android:layout_height="@dimen/len_24" />
+                android:layout_height="@dimen/len_24"
+                android:padding="6dp"
+                android:background="@drawable/bg_btn_account_disable"
+                android:src="@drawable/ic_sub"/>
             <TextView
+                android:id="@+id/rcview_vegetable_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/font_12"
-                android:text="5"/>
+                android:layout_gravity="center_vertical"
+                android:text=" 5 "/>
             <ImageView
                 android:id="@+id/rcview_vegetable_add"
                 android:layout_width="@dimen/len_24"
-                android:layout_height="@dimen/len_24" />
+                android:layout_height="@dimen/len_24"
+                android:padding="6dp"
+                android:background="@drawable/bg_btn_account_enable"
+                android:src="@drawable/ic_add"/>
         </LinearLayout>
     </LinearLayout>
     <android.support.v4.widget.Space
@@ -57,6 +66,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
     <TextView
+        android:id="@+id/rcview_vegetable_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_32"

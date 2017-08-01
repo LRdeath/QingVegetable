@@ -22,9 +22,9 @@ public abstract class RecyclerViewAdapter<Data> extends RecyclerView.Adapter<Rec
     protected LayoutInflater inflater;
     private OnItemClicked<Data> onItemClickedListener;
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerViewAdapter(Context context,List<Data> dataList) {
         this.context = context;
-        dataList = new ArrayList<>();
+        this.dataList = dataList;
         inflater = LayoutInflater.from(context);
     }
 
@@ -150,6 +150,6 @@ public abstract class RecyclerViewAdapter<Data> extends RecyclerView.Adapter<Rec
             onBind(data);
         }
         //绑定数据
-        abstract void onBind(Data data);
+        protected abstract void onBind(Data data);
     }
 }

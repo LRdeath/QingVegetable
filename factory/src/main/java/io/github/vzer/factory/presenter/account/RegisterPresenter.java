@@ -1,17 +1,13 @@
 package io.github.vzer.factory.presenter.account;
 
-import android.text.TextUtils;
-
-import java.util.regex.Pattern;
-
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
 import io.github.vzer.factory.R;
-import io.github.vzer.factory.constant.CommonConstant;
 import io.github.vzer.factory.data.AccountHelper;
 import io.github.vzer.factory.model.account.RegisterModel;
 import io.github.vzer.factory.model.db.User;
 import io.github.vzer.factory.utils.ToastUtil;
+import io.github.vzer.factory.utils.RegexUtil;
 
 /**
  * 用户注册Presenter层
@@ -42,7 +38,7 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         //得到view接口
         final RegisterContract.View view = mView;
         //判断账号密码是否为空
-        if (!checkMobile(phone)) {
+        if (!RegexUtil.checkMobile(phone)) {
             //提示
             view.showError(R.string.data_account_register_invalid_parameter_mobile);
         } else if (code.length() < 4) {
@@ -62,14 +58,9 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         }
     }
 
-    private boolean checkMobile(String phone) {
-        //手机号不为空,并且满足格式
-        return !TextUtils.isEmpty(phone) && Pattern.matches(CommonConstant.REGEX_MOBILE, phone);
-    }
-
     @Override
     public void postVerify(String phone) {
-
+        AccountHelper.postVerify(phone);
     }
 
     /**

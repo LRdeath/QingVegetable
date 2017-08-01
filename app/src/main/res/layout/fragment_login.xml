@@ -7,26 +7,6 @@
     android:background="@color/white"
     tools:context="io.github.vzer.sharevegetable.account.LoginFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="@drawable/bg_account">
-        <ImageView
-            android:id="@+id/account_logo"
-            android:layout_width="@dimen/len_80"
-            android:layout_height="@dimen/len_80"
-            android:src="@drawable/ic_logo"/>
-        <TextView
-            android:layout_marginTop="@dimen/len_8"
-            android:layout_width="@dimen/len_80"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:layout_below="@+id/account_logo"
-            android:textSize="24sp"/>
-    </RelativeLayout>
 
 
     <ProgressBar
@@ -63,11 +43,12 @@
             <io.github.vzer.common.widget.ClearEditText
                 android:id="@+id/edit_account_phone"
                 style="@style/edit_account"
+                android:maxLength="11"
                 android:hint="@string/hint_phone"
                 android:inputType="phone" />
         </LinearLayout>
 
-        <View style="@style/view_div_black" />
+        <View style="@style/view_div_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -83,17 +64,18 @@
             <io.github.vzer.common.widget.ClearEditText
                 android:id="@+id/edit_account_password"
                 style="@style/edit_account"
+                android:maxLength="20"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword" />
 
         </LinearLayout>
 
-        <View style="@style/view_div_black" />
+        <View style="@style/view_div_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/len_8"
+            android:layout_marginTop="@dimen/len_2"
             android:orientation="horizontal">
 
             <TextView
@@ -104,6 +86,7 @@
                 android:textColor="@color/btn_txt_disable"
                 android:layout_gravity="start"
                 android:text="@string/label_go_retrive"
+                android:padding="@dimen/len_8"
                 tools:ignore="RtlHardcoded" />
 
             <android.support.v4.widget.Space

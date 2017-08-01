@@ -35,22 +35,16 @@ public class AccountActivity extends BaseActivity implements AccountTrigger {
             mLoginFragment = (LoginFragment) getSupportFragmentManager().findFragmentByTag(TAG_LOGIN);
             mRegisterFragment = (RegisterFragment) getSupportFragmentManager().findFragmentByTag(TAG_REGISTER);
             if (mLoginFragment == null) {
-                changFragment(TAG_REGISTER, mRegisterFragment);
-            } else changFragment(TAG_LOGIN, mLoginFragment);
+               FragmentUtil.showFragment(this,mRegisterFragment);
+            } else FragmentUtil.showFragment(this,mLoginFragment);
         } else {
             mCurFragment = mLoginFragment = new LoginFragment();
-            mCurTag = TAG_LOGIN;
-
-            FragmentUtil.add(this, R.id.account_container, mCurFragment, mCurTag);
+            FragmentUtil.add(this, R.id.account_container, mCurFragment, TAG_LOGIN);
         }
 
     }
 
-    private void changFragment(String tag, Fragment fragment) {
-        mCurFragment = fragment;
-        mCurTag = tag;
-        FragmentUtil.replace(this, R.id.account_container, mCurFragment, mCurTag);
-    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,16 +78,21 @@ public class AccountActivity extends BaseActivity implements AccountTrigger {
             //RegisterFragment不存在就创建,只会创建一次
             if (mRegisterFragment == null) {
                 mRegisterFragment = new RegisterFragment();
+                FragmentUtil.add(this,R.id.account_container,mRegisterFragment,TAG_REGISTER);
             }
             mCurFragment = mRegisterFragment;
-            mCurTag = TAG_REGISTER;
+            FragmentUtil.hideFragment(this,mLoginFragment);
         } else {
+            if (mLoginFragment == null) {
+                mLoginFragment = new LoginFragment();
+                FragmentUtil.add(this,R.id.account_container,mLoginFragment,TAG_LOGIN);
+            }
             mCurFragment = mLoginFragment;
-            mCurTag = TAG_LOGIN;
+            FragmentUtil.hideFragment(this,mRegisterFragment);
         }
 
         //切换显示Fragment
-        FragmentUtil.replace(this, R.id.account_container, mCurFragment, mCurTag);
+        FragmentUtil.showFragment(this,mCurFragment);
     }
 
     private long exit_time = 0;
@@ -103,6 +102,10 @@ public class AccountActivity extends BaseActivity implements AccountTrigger {
      */
     @Override
     public void onBackPressed() {
+        if (mCurFragment != mLoginFragment){
+            triggerView();
+            return;
+        }
         long cur = System.currentTimeMillis();
         if (cur - exit_time < 2000) {
             super.onBackPressed();

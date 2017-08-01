@@ -3,8 +3,7 @@ package io.github.vzer.sharevegetable.account;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -19,11 +18,13 @@ import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.factory.presenter.account.RegisterContract;
 import io.github.vzer.factory.presenter.account.RegisterPresenter;
 import io.github.vzer.factory.utils.ToastUtil;
+import io.github.vzer.factory.utils.RegexUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.main.MainActivity;
 
 /**
  * 注册Fragment V层
+ *
  * @author: Vzer.
  * @date: 2017/7/25. 21.01
  * @email: vzer@qq.com
@@ -32,7 +33,7 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
 
 
     private AccountTrigger mTrigger;
-
+    private VerifyDownTimer timerVerify; //验证码倒计时器
     @BindView(R.id.edit_account_phone)
     EditText phoneEdit;
     @BindView(R.id.edit_account_verify)
@@ -78,34 +79,25 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
     void submit() {
         String phone = phoneEdit.getText().toString();
         String password = passwordEdit.getText().toString();
-        String verifi = verifyEdit.getText().toString();
+        String verify = verifyEdit.getText().toString();
         String rePassword = rePasswordEdit.getText().toString();
         //通知P层进行注册
-        mPresenter.register(phone, password, verifi, rePassword);
+        mPresenter.register(phone, password, rePassword, verify);
     }
 
     @OnClick(R.id.btn_account_get_verify)
     void getVerify() {
         String phone = phoneEdit.getText().toString();
-        mPresenter.postVerify(phone);
-        getVerifyBtn.setEnabled(false);
 
-        isWaiting = true;//更新等待读秒状态
-        Handler handler = new Handler();
-        for (int i = 59; i > 0; i--) {
-            final int finalI = i;
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    getVerifyBtn.setText("还剩" + finalI + "秒");
-                    if (finalI == 1) {
-                        isWaiting = false;
-                        getVerifyBtn.setText("重新获取");
-                        getVerifyBtn.setEnabled(true);
-                    }
-                }
-            }, (60 - i) * 1000);
-            // TODO: 2017/7/30 handler内存泄漏
+        if (!RegexUtil.checkMobile(phone)) {
+            //提示手机号格式不对
+            showError(io.github.vzer.factory.R.string.data_account_register_invalid_parameter_mobile);
+        } else {
+            mPresenter.postVerify(phone);
+            getVerifyBtn.setEnabled(false);
+            isWaiting = true;//更新等待读秒状态
+            timerVerify = new VerifyDownTimer(60000, 1000);
+            timerVerify.start();
         }
 
     }
@@ -130,6 +122,8 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
         verifyEdit.setEnabled(false);
         rePasswordEdit.setEnabled(false);
         goLoginTxt.setEnabled(false);
+        submitBtn.setEnabled(false);
+        getVerifyBtn.setEnabled(false);
         loadingProgress.setVisibility(View.VISIBLE);
     }
 
@@ -144,6 +138,7 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
         verifyEdit.setEnabled(true);
         rePasswordEdit.setEnabled(true);
         goLoginTxt.setEnabled(true);
+        submitBtn.setEnabled(true);
         //提示错误信息
         ToastUtil.showToast(strId);
         loadingProgress.setVisibility(View.GONE);
@@ -179,6 +174,7 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
     }
 
     private boolean isWaiting = false;
+
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         //设置获取验证码 btn能否点击,等待读秒中不进行判断
@@ -201,5 +197,37 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
     @Override
     public void afterTextChanged(Editable editable) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (timerVerify ==null)return;
+        timerVerify.onFinish();
+        timerVerify.cancel();//关闭倒计时器
+    }
+
+    /**
+     * 验证码倒计时器
+     */
+    class VerifyDownTimer extends CountDownTimer {
+
+        public VerifyDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long l) {
+            int i = (int) (l / 1000);
+            getVerifyBtn.setText("还剩" + i + "秒");
+        }
+
+        @Override
+        public void onFinish() {
+            isWaiting = false;
+            if (getVerifyBtn==null)return;
+            getVerifyBtn.setEnabled(true);
+            getVerifyBtn.setText("重新获取");
+        }
     }
 }

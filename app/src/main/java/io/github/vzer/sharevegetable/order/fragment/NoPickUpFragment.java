@@ -1,6 +1,7 @@
 package io.github.vzer.sharevegetable.order.fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import io.github.vzer.common.app.Fragment;
 import io.github.vzer.sharevegetable.R;
@@ -15,6 +16,11 @@ public class NoPickUpFragment extends Fragment {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    protected void initWidget(View root) {
+        
     }
 
     @Override
