@@ -7,11 +7,7 @@ import android.view.ViewGroup;
 
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.order.OrderFragment;
-import io.github.vzer.sharevegetable.order.fragment.AllOrderFragment;
-import io.github.vzer.sharevegetable.order.fragment.CompleteFragment;
-import io.github.vzer.sharevegetable.order.fragment.NoDistributeFragment;
-import io.github.vzer.sharevegetable.order.fragment.NoPaymentFragment;
-import io.github.vzer.sharevegetable.order.fragment.NoPickUpFragment;
+import io.github.vzer.sharevegetable.order.fragment.OrderContentFragment;
 
 /**
  * @author YangCihang
@@ -20,11 +16,11 @@ import io.github.vzer.sharevegetable.order.fragment.NoPickUpFragment;
  */
 
 public class OrderViewPagerAdapter extends FragmentPagerAdapter {
-    private AllOrderFragment allOrderFragment;
-    private CompleteFragment completeFragment;
-    private NoDistributeFragment noDistributeFragment;
-    private NoPaymentFragment noPaymentFragment;
-    private NoPickUpFragment noPickUpFragment;
+    private OrderContentFragment orderContentFragment;
+    private OrderContentFragment completeFragment;
+    private OrderContentFragment noDistributeFragment;
+    private OrderContentFragment noPaymentFragment;
+    private OrderContentFragment noPickUpFragment;
 
     public OrderViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -32,11 +28,11 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     private void initFragment() {
-        allOrderFragment = new AllOrderFragment();
-        completeFragment = new CompleteFragment();
-        noDistributeFragment = new NoDistributeFragment();
-        noPaymentFragment = new NoPaymentFragment();
-        noPickUpFragment = new NoPickUpFragment();
+        orderContentFragment = new OrderContentFragment();
+        completeFragment = new OrderContentFragment();
+        noDistributeFragment = new OrderContentFragment();
+        noPaymentFragment = new OrderContentFragment();
+        noPickUpFragment = new OrderContentFragment();
     }
 
     @Override
@@ -44,7 +40,7 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case OrderFragment.PAGER_ALL:
-                fragment = allOrderFragment;
+                fragment = orderContentFragment;
                 break;
             case OrderFragment.PAGER_NO_PAYMENT:
                 fragment = noPaymentFragment;
@@ -79,29 +75,30 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
         return OrderFragment.PAGER_SUM;
     }
 
-    public AllOrderFragment getAllOrderFragment() {
-        return allOrderFragment;
+    public OrderContentFragment getOrderContentFragment() {
+        return orderContentFragment;
     }
 
-    public CompleteFragment getCompleteFragment() {
+    public OrderContentFragment getCompleteFragment() {
         return completeFragment;
     }
 
-    public NoDistributeFragment getNoDistributeFragment() {
+    public OrderContentFragment getNoDistributeFragment() {
         return noDistributeFragment;
     }
 
-    public NoPaymentFragment getNoPaymentFragment() {
+    public OrderContentFragment getNoPaymentFragment() {
         return noPaymentFragment;
     }
 
-    public NoPickUpFragment getNoPickUpFragment() {
+    public OrderContentFragment getNoPickUpFragment() {
         return noPickUpFragment;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         String title = null;
+        // TODO: 17/8/1 标题规范化 
         switch (position) {
             case OrderFragment.PAGER_ALL:
                 title = "全部";

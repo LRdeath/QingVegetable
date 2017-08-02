@@ -12,6 +12,8 @@
     <dimen name="font_14">14sp</dimen>
     <dimen name="font_12">12sp</dimen>
     <dimen name="font_10">10sp</dimen>
+    <dimen name="font_8">8sp</dimen>
+    <dimen name="font_24">24sp</dimen>
 
     <dimen name="len_8">8dp</dimen>
     <dimen name="len_32">32dp</dimen>

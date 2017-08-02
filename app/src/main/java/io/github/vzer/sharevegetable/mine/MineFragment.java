@@ -102,7 +102,6 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
         new DialogUtils(getContext())
                 .setCancelable(false)
                 .setInputEditView()
-                .setInputHintText("请输入您要修改的用户名")
                 .setNegativeButton(null)
                 .setTitleText("修改用户名")
                 .setPositiveButton(new DialogUtils.OnButtonListener() {
@@ -123,7 +122,6 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
         new DialogUtils(getContext())
                 .setCancelable(false)
                 .setInputEditView()
-                .setInputHintText("请输入您的真实姓名")
                 .setNegativeButton(null)
                 .setTitleText("修改真实姓名")
                 .setPositiveButton(new DialogUtils.OnButtonListener() {

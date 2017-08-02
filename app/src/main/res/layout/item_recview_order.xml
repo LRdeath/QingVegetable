@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="142dp"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/len_24"
+        android:paddingRight="@dimen/len_24"
+        android:paddingTop="@dimen/len_16">
+
+        <TextView
+            android:id="@+id/txt_order_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_order_item_order_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_14"/>
+
+        <TextView
+            android:id="@+id/txt_order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_2"
+            android:layout_toRightOf="@id/txt_order_title"
+            android:gravity="center"
+            android:text="15028595851"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txt_create_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_order_title"
+            android:layout_marginTop="5dp"
+            android:text="@string/text_order_item_create_time"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/font_8"/>
+
+        <TextView
+            android:id="@+id/txt_order_create_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_order_number"
+            android:layout_marginLeft="@dimen/len_2"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/txt_create_title"
+            android:text="2017-05-15 12:30"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/font_8"
+            />
+
+        <TextView
+            android:id="@+id/txt_product_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_create_title"
+            android:layout_marginTop="@dimen/len_8"
+            android:text="订购了苹果、香蕉、黄瓜等8种商品"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/font_12"/>
+
+        <TextView
+            android:id="@+id/txt_product_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/txt_product_list"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/len_96"
+            android:layout_toRightOf="@id/txt_product_list"
+            android:gravity="right"
+            android:text="$6"
+            android:textColor="@color/text_money"
+            android:textSize="@dimen/font_24"/>
+
+        <Button
+            android:layout_width="66dp"
+            android:layout_height="28dp"
+            android:layout_alignRight="@id/txt_product_money"
+            android:layout_below="@id/txt_product_money"
+            android:layout_marginTop="@dimen/len_14"
+            android:background="@color/btn_evaluate"
+            android:text="@string/text_order_item_evaluate"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_12"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/div_color"/>
+
+    </RelativeLayout>
+</LinearLayout>

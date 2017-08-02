@@ -144,15 +144,18 @@ public abstract class RecyclerViewAdapter<Data> extends RecyclerView.Adapter<Rec
 
     public abstract static class ViewHolder<Data> extends RecyclerView.ViewHolder{
         private Data mData;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
+
         }
 
         void bind(Data data){
             mData = data;
             onBind(data);
         }
+
         //绑定数据
         protected abstract void onBind(Data data);
     }
