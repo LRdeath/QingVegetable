@@ -107,7 +107,7 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
                 title = "待付款";
                 break;
             case OrderFragment.PAGER_NO_DISTRIBUTE:
-                title = "代配送";
+                title = "待配送";
                 break;
             case OrderFragment.PAGER_NO_PICK_UP:
                 title = "待取货";

@@ -38,5 +38,9 @@
     <string name="toast_exit">再按一次返回键退出</string>
     <string name="text_order_item_create_time">创建时间:</string>
     <string name="text_order_item_evaluate">发表评价</string>
+    <string name="text_submit">已提交</string>
+    <string name="text_payment">已付款</string>
+    <string name="text_pick">待取货</string>
+    <string name="text_finish">已完成</string>
     <string name="money">¥</string>
 </resources>
