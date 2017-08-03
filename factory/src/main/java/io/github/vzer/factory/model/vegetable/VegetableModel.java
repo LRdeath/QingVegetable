@@ -13,6 +13,15 @@ public class VegetableModel {
     private double price; //商品价格
     private String standard; //商品规格
     private String pictureUri;  //商品图片
+    private int sales;//月销量
+
+    public int getSales() {
+        return sales;
+    }
+
+    public void setSales(int sales) {
+        this.sales = sales;
+    }
 
     public int getpId() {
         return pId;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context="io.github.vzer.sharevegetable.vegetable.VegetableFragment">
 
@@ -19,18 +19,18 @@
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
-            </android.support.v7.widget.Toolbar>
+                android:layout_height="40dp" />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:src="@drawable/bg_vegetable"/>
+                android:src="@drawable/bg_vegetable" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:text="@string/app_name"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
@@ -40,9 +40,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom"
-                app:tabMode="fixed"
                 android:scrollbarSize="@dimen/len_2"
                 app:tabIndicatorColor="@color/color_white"
+                app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/white"
                 app:tabTextColor="@color/colorPrimaryLight">
 
@@ -52,33 +52,39 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-   <android.support.v4.view.ViewPager
-       android:id="@+id/vp_vegetable"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_vegetable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/img_shopping"
-        android:layout_width="@dimen/len_48"
-        android:layout_height="@dimen/len_48"
-        android:padding="@dimen/len_4"
-        android:layout_gravity="right|bottom"
-        android:layout_marginRight="@dimen/len_12"
-        android:layout_marginBottom="@dimen/len_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/len_16"
         android:src="@drawable/ic_shopping"
-        android:background="@drawable/bg_btn_account_enable"
-        app:elevation = "0dp"
-        />
-    <io.github.vzer.common.widget.NewTip
+        app:fabSize="auto"
+        app:rippleColor="@color/div_color"
+        app:backgroundTint="@color/white"
+        app:pressedTranslationZ="8dp"
+        app:elevation="8dp" />
+
+    <TextView
         android:id="@+id/tip_sum"
         android:layout_width="wrap_content"
         android:layout_height="14dp"
-        android:layout_gravity="right|bottom"
-        android:layout_marginRight="@dimen/len_16"
+        android:layout_gravity="end|bottom"
         android:layout_marginBottom="54dp"
-        android:textSize="10sp"
+        android:layout_marginRight="@dimen/len_16"
+        android:layout_marginLeft="54dp"
+        android:background="@drawable/bg_shape_new_tip_red_solid_ring"
+        android:textSize="@dimen/font_10"
+        android:textColor="@color/color_white"
+        android:visibility="gone"
+        android:gravity="center"
         android:textStyle="bold"
-        app:elevation = "10dp"/>
+        android:elevation="8dp" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -85,7 +85,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
             }
         };
         vegetableRcview.setAdapter(adapter);
-        mPresenter.LoadType();//加载数据类型
+        mPresenter.LoadType();//获取商品类型
         mPresenter.LoadDatas(curTabType);
     }
 
@@ -129,8 +129,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
             super(itemView);
             imgeAdd.setOnClickListener(this);
             imgeSub.setOnClickListener(this);
-            //Animation animation = getResources().getAnimation(R)
-            //imgeAdd.setAnimation();
+
         }
 
         @Override
@@ -144,7 +143,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
                     txtAcount.setText("");
                     imgeSub.setVisibility(View.GONE);
                 } else {
-                    txtAcount.setText(" " + count + " ");
+                    txtAcount.setText(String.valueOf(count));
                     imgeSub.setVisibility(View.VISIBLE);
                 }
             } else {
@@ -153,8 +152,10 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
             }
             //设置item状态
             txtName.setText(vegetableModel.getName());
-            txtStandard.setText(vegetableModel.getStandard());
-            txtPrice.setText("¥" + String.valueOf(vegetableModel.getPrice()));
+            txtStandard.setText(vegetableModel.getStandard() + " | 月售" + vegetableModel.getSales() + "份");
+            //格式化价格
+            String str = getString(R.string.money) + String.valueOf(vegetableModel.getPrice());
+            txtPrice.setText(str);
             Glide.with(getContext())
                     .load(vegetableModel.getPictureUri())
                     .centerCrop()
@@ -186,12 +187,13 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
         int count = dataMap.get(position);
 
         if (--count > 0) {
-            txtAcount.setText(" " + count + " ");
+            txtAcount.setText(String.valueOf(count));
         } else {
             txtAcount.setText("");
             imgeSub.setVisibility(View.GONE);
         }
-        shoppingChange.setSumTip(-1);
+
+        shoppingChange.setSumTip(-1, modelList.get(position));
         dataMap.put(position, count);
     }
 
@@ -210,14 +212,18 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
         }
         count++;
         dataMap.put(position, count);
-        txtAcount.setText(" " + count + " ");
-        shoppingChange.setSumTip(1);
-        // TODO: 2017/8/1 加号属性动画
+        txtAcount.setText(String.valueOf(count));
+        //购物车数量更新
+        shoppingChange.setSumTip(1, modelList.get(position));
+        //开始商品添加动画
         int[] cur = new int[2];
         imgeAdd.getLocationInWindow(cur);
         playAnimation(cur);
     }
 
+    /*
+     *商品添加动画
+     */
     public void playAnimation(int[] position) {
         //创建一个执行动画view
         ShoppingCartAnimationView animationView = new ShoppingCartAnimationView(getContext());
@@ -231,52 +237,5 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
         //开始动画
         animationView.startBeizerAnimation();
     }
-
-
-   /* public void playAnimation(int[] position) {
-        //创建执行动画的View
-        final TextView mTxt = new TextView(getContext());
-        //mTxt.setBackground(getResources().getDrawable(R.drawable.bg_btn_account_enable));
-        mTxt.setText("1");
-        mTxt.setTextColor(getResources().getColor(R.color.black));
-        mTxt.setTextSize(ScreenUtil.sp2px(10));
-        mTxt.setGravity(Gravity.CENTER);
-//        mTxt.setWidth(10);
-//        mTxt.setHeight(10);
-        ViewGroup rootView = (ViewGroup) getActivity().getWindow().getDecorView();
-        rootView.addView(mTxt);
-
-        int[] des = shoppingChange.getShoppingCoord();
-        *//*动画开始的位置,也就是商品添加按钮的位置*//*
-        Point startPosition = new Point(position[0], position[1]);
-        Point endPosition = new Point(des[0], des[1]);
-
-        final int pointX = (startPosition.x + endPosition.x) / 2 - 100;
-        final int pointY = startPosition.y -200;
-        Point controllPoint = new Point(pointX,pointY);
-
-        ValueAnimator valueAnimator = ValueAnimator.ofObject(new BizierEvaluator2(controllPoint),startPosition,endPosition);
-        valueAnimator.start();
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                Point point = (Point) valueAnimator.getAnimatedValue();
-                mTxt.setX(point.x);
-                mTxt.setY(point.y);
-            }
-        });
-
-        *//*动画结束,移除小圆*//*
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                ViewGroup rootView = (ViewGroup) getActivity().getWindow().getDecorView();
-                rootView.removeView(mTxt);
-            }
-        });
-    }*/
-
-
 
 }

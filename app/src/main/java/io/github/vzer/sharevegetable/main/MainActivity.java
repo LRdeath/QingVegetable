@@ -9,14 +9,12 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.BaseActivity;
-import io.github.vzer.common.widget.NewTip;
 import io.github.vzer.factory.utils.FragmentUtil;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.find.FindFragment;
 import io.github.vzer.sharevegetable.mine.MineFragment;
 import io.github.vzer.sharevegetable.order.OrderFragment;
-import io.github.vzer.sharevegetable.shopping.ShoppingActivity;
 import io.github.vzer.sharevegetable.vegetable.VegetableFragment;
 
 public class MainActivity extends BaseActivity {
@@ -52,8 +50,6 @@ public class MainActivity extends BaseActivity {
     private static final String FIND_TAG = "find";
     private static final String VEGETABLE_TAG = "vegetable";
     private static final String MINE_TAG = "mine";
-    private ShoppingActivity shoppingActivity;
-    private int tipCount =0;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
@@ -116,11 +112,11 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 点击购物按钮
+     * 点击开锁按钮
      */
     @OnClick(R.id.img_lock)
     void onShoppingClicked() {
-        startActivity(new Intent(this, ShoppingActivity.class));
+        //跳到开锁界面
     }
 
 

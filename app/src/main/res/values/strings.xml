@@ -38,4 +38,5 @@
     <string name="toast_exit">再按一次返回键退出</string>
     <string name="text_order_item_create_time">创建时间:</string>
     <string name="text_order_item_evaluate">发表评价</string>
+    <string name="money">¥</string>
 </resources>

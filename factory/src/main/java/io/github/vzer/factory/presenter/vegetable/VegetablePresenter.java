@@ -32,7 +32,8 @@ public class VegetablePresenter extends BasePresenter<VegetableContract.View>
             VegetableModel model = new VegetableModel();
             model.setName("香菜");
             model.setPrice(18);
-            model.setStandard("500g/份 | 月售56份");
+            model.setStandard("500g/份");
+            model.setSales(56);
             model.setPictureUri("http://www.cnlvying.com/upfiles/2014-3-18-15-47-12.jpg");
             model.setType(0);
             models.add(model);

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -25,6 +26,7 @@ import io.github.vzer.sharevegetable.R;
  * @date: 2017/8/3. 13:09
  * @email: vzer@qq.com
  */
+@SuppressLint("AppCompatCustomView")
 public class ShoppingCartAnimationView extends TextView implements ValueAnimator.AnimatorUpdateListener {
 
     public static final int VIEW_SIZE = 20;
@@ -66,6 +68,8 @@ public class ShoppingCartAnimationView extends TextView implements ValueAnimator
     }
 
     public void setEndPosition(Point endPosition) {
+        endPosition.y -= 30;
+        endPosition.x -= 30;
         this.endPosition = endPosition;
     }
 
@@ -136,7 +140,7 @@ public class ShoppingCartAnimationView extends TextView implements ValueAnimator
     /**
      * dp换成当前分辨率px
      */
-    public static float convertDpToPixel(float dp, Context context) {
+    public float convertDpToPixel(float dp, Context context) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
 

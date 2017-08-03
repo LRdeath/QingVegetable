@@ -2,6 +2,7 @@ package io.github.vzer.factory.model.vegetable;
 
 /**
  * 商品类型表
+ *
  * @author: Vzer.
  * @date: 2017/8/1. 16:43
  * @email: vzer@qq.com
@@ -10,8 +11,9 @@ package io.github.vzer.factory.model.vegetable;
 public class VegetableTypeModel {
     private int type;//类型id
     private String name;//类型名字
+
     public VegetableTypeModel() {
-        this(0,null);
+        this(0, null);
     }
 
     public VegetableTypeModel(int type, String name) {

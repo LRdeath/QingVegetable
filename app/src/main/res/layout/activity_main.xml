@@ -22,8 +22,10 @@
         android:id="@+id/ly_bottom_menu"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/ly_menu_vegetable"
@@ -31,7 +33,7 @@
 
             <ImageView
                 android:id="@+id/img_tab_vegetable"
-                android:layout_width="24dp"
+                android:layout_width="22dp"
                 android:layout_height="20dp"
                 android:background="@drawable/bg_vegetable_menu_selector"/>
 
@@ -109,13 +111,14 @@
 
     <ImageView
         android:id="@+id/img_lock"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/len_56"
+        android:layout_height="@dimen/len_56"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/len_12"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_shopping"
+        android:elevation="@dimen/len_4"
         android:background="@drawable/bg_btn_account_enable"
         />
 

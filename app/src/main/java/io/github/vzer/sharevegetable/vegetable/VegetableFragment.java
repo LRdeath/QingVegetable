@@ -1,5 +1,6 @@
 package io.github.vzer.sharevegetable.vegetable;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -8,19 +9,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.github.vzer.common.app.FragmentPresenter;
-import io.github.vzer.common.widget.NewTip;
+import io.github.vzer.factory.model.shopping.ShoppingModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
 import io.github.vzer.factory.presenter.vegetable.VegetablePresenter;
 import io.github.vzer.sharevegetable.R;
+import io.github.vzer.sharevegetable.shopping.ShoppingActivity;
 
 /**
  * @author YangCihang
@@ -35,16 +44,34 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     @BindView(R.id.vp_vegetable)
     ViewPager vp_content;
     @BindView(R.id.tip_sum)
-    NewTip tipTxt;
+    TextView tipTxt;
     @BindView(R.id.img_shopping)
     FloatingActionButton shoppingFloat;
-
+    private HashMap<Integer, ShoppingModel> shoppingMap = new HashMap<>(); //<商品Id, 购物车Model>
     PagerAdapter adapter;
+    public static String VEGETABLE_SHOPPING = "Vegetable_shopping";
 
     private List<FragmentPresenter> fragmentList = new ArrayList<>();
     private List<VegetableTypeModel> typeList = new ArrayList<>();
     private int tipCount = 0;//商品数量
 
+
+    @OnClick(R.id.img_shopping)
+    void goShopping() {
+        Intent intent = new Intent(getContext(), ShoppingActivity.class);
+        Iterator<Map.Entry<Integer, ShoppingModel>> iterator = shoppingMap.entrySet().iterator();
+        List<ShoppingModel> list = new ArrayList<>();
+        //遍历选择的商品信息,打包
+        while (iterator.hasNext()) {
+            Map.Entry entry = iterator.next();
+            ShoppingModel model = (ShoppingModel) entry.getValue();
+            if (model.getAmount() > 0) list.add(model);
+        }
+        Log.d("Tag", list.toString());
+        //把选购的商品传给购物车
+        intent.putExtra(VEGETABLE_SHOPPING, (Serializable) list);
+        startActivity(intent);
+    }
 
     @Override
     public void showLoading() {
@@ -96,9 +123,29 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     }
 
     @Override
-    public void setSumTip(int count) {
+    public void setSumTip(int count, VegetableModel model) {
+        int sum = 0;
+        int id = model.getpId();
+        ShoppingModel shoppingModel;
+        //将购物车信息更新;
+        if (shoppingMap.containsKey(id)) {
+            shoppingModel = shoppingMap.get(id);
+            sum = shoppingModel.getAmount();
+        } else {
+            //model不存在,新建一个model
+            shoppingModel = new ShoppingModel(model.getpId(), model.getName(),
+                    model.getPrice(), model.getStandard(), model.getPictureUri(), 0);
+        }
+        sum += count;
+        //更新购物车商品数量
+        shoppingModel.setAmount(sum);
+        shoppingMap.put(id, shoppingModel);
+        //更新tip数量显示
         tipCount += count;
-        tipTxt.setNewTipCount(tipCount);
+        if (tipCount == 0) tipTxt.setVisibility(View.GONE);
+        else tipTxt.setVisibility(View.VISIBLE);
+        String text = tipCount > 99 ? "99+" : String.valueOf(tipCount);
+        tipTxt.setText(text);
     }
 
     @Override
