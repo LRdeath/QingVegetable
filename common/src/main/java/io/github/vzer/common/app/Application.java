@@ -23,6 +23,7 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
     }
 
     /**
@@ -78,14 +79,18 @@ public class Application extends android.app.Application {
      * @param activity
      */
     public static void removeActivity(Activity activity) {
-        activityList.remove(activity);
+        activity.finish();
     }
 
     /**
      *清除所有Activity
      */
     public static void removeAllActivity() {
-        activityList.clear();
+     for(Activity activity:activityList){
+         if(activity!=null&&!activity.isFinishing()){
+             activity.finish();
+         }
+     }
     }
 
     /**

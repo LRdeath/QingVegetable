@@ -2,6 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/len_128"
+    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="127dp"
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
@@ -51,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/font_12"
-                android:padding="@dimen/len_4"
                 android:layout_gravity="center_vertical"
                 />
             <ImageButton
@@ -75,4 +78,11 @@
         android:textColor="@color/colorPrimary"
         android:layout_marginRight="@dimen/len_24"
         android:text="¥6"/>
+
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_height="1px"
+        android:background="@color/div_color"/>
 </LinearLayout>

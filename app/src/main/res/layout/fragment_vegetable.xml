@@ -57,4 +57,28 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/img_shopping"
+        android:layout_width="@dimen/len_48"
+        android:layout_height="@dimen/len_48"
+        android:padding="@dimen/len_4"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="@dimen/len_12"
+        android:layout_marginBottom="@dimen/len_16"
+        android:src="@drawable/ic_shopping"
+        android:background="@drawable/bg_btn_account_enable"
+        app:elevation = "0dp"
+        />
+    <io.github.vzer.common.widget.NewTip
+        android:id="@+id/tip_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="@dimen/len_16"
+        android:layout_marginBottom="54dp"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:elevation = "10dp"/>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -6,11 +6,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.yancy.imageselector.ImageSelector;
-import com.yancy.imageselector.ImageSelectorActivity;
-
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.BaseActivity;
@@ -50,15 +45,15 @@ public class MainActivity extends BaseActivity {
     LinearLayout orderLayout;
     @BindView(R.id.ly_menu_vegetable)
     LinearLayout vegetableLayout;
-    @BindView(R.id.img_shopping)
-    ImageView shoppingImg;
-    @BindView(R.id.tip_sum)
-    NewTip sumTip;
+    @BindView(R.id.img_lock)
+    ImageView lockImg;
+
     private static final String ORDER_TAG = "order";
     private static final String FIND_TAG = "find";
     private static final String VEGETABLE_TAG = "vegetable";
     private static final String MINE_TAG = "mine";
     private ShoppingActivity shoppingActivity;
+    private int tipCount =0;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
@@ -123,7 +118,7 @@ public class MainActivity extends BaseActivity {
     /**
      * 点击购物按钮
      */
-    @OnClick(R.id.img_shopping)
+    @OnClick(R.id.img_lock)
     void onShoppingClicked() {
         startActivity(new Intent(this, ShoppingActivity.class));
     }
@@ -238,5 +233,6 @@ public class MainActivity extends BaseActivity {
         vegetableImg.setSelected(false);
         orderImg.setSelected(false);
     }
+
 
 }

@@ -189,6 +189,7 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     @OnClick(R.id.txt_logout)
     void onGoLogin() {
         mPresenter.goLogin();
+        getActivity().finish();
         AccountActivity.show(getContext());
     }
 

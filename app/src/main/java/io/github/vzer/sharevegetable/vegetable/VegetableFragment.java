@@ -1,8 +1,8 @@
 package io.github.vzer.sharevegetable.vegetable;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.TabLayout.Tab;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,6 +15,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import io.github.vzer.common.app.FragmentPresenter;
+import io.github.vzer.common.widget.NewTip;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
@@ -27,15 +28,23 @@ import io.github.vzer.sharevegetable.R;
  * email yangcihang@hrsoft.net
  */
 
-public class VegetableFragment extends FragmentPresenter<VegetableContract.Presenter> implements VegetableContract.View {
+public class VegetableFragment extends FragmentPresenter<VegetableContract.Presenter> implements VegetableContract.View, ShoppingChange {
 
     @BindView(R.id.tab_vegetable_main)
     TabLayout tabLayout;
     @BindView(R.id.vp_vegetable)
     ViewPager vp_content;
+    @BindView(R.id.tip_sum)
+    NewTip tipTxt;
+    @BindView(R.id.img_shopping)
+    FloatingActionButton shoppingFloat;
+
     PagerAdapter adapter;
-    List<FragmentPresenter> fragmentList = new ArrayList<>();
-    List<VegetableTypeModel> typeList = new ArrayList<>();
+
+    private List<FragmentPresenter> fragmentList = new ArrayList<>();
+    private List<VegetableTypeModel> typeList = new ArrayList<>();
+    private int tipCount = 0;//商品数量
+
 
     @Override
     public void showLoading() {
@@ -53,13 +62,11 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
 
     @Override
     protected void initWidget(View root) {
-        fragmentList.add(new VegetableContentFragment(0));
-        typeList.add(new VegetableTypeModel(0,"常用"));
+        fragmentList.add(new VegetableContentFragment(0, this));
+        typeList.add(new VegetableTypeModel(0, "常用"));
         adapter = new VgFragmentPagerAdapter(getFragmentManager(), fragmentList, typeList);
         vp_content.setAdapter(adapter);
         tabLayout.setupWithViewPager(vp_content);
-        tabLayout.setTabsFromPagerAdapter(adapter);
-
 
     }
 
@@ -79,15 +86,28 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
 
     @Override
     public void LoadTypeSuccess(List<VegetableTypeModel> typeModels) {
-        this.typeList = typeModels;
+        this.typeList.addAll(typeModels);
+
         for (VegetableTypeModel title :
                 typeModels) {
-            Tab tab = tabLayout.newTab()
-                    .setText(title.getName());
-            fragmentList.add(new VegetableContentFragment(title.getType()));
-            tabLayout.addTab(tab);
+            fragmentList.add(new VegetableContentFragment(title.getType(), this));
         }
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setSumTip(int count) {
+        tipCount += count;
+        tipTxt.setNewTipCount(tipCount);
+    }
+
+    @Override
+    public int[] getShoppingCoord() {
+        int[] des = new int[2];
+        shoppingFloat.getLocationInWindow(des);
+        des[0] += shoppingFloat.getWidth() / 2;
+        des[1] += shoppingFloat.getHeight() / 2;
+        return des;
     }
 
     /**

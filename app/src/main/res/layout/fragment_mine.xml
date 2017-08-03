@@ -33,7 +33,7 @@
                 android:layout_centerInParent="true"
                 android:src="@color/white"
                 app:civ_border_color="@color/circle_shadow"
-                app:civ_border_width="2dp"/>
+                app:civ_border_width="4dp"/>
 
             <TextView
                 android:id="@+id/txt_nickname"

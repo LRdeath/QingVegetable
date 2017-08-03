@@ -29,7 +29,8 @@ public class NewTip extends TextView {
     }
 
     public void setNewTipCount(int count) {
-        count = count < 1 ? 1 : count;
+        if (count ==0) setVisibility(GONE);
+        else setVisibility(VISIBLE);
         String text = count > 99 ? "99+" : String.valueOf(count);
         setText(text);
         setGravity(CENTER);

@@ -108,20 +108,16 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/img_shopping"
+        android:id="@+id/img_lock"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:padding="@dimen/len_12"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_shopping_menu_selector"
+        android:src="@drawable/ic_shopping"
+        android:background="@drawable/bg_btn_account_enable"
         />
 
-    <io.github.vzer.common.widget.NewTip
-        android:id="@+id/tip_sum"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
-        android:layout_toRightOf="@id/img_shopping"
-        android:layout_alignTop="@id/img_shopping"
-        android:layout_marginLeft="-10dp"/>
+
 </RelativeLayout>

@@ -4,8 +4,11 @@ import android.os.Handler;
 
 import io.github.vzer.common.app.BaseActivity;
 import io.github.vzer.sharevegetable.account.AccountActivity;
+import io.github.vzer.sharevegetable.main.MainActivity;
 
 public class LaunchActivity extends BaseActivity {
+
+    private boolean isLogin = true;//是否登录了
 
 
     @Override
@@ -19,7 +22,10 @@ public class LaunchActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                AccountActivity.show(LaunchActivity.this);
+                if (!isLogin) {
+                    AccountActivity.show(LaunchActivity.this);
+                } else MainActivity.show(LaunchActivity.this);
+
                 finish();
             }
         }, 1000);
