@@ -28,7 +28,7 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
 
     @Override
     public void initWidget() {
-        setActivityTitle("订单详情");
+        setActivityTitle(getResources().getString(R.string.title_order_detail));
         list = new ArrayList<>();
         for (int i =0 ;i<10;i++) {
             list.add(new OrderVegetableModel());

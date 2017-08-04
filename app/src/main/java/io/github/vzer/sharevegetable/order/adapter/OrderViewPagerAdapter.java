@@ -32,13 +32,13 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case OrderFragment.PAGER_ALL:
-                if(orderContentFragment==null) {
+                if (orderContentFragment == null) {
                     orderContentFragment = new OrderContentFragment(OrderContentFragment.PAGER_ALL);
                 }
                 fragment = orderContentFragment;
                 break;
             case OrderFragment.PAGER_NO_PAYMENT:
-                if(noPaymentFragment == null) {
+                if (noPaymentFragment == null) {
                     noPaymentFragment = new OrderContentFragment(OrderContentFragment.PAGER_NO_PAYMENT);
                 }
                 fragment = noPaymentFragment;
@@ -124,7 +124,7 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
                 title = "已完成";
                 break;
             default:
-                ToastUtil.showToast("逻辑不可达");
+                ToastUtil.showToast(R.string.toast_logic_error);
                 break;
         }
         return title;
