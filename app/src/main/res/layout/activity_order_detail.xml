@@ -43,6 +43,7 @@
                     android:textColor="@color/text_secondary"/>
 
                 <Button
+                    android:id="@+id/btn_to_pay"
                     android:layout_width="74dp"
                     android:layout_height="@dimen/len_32"
                     android:layout_marginLeft="22dp"
@@ -53,12 +54,25 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txt_order_describe"
+                android:id="@+id/txt_order_state_describe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txt_payment_state"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/len_16"
                 android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_to_discuss"
+                android:layout_below="@id/txt_payment_state"
+                android:layout_width="74dp"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/len_16"
+                android:layout_height="@dimen/len_32"
+                android:background="@color/btn_yellow"
+                android:text="@string/text_go_discuss"
+                android:textColor="@color/white"/>
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -137,6 +151,7 @@
             <TextView
                 android:id="@+id/txt_order_number"
                 android:layout_width="wrap_content"
+                android:textSize="@dimen/font_12"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/txt_title_order_number"
                 android:layout_marginRight="@dimen/len_12"
@@ -151,6 +166,7 @@
                 android:layout_alignBottom="@id/txt_title_order_number"
                 android:layout_alignParentRight="true"
                 android:text="@string/text_copy"
+                android:textSize="@dimen/font_12"
                 android:textColor="@color/text_yellow"
                 />
 
@@ -165,6 +181,7 @@
                 android:id="@+id/txt_title_order_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/font_12"
                 android:layout_below="@id/txt_title_order_number"
                 android:layout_marginTop="@dimen/len_24"
                 android:text="@string/text_title_order_time"
@@ -174,11 +191,36 @@
                 android:id="@+id/txt_order_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/font_12"
                 android:layout_alignBottom="@id/txt_title_order_time"
                 android:layout_alignParentRight="true"
                 android:text="2017-07-25 22:15"
                 android:textColor="@color/black"
                 />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/txt_title_order_time"
+                android:layout_marginTop="@dimen/font_10"
+                android:background="@color/div_color"/>
+
+            <TextView
+                android:id="@+id/txt_title_order_describe"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_12"
+                android:text="@string/text_order_describe"
+                android:layout_below="@id/txt_title_order_time"
+                android:layout_marginTop="@dimen/len_24"/>
+
+            <TextView
+                android:id="@+id/txt_order_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_title_order_describe"
+                android:text="12123123123"/>
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

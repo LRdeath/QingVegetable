@@ -1,6 +1,7 @@
 package io.github.vzer.sharevegetable.lock;
 
 import io.github.vzer.common.app.ActivityPresenter;
+import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.common.factory.presenter.BasePresenter;
 import io.github.vzer.factory.presenter.lock.UnlockContract;
 import io.github.vzer.sharevegetable.R;
@@ -11,7 +12,7 @@ import io.github.vzer.sharevegetable.R;
  * email yangcihang@hrsoft.net
  */
 
-public class UnlockActivity extends ActivityPresenter<UnlockContract.Presenter>
+public class UnlockActivity extends ToolbarActivityPresenter<UnlockContract.Presenter>
         implements UnlockContract.View{
     @Override
     public void showError(int strId) {
@@ -24,13 +25,18 @@ public class UnlockActivity extends ActivityPresenter<UnlockContract.Presenter>
     }
 
     @Override
-    protected UnlockContract.Presenter initPresenter() {
+    public UnlockContract.Presenter initPresenter() {
         return null;
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void initWidget() {
+        setActivityTitle("奥特曼");
     }
 
     @Override

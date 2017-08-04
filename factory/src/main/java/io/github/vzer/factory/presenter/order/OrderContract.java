@@ -1,6 +1,9 @@
 package io.github.vzer.factory.presenter.order;
 
+import java.util.List;
+
 import io.github.vzer.common.factory.presenter.BaseContract;
+import io.github.vzer.factory.model.order.OrderDetailModel;
 
 /**
  * @author YangCihang
@@ -10,9 +13,12 @@ import io.github.vzer.common.factory.presenter.BaseContract;
 
 public interface OrderContract {
     interface View extends BaseContract.View<Presenter>{
-
+        void loadDataSuccess(List<OrderDetailModel> orderDetailModelList);
     }
     interface Presenter extends BaseContract.Presenter{
+        // TODO: 17/8/4 发送请求订单信息 
+        void loadOrderDetails();
 
+        void sendCommentRequest();
     }
 }

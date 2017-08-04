@@ -33,11 +33,10 @@
         <activity android:name=".shopping.ShoppingActivity"/>
         <activity android:name=".account.RetriveActivity"/>
         <activity android:name=".lock.UnlockActivity"/>
-        <activity android:name=".order.activity.OrderDetailActivity">
-
+        <activity android:name=".order.activity.OrderDetailActivity"/>
         <activity android:name=".shopping.activity.ShoppingActivity" />
-        <activity android:name=".account.RetriveActivity" />
         <activity android:name=".vegetable.DetailActivity" />
+        <activity android:name=".order.activity.DiscussActivity"/>
     </application>
 
 </manifest>

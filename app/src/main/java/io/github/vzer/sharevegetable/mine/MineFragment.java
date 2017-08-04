@@ -158,7 +158,7 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
                                         sex[0] = false;
                                         break;
                                     default:
-                                        ToastUtil.showToast("逻辑不可达");
+                                        ToastUtil.showToast(getActivity().getResources().getString(R.string.toast_logic_error));
                                         break;
                                 }
                             }
@@ -198,8 +198,8 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
      */
     @OnClick(R.id.txt_contract)
     void onContract() {
-        // TODO: 17/7/30 加入phoneNum
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + 123123123));
+        String phoneNum = getResources().getString(R.string.text_phone_num);
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNum));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -233,7 +233,7 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
             // TODO: 17/7/30 上传图像
             Glide.with(this).load(pathList.get(0)).error(R.mipmap.ic_launcher).into(avatarImg);
         } else {
-            ToastUtil.showToast("逻辑有错误");
+            ToastUtil.showToast(getContext().getResources().getString(R.string.toast_logic_error));
         }
     }
 }

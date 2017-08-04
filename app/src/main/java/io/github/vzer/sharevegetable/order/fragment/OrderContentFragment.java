@@ -3,6 +3,7 @@ package io.github.vzer.sharevegetable.order.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,15 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-<<<<<<< Updated upstream
 import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.common.widget.RecyclerViewAdapter;
-=======
-import io.github.vzer.common.app.Fragment;
->>>>>>> Stashed changes
-import io.github.vzer.factory.model.order.OrderModel;
+import io.github.vzer.factory.constant.KeyConstant;
+import io.github.vzer.factory.model.order.OrderDetailModel;
 import io.github.vzer.factory.presenter.order.OrderContract;
 import io.github.vzer.factory.presenter.order.OrderPresenter;
+import io.github.vzer.factory.utils.ToastUtil;
+import io.github.vzer.factory.utils.Utility;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.order.activity.OrderDetailActivity;
 import io.github.vzer.sharevegetable.order.adapter.OrderContentListAdapter;
@@ -42,9 +42,11 @@ public class OrderContentFragment extends FragmentPresenter<OrderContract.Presen
     private int pagerType = -1; //页面类型，根据不同类型发送不同请求
     @BindView(R.id.rec_order_content)
     RecyclerView recyclerView;
+    @BindView(R.id.refresh_ly)
+    SwipeRefreshLayout refreshLayout;
 
     private OrderContentListAdapter adapter;
-    private List<OrderModel> contentList;
+    private List<OrderDetailModel> contentList;
 
     public OrderContentFragment(int pagerType) {
         this.pagerType = pagerType;
@@ -71,9 +73,20 @@ public class OrderContentFragment extends FragmentPresenter<OrderContract.Presen
 
     @Override
     protected void initWidget(View root) {
-        // TODO: 17/8/1 暂做测试
         initList();
-
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Utility.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO: 17/8/4 下拉刷新数据源
+                        ToastUtil.showToast("测试中");
+                        refreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -91,6 +104,16 @@ public class OrderContentFragment extends FragmentPresenter<OrderContract.Presen
 
     }
 
+    /**
+     * 从网络请求获取数据成功时
+     *
+     * @param orderDetailModelList dataSource
+     */
+    @Override
+    public void loadDataSuccess(List<OrderDetailModel> orderDetailModelList) {
+        // TODO: 17/8/4 加载adapter，刷新数据源
+    }
+
     @Override
     protected OrderContract.Presenter initPresenter() {
         return new OrderPresenter(this);
@@ -99,16 +122,18 @@ public class OrderContentFragment extends FragmentPresenter<OrderContract.Presen
     private void initList() {
         contentList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            contentList.add(new OrderModel());
+            contentList.add(new OrderDetailModel());
         }
         adapter = new OrderContentListAdapter(getActivity(), contentList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickedListener(new RecyclerViewAdapter.OnItemClicked<OrderModel>() {
+        adapter.setOnItemClickedListener(new RecyclerViewAdapter.OnItemClicked<OrderDetailModel>() {
             @Override
-            public void onItemClicked(OrderModel orderModel, RecyclerViewAdapter.ViewHolder holder) {
-                startActivity(new Intent(getContext(),OrderDetailActivity.class));
+            public void onItemClicked(OrderDetailModel orderDetailModel, RecyclerViewAdapter.ViewHolder holder) {
+                Intent intent = new Intent(getContext(), OrderDetailActivity.class);
+                intent.putExtra(KeyConstant.KEY_ORDER_DETAIL, orderDetailModel);
+                startActivity(new Intent(getContext(), OrderDetailActivity.class));
             }
         });
     }

@@ -51,5 +51,11 @@
     <string name="text_title_order_time">下单时间</string>
     <string name="text_title_order_detail">订单信息</string>
     <string name="title_order_detail">订单详情</string>
+    <string name="text_order_describe">订单描述:</string>
+    <string name="text_phone_num">15028595851</string>
+    <string name="text_go_discuss">去评论</string>
+    <string name="title_discuss">评价</string>
+    <string name="text_title_discuss_product">评价商品</string>
+    <string name="text_submit_discuss">提交评价</string>
     <string name="vegetable_evaluation">商品评价</string>
 </resources>

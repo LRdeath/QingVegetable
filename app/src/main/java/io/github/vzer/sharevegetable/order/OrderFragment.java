@@ -5,8 +5,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import java.util.List;
+
 import butterknife.BindView;
 import io.github.vzer.common.app.FragmentPresenter;
+import io.github.vzer.factory.model.order.OrderDetailModel;
 import io.github.vzer.factory.presenter.order.OrderContract;
 import io.github.vzer.factory.presenter.order.OrderPresenter;
 import io.github.vzer.sharevegetable.R;
@@ -61,5 +64,10 @@ public class OrderFragment extends FragmentPresenter<OrderContract.Presenter> im
     @Override
     protected int getContentLayoutId() {
         return R.layout.fragment_order;
+    }
+
+    @Override
+    public void loadDataSuccess(List<OrderDetailModel> orderDetailModelList) {
+
     }
 }
