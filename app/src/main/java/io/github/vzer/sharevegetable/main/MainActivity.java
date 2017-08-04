@@ -13,6 +13,7 @@ import io.github.vzer.factory.utils.FragmentUtil;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.find.FindFragment;
+import io.github.vzer.sharevegetable.lock.UnlockActivity;
 import io.github.vzer.sharevegetable.mine.MineFragment;
 import io.github.vzer.sharevegetable.order.OrderFragment;
 import io.github.vzer.sharevegetable.vegetable.VegetableFragment;
@@ -50,6 +51,7 @@ public class MainActivity extends BaseActivity {
     private static final String FIND_TAG = "find";
     private static final String VEGETABLE_TAG = "vegetable";
     private static final String MINE_TAG = "mine";
+    private int tipCount =0;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
@@ -116,7 +118,7 @@ public class MainActivity extends BaseActivity {
      */
     @OnClick(R.id.img_lock)
     void onShoppingClicked() {
-        //跳到开锁界面
+        startActivity(new Intent(this, UnlockActivity.class));
     }
 
 

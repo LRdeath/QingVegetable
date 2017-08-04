@@ -43,4 +43,11 @@
     <string name="text_pick">待取货</string>
     <string name="text_finish">已完成</string>
     <string name="money">¥</string>
+    <string name="toast_logic_error">逻辑不可达</string>
+    <string name="text_cancel_order">取消订单</string>
+    <string name="text_go_payment">去支付</string>
+    <string name="text_title_order_number">订单号</string>
+    <string name="text_copy">复制</string>
+    <string name="text_title_order_time">下单时间</string>
+    <string name="text_title_order_detail">订单信息</string>
 </resources>

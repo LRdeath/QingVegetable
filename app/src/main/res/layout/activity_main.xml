@@ -117,7 +117,7 @@
         android:layout_alignParentBottom="true"
         android:padding="@dimen/len_12"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_shopping"
+        android:src="@drawable/ic_lock"
         android:elevation="@dimen/len_4"
         android:background="@drawable/bg_btn_account_enable"
         />

@@ -18,9 +18,9 @@ import io.github.vzer.sharevegetable.R;
  * email yangcihang@hrsoft.net
  */
 
-public class OrderContentAdapter extends RecyclerViewAdapter<OrderModel> {
+public class OrderContentListAdapter extends RecyclerViewAdapter<OrderModel> {
 
-    public OrderContentAdapter(Context context, List<OrderModel> orderModels) {
+    public OrderContentListAdapter(Context context, List<OrderModel> orderModels) {
         super(context, orderModels);
     }
 

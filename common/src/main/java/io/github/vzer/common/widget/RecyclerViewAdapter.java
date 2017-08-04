@@ -138,7 +138,7 @@ public abstract class RecyclerViewAdapter<Data> extends RecyclerView.Adapter<Rec
     /**
      * 点击事件接口
      */
-    interface OnItemClicked<Data> {
+    public interface OnItemClicked<Data> {
         void onItemClicked(Data data, ViewHolder holder);
     }
 

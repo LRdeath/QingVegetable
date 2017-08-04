@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import io.github.vzer.factory.utils.ToastUtil;
+import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.order.OrderFragment;
 import io.github.vzer.sharevegetable.order.fragment.OrderContentFragment;
 
@@ -24,15 +25,6 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
 
     public OrderViewPagerAdapter(FragmentManager fm) {
         super(fm);
-        initFragment();
-    }
-
-    private void initFragment() {
-        orderContentFragment = new OrderContentFragment();
-        completeFragment = new OrderContentFragment();
-        noDistributeFragment = new OrderContentFragment();
-        noPaymentFragment = new OrderContentFragment();
-        noPickUpFragment = new OrderContentFragment();
     }
 
     @Override
@@ -40,21 +32,37 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case OrderFragment.PAGER_ALL:
+                if(orderContentFragment==null) {
+                    orderContentFragment = new OrderContentFragment(OrderContentFragment.PAGER_ALL);
+                }
                 fragment = orderContentFragment;
                 break;
             case OrderFragment.PAGER_NO_PAYMENT:
+                if(noPaymentFragment == null) {
+                    noPaymentFragment = new OrderContentFragment(OrderContentFragment.PAGER_NO_PAYMENT);
+                }
                 fragment = noPaymentFragment;
                 break;
             case OrderFragment.PAGER_NO_DISTRIBUTE:
+                if (noDistributeFragment == null) {
+                    noDistributeFragment = new OrderContentFragment(OrderContentFragment.PAGER_NO_DISTRIBUTE);
+                }
                 fragment = noDistributeFragment;
                 break;
             case OrderFragment.PAGER_NO_PICK_UP:
+                if (noPickUpFragment == null) {
+                    noPickUpFragment = new OrderContentFragment(OrderContentFragment.PAGER_NO_PICK_UP);
+                }
                 fragment = noPickUpFragment;
                 break;
-            case OrderFragment.PAGER_NO_COMPLETE:
+            case OrderFragment.PAGER_COMPLETE:
+                if (completeFragment == null) {
+                    completeFragment = new OrderContentFragment(OrderContentFragment.PAGER_COMPLETE);
+                }
                 fragment = completeFragment;
                 break;
             default:
+                ToastUtil.showToast(R.string.toast_logic_error);
                 break;
         }
         return fragment;
@@ -112,7 +120,7 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
             case OrderFragment.PAGER_NO_PICK_UP:
                 title = "待取货";
                 break;
-            case OrderFragment.PAGER_NO_COMPLETE:
+            case OrderFragment.PAGER_COMPLETE:
                 title = "已完成";
                 break;
             default:

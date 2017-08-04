@@ -23,10 +23,11 @@
 
     <color name="btn_txt_primary">#ffffff</color>
     <color name="btn_txt_disable">#9B9B9B</color>
+    <color name="text_yellow">#FFEEB41F</color>
     <color name="btn_disable">#D1D1D1</color>
     <color name="div_color">#C9C9C9</color>
     <color name="text_order_selected">#FF169B49</color>
     <color name="text_money">#FF1FBC5B</color>
-    <color name="btn_evaluate">#ffc738</color>
+    <color name="btn_yellow">#ffc738</color>
     <color name="edt_hint">#D1D1D1</color>
 </resources>
