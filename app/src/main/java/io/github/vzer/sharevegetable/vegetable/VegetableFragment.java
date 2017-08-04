@@ -29,7 +29,7 @@ import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
 import io.github.vzer.factory.presenter.vegetable.VegetablePresenter;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.shopping.ShoppingActivity;
+import io.github.vzer.sharevegetable.shopping.activity.ShoppingActivity;
 
 /**
  * @author YangCihang

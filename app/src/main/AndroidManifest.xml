@@ -29,11 +29,16 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".main.MainActivity">
         </activity>
+<<<<<<< Updated upstream
         <activity android:name=".shopping.ShoppingActivity"/>
         <activity android:name=".account.RetriveActivity"/>
         <activity android:name=".lock.UnlockActivity"/>
         <activity android:name=".order.activity.OrderDetailActivity">
         </activity>
+=======
+        <activity android:name=".shopping.activity.ShoppingActivity" />
+        <activity android:name=".account.RetriveActivity" />
+>>>>>>> Stashed changes
     </application>
 
 </manifest>

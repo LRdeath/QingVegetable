@@ -24,6 +24,7 @@ public class ShoppingModel implements Serializable {
         this.pictureUri = pictureUri;
         this.amount = amount;
     }
+    public ShoppingModel(){}
 
     public int getpId() {
         return pId;

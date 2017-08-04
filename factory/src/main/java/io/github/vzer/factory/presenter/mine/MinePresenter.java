@@ -1,6 +1,5 @@
 package io.github.vzer.factory.presenter.mine;
 
-import java.util.Calendar;
 
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
@@ -32,7 +31,6 @@ public class MinePresenter extends BasePresenter<MineContract.View>
 
     @Override
     public void changeSex(boolean sex) {
-
     }
 
 

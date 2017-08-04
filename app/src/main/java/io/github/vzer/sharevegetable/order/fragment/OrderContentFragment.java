@@ -11,8 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+<<<<<<< Updated upstream
 import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.common.widget.RecyclerViewAdapter;
+=======
+import io.github.vzer.common.app.Fragment;
+>>>>>>> Stashed changes
 import io.github.vzer.factory.model.order.OrderModel;
 import io.github.vzer.factory.presenter.order.OrderContract;
 import io.github.vzer.factory.presenter.order.OrderPresenter;

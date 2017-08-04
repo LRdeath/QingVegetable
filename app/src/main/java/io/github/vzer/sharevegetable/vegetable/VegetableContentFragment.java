@@ -159,7 +159,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
             Glide.with(getContext())
                     .load(vegetableModel.getPictureUri())
                     .centerCrop()
-                    .placeholder(R.drawable.ic_defaut)
+                    .placeholder(R.drawable.ic_default)
                     .into(imgeVegetable);
         }
 
