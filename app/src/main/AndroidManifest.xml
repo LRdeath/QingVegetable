@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="io.github.vzer.sharevegetable">
+    package="io.github.vzer.sharevegetable">
 
     <!-- 从sdcard中读取数据的权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -29,16 +29,15 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".main.MainActivity">
         </activity>
-<<<<<<< Updated upstream
+
         <activity android:name=".shopping.ShoppingActivity"/>
         <activity android:name=".account.RetriveActivity"/>
         <activity android:name=".lock.UnlockActivity"/>
         <activity android:name=".order.activity.OrderDetailActivity">
-        </activity>
-=======
+
         <activity android:name=".shopping.activity.ShoppingActivity" />
         <activity android:name=".account.RetriveActivity" />
->>>>>>> Stashed changes
+        <activity android:name=".vegetable.DetailActivity" />
     </application>
 
 </manifest>

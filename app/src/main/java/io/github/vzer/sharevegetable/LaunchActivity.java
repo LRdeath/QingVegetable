@@ -30,7 +30,7 @@ public class LaunchActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (isLogin) {
+                if (!isLogin) {
                     AccountActivity.show(LaunchActivity.this);
 
                 } else MainActivity.show(LaunchActivity.this);

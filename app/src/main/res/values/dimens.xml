@@ -44,6 +44,6 @@
     <dimen name="len_48">48dp</dimen>
     <dimen name="font_16">16sp</dimen>
     <dimen name="font_18">18sp</dimen>
-    <dimen name="len_120">120dp</dimen>
+    <dimen name="len_112">112dp</dimen>
 
 </resources>

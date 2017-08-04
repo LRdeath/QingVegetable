@@ -15,6 +15,7 @@ import io.github.vzer.common.factory.presenter.BaseContract;
 public abstract class ActivityPresenter<Presenter extends BaseContract.Presenter> extends BaseActivity implements BaseContract.View<Presenter>{
     protected Presenter mPresenter;
 
+
     //在加载控件之前初始化Presenter
     @Override
     public void initWidget() {

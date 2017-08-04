@@ -5,10 +5,12 @@ import android.widget.ListView;
 import java.util.List;
 
 import io.github.vzer.common.factory.presenter.BaseContract;
+import io.github.vzer.factory.model.vegetable.VegetableEvaModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 
 /**
+ * 商品选购模块的 公约
  * @author YangCihang
  * @since 17/7/27.
  * email yangcihang@hrsoft.net
@@ -17,13 +19,14 @@ import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 public interface VegetableContract {
     interface View extends BaseContract.View<Presenter> {
         /**
-         * 加载商品数据成功
+         * 商品数据 加载成功
          */
         void LoadDatasSuccess(List<VegetableModel> vegetableModels);
         /**
-         * 加载类型数据成功
+         * 商品类型 加载成功
          */
         void LoadTypeSuccess(List<VegetableTypeModel> typeModels);
+
     }
 
     interface Presenter extends BaseContract.Presenter {
@@ -35,5 +38,7 @@ public interface VegetableContract {
          * 加载商品类型
          */
         void LoadType();
+
+
     }
 }

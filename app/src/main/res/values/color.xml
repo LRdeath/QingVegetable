@@ -7,7 +7,7 @@
     <color name="textPrimary">#FFFFFF</color>
 
     <!--字体颜色-->
-    <color name="text_primary">#FF374249</color>
+    <color name="text_primary">#4a4a4a</color>
     <color name="text_secondary">#FF9B9B9B</color>
     <color name="textAccent">@color/colorAccent</color>
     <color name="textDark">#202020</color>

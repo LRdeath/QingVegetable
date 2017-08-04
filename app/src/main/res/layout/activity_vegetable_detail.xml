@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="520dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_eva"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:navigationIcon="@drawable/ic_back" />
+
+
+        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:paddingBottom="@dimen/len_12">
+
+                <ImageView
+                    android:id="@+id/vegetable_detail_imge"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:src="@drawable/ic_defaut" />
+
+                <TextView
+                    android:id="@+id/vegetable_detail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/len_16"
+                    android:text="西瓜"
+                    android:textColor="@color/textDark"
+                    android:textSize="@dimen/font_18" />
+
+                <TextView
+                    android:id="@+id/vegetable_detail_standard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/len_16"
+                    android:layout_marginTop="@dimen/len_2"
+                    android:text="月售65份     好评率100%"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/font_12" />
+
+                <TextView
+                    android:id="@+id/vegetable_detail_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/len_16"
+                    android:layout_marginTop="@dimen/len_4"
+                    android:paddingRight="@dimen/len_24"
+                    android:text="超级新鲜的小香菜，好吃。"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/font_14" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/len_16"
+                    android:layout_marginTop="@dimen/len_8"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/money"
+                        android:textColor="@color/text_red" />
+
+                    <TextView
+                        android:id="@+id/vegetable_detail_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.5"
+                        android:textColor="@color/text_red"
+                        android:textSize="@dimen/font_18"
+                        android:textStyle="bold" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+
+                    <ImageButton
+                        android:id="@+id/vegetable_detail_sub"
+                        android:layout_width="@dimen/len_24"
+                        android:layout_height="@dimen/len_24"
+                        android:background="@drawable/bg_btn_account_disable"
+                        android:elevation="@dimen/len_4"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_sub"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/vegetable_detail_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/len_8"
+                        android:layout_marginRight="@dimen/len_8"
+                        android:text="1"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/font_16" />
+
+                    <ImageButton
+                        android:id="@+id/vegetable_detail_add"
+                        android:layout_width="@dimen/len_24"
+                        android:layout_height="@dimen/len_24"
+                        android:layout_marginRight="@dimen/len_16"
+                        android:background="@drawable/bg_btn_defaut"
+                        android:elevation="@dimen/len_4"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_add" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:padding="@dimen/len_16"
+                    android:orientation="horizontal"
+                    android:background="@color/color_white"
+                    android:layout_gravity="center_vertical"
+                    android:elevation="@dimen/len_4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vegetable_evaluation"
+                        android:textColor="@color/textDark"
+                        android:textSize="@dimen/font_16" />
+
+                    <TextView
+                        android:id="@+id/vegetable_detail_sum_eva"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(11)"
+                        android:textColor="@color/textDark"
+                        android:textSize="@dimen/font_14" />
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/vegetable_detail_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="好评率100%"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/font_14" />
+
+                </LinearLayout>
+
+        </LinearLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_vegetable_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</android.support.design.widget.CoordinatorLayout>

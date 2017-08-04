@@ -1,6 +1,7 @@
 package io.github.vzer.sharevegetable.vegetable;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.factory.model.vegetable.VegetableEvaModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
@@ -35,7 +37,7 @@ import io.github.vzer.sharevegetable.vegetable.animation.ShoppingCartAnimationVi
  */
 
 @SuppressLint("ValidFragment")
-public class VegetableContentFragment extends FragmentPresenter<VegetableContract.Presenter> implements VegetableContract.View {
+public class VegetableContentFragment extends FragmentPresenter<VegetableContract.Presenter> implements VegetableContract.View, RecyclerViewAdapter.OnItemClicked<VegetableModel> {
     @BindView(R.id.rcview_vegetable)
     RecyclerView vegetableRcview;
 
@@ -44,6 +46,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
     private int curTabType;
     private HashMap<Integer, Integer> dataMap;
     private ShoppingChange shoppingChange;
+    public static String VEGETABLE_DETAIL = "Vegetable_Detail";//商品详情页传值的key
 
 
     
@@ -58,6 +61,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
         dataMap = new HashMap<>();
     }
 
+
     @Override
     public void LoadDatasSuccess(List<VegetableModel> vegetableModels) {
         modelList = vegetableModels;
@@ -69,6 +73,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
     public void LoadTypeSuccess(List<VegetableTypeModel> typeModels) {
 
     }
+
 
     @Override
     protected VegetableContract.Presenter initPresenter() {
@@ -84,6 +89,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
                 return new VegetableViewHolder(view);
             }
         };
+        adapter.setOnItemClickedListener(this);
         vegetableRcview.setAdapter(adapter);
         mPresenter.LoadType();//获取商品类型
         mPresenter.LoadDatas(curTabType);
@@ -103,6 +109,19 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
     @Override
     protected int getContentLayoutId() {
         return R.layout.fragment_vegetable_content;
+    }
+
+    /**
+     * 商品点击,进入商品详情界面
+     * @param vegetableModel 点击的商品model
+     * @param holder
+     */
+    @Override
+    public void onItemClicked(VegetableModel vegetableModel, RecyclerViewAdapter.ViewHolder holder) {
+        Intent intent = new Intent(getContext(),DetailActivity.class);
+        //添加数据
+       intent.putExtra(VEGETABLE_DETAIL,vegetableModel);
+        startActivity(intent);
     }
 
     /**

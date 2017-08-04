@@ -36,11 +36,15 @@ public class VegetablePresenter extends BasePresenter<VegetableContract.View>
             model.setSales(56);
             model.setPictureUri("http://www.cnlvying.com/upfiles/2014-3-18-15-47-12.jpg");
             model.setType(0);
+            model.setpId(101);
             models.add(model);
         }
         mView.LoadDatasSuccess(models);
     }
 
+    /**
+     * 加载商品类型
+     */
     @Override
     public void LoadType() {
         List<VegetableTypeModel> typeModels = new ArrayList<>();
@@ -48,4 +52,6 @@ public class VegetablePresenter extends BasePresenter<VegetableContract.View>
         typeModels.add(model);
         mView.LoadTypeSuccess(typeModels);
     }
+
+
 }

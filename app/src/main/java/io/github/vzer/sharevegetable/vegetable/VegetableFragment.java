@@ -24,6 +24,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.FragmentPresenter;
 import io.github.vzer.factory.model.shopping.ShoppingModel;
+import io.github.vzer.factory.model.vegetable.VegetableEvaModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
@@ -56,6 +57,9 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     private int tipCount = 0;//商品数量
 
 
+    /**
+     * 点击购物车 事件
+     */
     @OnClick(R.id.img_shopping)
     void goShopping() {
         Intent intent = new Intent(getContext(), ShoppingActivity.class);
@@ -67,7 +71,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
             ShoppingModel model = (ShoppingModel) entry.getValue();
             if (model.getAmount() > 0) list.add(model);
         }
-        Log.d("Tag", list.toString());
+        //Log.d("Tag", list.toString());
         //把选购的商品传给购物车
         intent.putExtra(VEGETABLE_SHOPPING, (Serializable) list);
         startActivity(intent);
@@ -122,6 +126,10 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
         adapter.notifyDataSetChanged();
     }
 
+
+    /**
+     * 设置购物车商品数量
+     */
     @Override
     public void setSumTip(int count, VegetableModel model) {
         int sum = 0;
@@ -148,6 +156,10 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
         tipTxt.setText(text);
     }
 
+    /**
+     * 获取购物车坐标
+     * @return 坐标
+     */
     @Override
     public int[] getShoppingCoord() {
         int[] des = new int[2];

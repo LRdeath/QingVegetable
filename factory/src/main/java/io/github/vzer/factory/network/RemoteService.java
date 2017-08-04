@@ -25,4 +25,6 @@ public interface RemoteService {
     // TODO: 2017/7/26 后端给接口
     @PUT(" ")
     Call<RspModel<AccountRspModel>> login(@Body LoginModel model);
+
+
 }
