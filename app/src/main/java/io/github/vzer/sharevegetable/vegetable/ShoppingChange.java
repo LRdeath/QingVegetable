@@ -10,7 +10,7 @@ import io.github.vzer.factory.model.vegetable.VegetableModel;
 
 public interface ShoppingChange {
     //添加与减少商品
-    void setSumTip(int count, VegetableModel id);
+    void setSumTip(int count);
     //获取购物车坐标位置
     int[] getShoppingCoord();
 }

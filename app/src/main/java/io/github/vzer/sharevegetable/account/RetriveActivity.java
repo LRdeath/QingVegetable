@@ -50,7 +50,6 @@ public class RetriveActivity extends ToolbarActivityPresenter<RetriveContract.Pr
 
     @Override
     protected void initData() {
-
     }
 
     @Override

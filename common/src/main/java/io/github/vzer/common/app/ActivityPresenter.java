@@ -16,10 +16,11 @@ public abstract class ActivityPresenter<Presenter extends BaseContract.Presenter
     protected Presenter mPresenter;
 
 
-    //在加载控件之前初始化Presenter
+    //在创建的时候初始化Presenter
     @Override
-    public void initWidget() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         initPresenter();
+        super.onCreate(savedInstanceState);
     }
 
     /**

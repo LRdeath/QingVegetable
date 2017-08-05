@@ -134,6 +134,7 @@ public abstract class RecyclerViewAdapter<Data> extends RecyclerView.Adapter<Rec
         this.onItemClickedListener = onItemClickedListener;
     }
 
+
     /**
      * 点击事件接口
      */

@@ -33,9 +33,10 @@ import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.shopping.activity.ShoppingActivity;
 
 /**
- * @author YangCihang
- * @since 17/7/27.
- * email yangcihang@hrsoft.net
+ * 商品选购整体框架
+ * @author: Vzer.
+ * @date: 2017/8/1.
+ * @email: vzer@qq.com
  */
 
 public class VegetableFragment extends FragmentPresenter<VegetableContract.Presenter> implements VegetableContract.View, ShoppingChange {
@@ -48,7 +49,6 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     TextView tipTxt;
     @BindView(R.id.img_shopping)
     FloatingActionButton shoppingFloat;
-    private HashMap<Integer, ShoppingModel> shoppingMap = new HashMap<>(); //<商品Id, 购物车Model>
     PagerAdapter adapter;
     public static String VEGETABLE_SHOPPING = "Vegetable_shopping";
 
@@ -63,7 +63,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     @OnClick(R.id.img_shopping)
     void goShopping() {
         Intent intent = new Intent(getContext(), ShoppingActivity.class);
-        Iterator<Map.Entry<Integer, ShoppingModel>> iterator = shoppingMap.entrySet().iterator();
+       /* Iterator<Map.Entry<Integer, ShoppingModel>> iterator = shoppingMap.entrySet().iterator();
         List<ShoppingModel> list = new ArrayList<>();
         //遍历选择的商品信息,打包
         while (iterator.hasNext()) {
@@ -73,7 +73,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
         }
         //Log.d("Tag", list.toString());
         //把选购的商品传给购物车
-        intent.putExtra(VEGETABLE_SHOPPING, (Serializable) list);
+        intent.putExtra(VEGETABLE_SHOPPING, (Serializable) list);*/
         startActivity(intent);
     }
 
@@ -95,6 +95,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     protected void initWidget(View root) {
         fragmentList.add(new VegetableContentFragment(0, this));
         typeList.add(new VegetableTypeModel(0, "常用"));
+        ShoppingData.getInstance().addList(new ArrayList<VegetableModel>());
         adapter = new VgFragmentPagerAdapter(getFragmentManager(), fragmentList, typeList);
         vp_content.setAdapter(adapter);
         tabLayout.setupWithViewPager(vp_content);
@@ -110,10 +111,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
         return R.layout.fragment_vegetable;
     }
 
-    @Override
-    public void LoadDatasSuccess(List<VegetableModel> vegetableModels) {
 
-    }
 
     @Override
     public void LoadTypeSuccess(List<VegetableTypeModel> typeModels) {
@@ -122,6 +120,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
         for (VegetableTypeModel title :
                 typeModels) {
             fragmentList.add(new VegetableContentFragment(title.getType(), this));
+            ShoppingData.getInstance().addList(new ArrayList<VegetableModel>());
         }
         adapter.notifyDataSetChanged();
     }
@@ -131,23 +130,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
      * 设置购物车商品数量
      */
     @Override
-    public void setSumTip(int count, VegetableModel model) {
-        int sum = 0;
-        int id = model.getpId();
-        ShoppingModel shoppingModel;
-        //将购物车信息更新;
-        if (shoppingMap.containsKey(id)) {
-            shoppingModel = shoppingMap.get(id);
-            sum = shoppingModel.getAmount();
-        } else {
-            //model不存在,新建一个model
-            shoppingModel = new ShoppingModel(model.getpId(), model.getName(),
-                    model.getPrice(), model.getStandard(), model.getPictureUri(), 0);
-        }
-        sum += count;
-        //更新购物车商品数量
-        shoppingModel.setAmount(sum);
-        shoppingMap.put(id, shoppingModel);
+    public void setSumTip(int count) {
         //更新tip数量显示
         tipCount += count;
         if (tipCount == 0) tipTxt.setVisibility(View.GONE);
@@ -204,4 +187,8 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
         }
     }
 
+    @Override
+    public void LoadDatasSuccess(List<VegetableModel> vegetableModels) {
+
+    }
 }

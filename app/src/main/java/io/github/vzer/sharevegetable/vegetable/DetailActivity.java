@@ -3,6 +3,7 @@ package io.github.vzer.sharevegetable.vegetable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -18,16 +19,13 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.vzer.common.app.ActivityPresenter;
-import io.github.vzer.common.app.BaseActivity;
 import io.github.vzer.common.widget.RecyclerViewAdapter;
 import io.github.vzer.factory.model.vegetable.VegetableEvaModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
-import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 import io.github.vzer.factory.presenter.vegetable.EvaVegetableContract;
 import io.github.vzer.factory.presenter.vegetable.EvaVegetablePresenter;
-import io.github.vzer.factory.presenter.vegetable.VegetableContract;
-import io.github.vzer.factory.presenter.vegetable.VegetablePresenter;
 import io.github.vzer.sharevegetable.R;
+import io.github.vzer.sharevegetable.vegetable.adapter.DetailData;
 
 /**
  * @author: Vzer.
@@ -55,18 +53,21 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
     @BindView(R.id.rec_vegetable_detail)
     RecyclerView evaRec;
 
-    private int count;
     private VegetableModel model;//当前商品的model
+    private ShoppingData shoppingData; //购物车管理类
+    private int curType;
+    private int curPosition;
     private RecyclerViewAdapter<VegetableEvaModel> adapter;
 
     @Override
     protected void initData() {
+
         //初始化评价表
         List<VegetableEvaModel> list = new ArrayList<>();
         adapter = new RecyclerViewAdapter<VegetableEvaModel>(this, list) {
             @Override
             public ViewHolder<VegetableEvaModel> onCreateViewHolder(ViewGroup parent, int viewType) {
-                return new EvaViewHolder(inflater.inflate(R.layout.item_recview_vegetable_eva,parent,false));
+                return new EvaViewHolder(inflater.inflate(R.layout.item_recview_vegetable_eva, parent, false));
             }
         };
         evaRec.setAdapter(adapter);
@@ -77,10 +78,13 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
     //初始化商品信息
     @Override
     public void initWidget() {
-        super.initWidget();
         evaRec.setLayoutManager(new LinearLayoutManager(this));
         nameTxt.setText(model.getName());
-        count = model.getCount();
+        //获取当前商品选购的数量
+        int count = 0;
+        if (shoppingData.getVegetableList().containsKey(model))
+            count = shoppingData.getVegetableList().get(model);
+
         if (count == 0) {
             countTxt.setText("");
             subImageB.setVisibility(View.GONE);
@@ -113,7 +117,12 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
 
     @Override
     protected boolean initArgs(Bundle extras) {
-        model = (VegetableModel) extras.getSerializable(VegetableContentFragment.VEGETABLE_DETAIL);
+        shoppingData = ShoppingData.getInstance();
+        DetailData model = (DetailData) extras.getSerializable(VegetableContentFragment.VEGETABLE_DETAIL);
+        curType = model.getType();
+        curPosition = model.getPosition();
+        Log.d("tag",curType+" "+curPosition);
+        this.model = shoppingData.getList(curType).get(curPosition);
         return super.initArgs(extras);
     }
 
@@ -122,10 +131,10 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
      */
     @OnClick(R.id.vegetable_detail_add)
     void addClick() {
-        String str = ++count + "";
+        int count = shoppingData.add(curType,curPosition);
         //把减少buton设置为可见
         if (subImageB.getVisibility() == View.GONE) subImageB.setVisibility(View.VISIBLE);
-        countTxt.setText(str);
+        countTxt.setText(String.valueOf(count));
     }
 
     /*
@@ -133,7 +142,8 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
      */
     @OnClick(R.id.vegetable_detail_sub)
     void subClick() {
-        String str = --count + "";
+        int count = shoppingData.sub(curType,curPosition);
+        String str = "" + count;
         //为0时把减少buton设置为不可见
         if (count == 0) {
             subImageB.setVisibility(View.GONE);
@@ -170,7 +180,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
     /**
      * 商品评价ViewHolder
      */
-     class EvaViewHolder extends RecyclerViewAdapter.ViewHolder<VegetableEvaModel> {
+    class EvaViewHolder extends RecyclerViewAdapter.ViewHolder<VegetableEvaModel> {
         @BindView(R.id.image_vegetable_eva_portrait)
         CircleImageView portraitImage; //头像
         @BindView(R.id.txt_vegetable_eva_name)
@@ -193,8 +203,8 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
             contentTxt.setText(vegetableEvaModel.getContent());
             //根据评价等级 加载图片
             if (vegetableEvaModel.getDegree() == 1) {
-                degreeImage.setImageResource(R.drawable.evaluation_smile);
-            } else degreeImage.setImageResource(R.drawable.evaluation_sad);
+                degreeImage.setImageResource(R.drawable.ic_smile_selected);
+            } else degreeImage.setImageResource(R.drawable.ic_sad_selected);
             Glide.with(DetailActivity.this)
                     .load(vegetableEvaModel.getPortraitUri())
                     .centerCrop()

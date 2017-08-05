@@ -103,12 +103,10 @@
                         android:id="@+id/vegetable_detail_sub"
                         android:layout_width="@dimen/len_24"
                         android:layout_height="@dimen/len_24"
-                        android:background="@drawable/bg_btn_account_disable"
+                        android:background="@drawable/bg_btn_sub"
                         android:elevation="@dimen/len_4"
                         android:padding="9dp"
-                        android:src="@drawable/ic_sub"
-                        android:visibility="gone"
-                        tools:visibility="visible" />
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/vegetable_detail_count"
@@ -126,10 +124,9 @@
                         android:layout_width="@dimen/len_24"
                         android:layout_height="@dimen/len_24"
                         android:layout_marginRight="@dimen/len_16"
-                        android:background="@drawable/bg_btn_defaut"
+                        android:background="@drawable/bg_btn_add"
                         android:elevation="@dimen/len_4"
-                        android:padding="6dp"
-                        android:src="@drawable/ic_add" />
+                        android:padding="6dp" />
                 </LinearLayout>
             </LinearLayout>
 

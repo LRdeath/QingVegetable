@@ -62,8 +62,7 @@
                 <ImageView
                     android:id="@+id/imge_vegetable_eva_degree"
                     android:layout_width="@dimen/len_24"
-                    android:layout_height="@dimen/len_24"
-                    android:src="@drawable/evaluation_smile" />
+                    android:layout_height="@dimen/len_24" />
             </LinearLayout>
 
             <TextView

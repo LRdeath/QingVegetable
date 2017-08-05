@@ -45,6 +45,7 @@ public abstract class ToolbarActivity extends BaseActivity {
         viewContainer.addView(inflater.inflate(getContentLayoutId(), null));
         initToolbar(viewRoot);
         ButterKnife.bind(this, viewRoot);
+        initData();
         initWidget();
         return viewRoot;
     }
