@@ -123,6 +123,7 @@
                         android:id="@+id/vegetable_detail_add"
                         android:layout_width="@dimen/len_24"
                         android:layout_height="@dimen/len_24"
+                        android:clickable="true"
                         android:layout_marginRight="@dimen/len_16"
                         android:background="@drawable/bg_btn_add"
                         android:elevation="@dimen/len_4"

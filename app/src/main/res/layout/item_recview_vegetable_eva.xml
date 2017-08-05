@@ -23,7 +23,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_vegetable_eva_portrait"
             android:layout_width="@dimen/len_32"
-            android:layout_height="@dimen/len_32"
+            android:layout_height="@dimen/len_32"/>
             android:src="@drawable/ic_default" />
 
         <LinearLayout

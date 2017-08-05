@@ -34,10 +34,20 @@
 
         />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@id/txt_vegetable_name"
-        android:layout_marginTop="@dimen/len_16"
-        android:background="@color/div_color"/>
+    <EditText
+        android:id="@+id/edit_describe"
+        android:layout_width="312dp"
+        android:layout_height="75dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txt_vegetable_name"
+        android:layout_marginTop="@dimen/len_12"
+        android:background="@drawable/bg_edit_describe"
+        android:gravity="left"
+        android:hint="@string/hint_describe"
+        android:paddingLeft="4dp"
+        android:textSize="@dimen/font_12"/>
+
 </RelativeLayout>

@@ -174,7 +174,6 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
     @Override
     public void LoadEvaSuccess(List<VegetableEvaModel> evaModels) {
         adapter.addAll(evaModels);
-        adapter.notifyDataSetChanged();
     }
 
     /**

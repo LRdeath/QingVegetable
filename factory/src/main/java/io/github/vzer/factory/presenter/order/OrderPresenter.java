@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
+import io.github.vzer.factory.model.order.DiscussModel;
 import io.github.vzer.factory.model.order.OrderDetailModel;
 
 /**
@@ -37,7 +38,7 @@ public class OrderPresenter extends BasePresenter<OrderContract.View>
      * 发送发表评价的请求
      */
     @Override
-    public void sendCommentRequest() {
+    public void sendDiscussRequest(DiscussModel discussModel) {
 
     }
 

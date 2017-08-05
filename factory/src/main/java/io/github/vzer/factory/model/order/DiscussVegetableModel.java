@@ -9,6 +9,9 @@ import java.io.Serializable;
  */
 
 public class DiscussVegetableModel implements Serializable {
+    public static final int STATE_SATISFIED = 1;
+    public static final int STATE_DISSATISFIED = 2;
+    public static final int STATE_UNSELECTED = 0;
     private String name;
     private int satisfation;
     private String content;

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="edit_describe_solid">#FFF5F5F5</color>
+    <color name="edit_describe_stroke">#FFD1D1D1</color>
+</resources>

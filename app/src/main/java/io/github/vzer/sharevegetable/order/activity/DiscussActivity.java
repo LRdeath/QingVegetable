@@ -2,17 +2,21 @@ package io.github.vzer.sharevegetable.order.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
+import io.github.vzer.factory.model.order.DiscussModel;
 import io.github.vzer.factory.model.order.DiscussVegetableModel;
 import io.github.vzer.factory.model.order.OrderDetailModel;
 import io.github.vzer.factory.presenter.order.OrderContract;
 import io.github.vzer.factory.presenter.order.OrderPresenter;
+import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.order.adapter.DiscussVegetableAdapter;
 
@@ -77,5 +81,22 @@ public class DiscussActivity extends ToolbarActivityPresenter<OrderContract.Pres
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_discuss;
+    }
+
+    @OnClick(R.id.txt_submit_discuss)
+    void onSubmitDiscussClicked() {
+        DiscussModel discussModel = new DiscussModel();
+        boolean canSendRequest = true;
+        List<DiscussVegetableModel> vegetableList = adapter.getListData();
+        for (DiscussVegetableModel model : vegetableList) {
+            if (model.getSatisfation() == DiscussVegetableModel.STATE_UNSELECTED) {
+                canSendRequest = false;
+                ToastUtil.showToast(R.string.toast_please_choose_satisfation);
+            }
+        }
+        if (canSendRequest) {
+            discussModel.setVegetableModelList(vegetableList);
+            mPresenter.sendDiscussRequest(discussModel);
+        }
     }
 }

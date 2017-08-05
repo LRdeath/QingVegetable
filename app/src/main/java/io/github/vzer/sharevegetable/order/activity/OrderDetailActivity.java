@@ -1,11 +1,16 @@
 package io.github.vzer.sharevegetable.order.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,10 +19,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
+import io.github.vzer.common.widget.ScreenUtil;
 import io.github.vzer.factory.model.db.Vegetable;
 import io.github.vzer.factory.model.order.OrderDetailModel;
 import io.github.vzer.factory.presenter.order.OrderContract;
 import io.github.vzer.factory.presenter.order.OrderPresenter;
+import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.order.adapter.OrderDetailListAdapter;
 
@@ -48,10 +55,12 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
     TextView copyTxt;
     @BindView(R.id.btn_to_discuss)
     Button toDiscussBtn;
-
+    @BindView(R.id.scroll_order_detail)
+    ScrollView orderDetailScroll;
     private OrderDetailListAdapter adapter;
     private List<Vegetable> list;
     private OrderDetailModel orderDetailModel; //订单
+    private LinearLayoutManager manager;
 
     @Override
     protected void initData() {
@@ -90,6 +99,19 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
         return new OrderPresenter(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //添加到RunnQueue队列
+        orderDetailScroll.post(new Runnable() {
+            @Override
+            public void run() {
+                orderDetailScroll.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
+
+    }
+
     private void initList() {
         // TODO: 17/8/4 获取订单信息
 //        orderDetailModel = (OrderDetailModel) getIntent().getSerializableExtra(KeyConstant.KEY_ORDER_DETAIL);
@@ -100,8 +122,13 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
         }
         adapter = new OrderDetailListAdapter(this, list);
         orderDetailRec.setAdapter(adapter);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager = new LinearLayoutManager(this);
+
         orderDetailRec.setLayoutManager(manager);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) orderDetailRec.getLayoutParams();
+        params.height = ScreenUtil.dip2px(56) * adapter.getItemCount();
+        orderDetailRec.setLayoutParams(params);
+
     }
 
     /**
@@ -131,7 +158,6 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
     @OnClick(R.id.btn_to_discuss)
     void toDiscuss() {
         if (toDiscussBtn.getVisibility() == View.VISIBLE) {
-
         }
     }
 }

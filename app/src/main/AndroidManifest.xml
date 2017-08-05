@@ -31,6 +31,7 @@
         <activity android:name=".main.MainActivity">
         </activity>
 
+        <activity android:name=".shopping.activity.ShoppingActivity"/>
         <activity android:name=".account.RetriveActivity"/>
         <activity android:name=".lock.UnlockActivity"/>
         <activity android:name=".order.activity.OrderDetailActivity"/>
@@ -38,7 +39,9 @@
         <activity android:name=".shopping.activity.FirmOrderActivity"/>
 
         <activity android:name=".vegetable.DetailActivity" />
-        <activity android:name=".order.activity.DiscussActivity"/>
+        <activity
+            android:name=".order.activity.DiscussActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
     </application>
 
 </manifest>

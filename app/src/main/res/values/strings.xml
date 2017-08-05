@@ -63,4 +63,6 @@
     <string name="txt_RMB">¥</string>
     <string name="txt_pay">支付</string>
     <string name="txt_mul">×</string>
+    <string name="hint_describe">快来写下您的评价吧</string>
+    <string name="toast_please_choose_satisfation">还有未评价的蔬菜</string>
 </resources>
