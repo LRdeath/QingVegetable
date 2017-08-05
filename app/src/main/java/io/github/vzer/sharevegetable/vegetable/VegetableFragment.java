@@ -9,22 +9,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.FragmentPresenter;
-import io.github.vzer.factory.model.shopping.ShoppingModel;
-import io.github.vzer.factory.model.vegetable.VegetableEvaModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
@@ -34,6 +27,7 @@ import io.github.vzer.sharevegetable.shopping.activity.ShoppingActivity;
 
 /**
  * 商品选购整体框架
+ *
  * @author: Vzer.
  * @date: 2017/8/1.
  * @email: vzer@qq.com
@@ -54,7 +48,6 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
 
     private List<FragmentPresenter> fragmentList = new ArrayList<>();
     private List<VegetableTypeModel> typeList = new ArrayList<>();
-    private int tipCount = 0;//商品数量
 
 
     /**
@@ -75,6 +68,12 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
         //把选购的商品传给购物车
         intent.putExtra(VEGETABLE_SHOPPING, (Serializable) list);*/
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateSumTip();
     }
 
     @Override
@@ -112,7 +111,6 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     }
 
 
-
     @Override
     public void LoadTypeSuccess(List<VegetableTypeModel> typeModels) {
         this.typeList.addAll(typeModels);
@@ -130,9 +128,9 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
      * 设置购物车商品数量
      */
     @Override
-    public void setSumTip(int count) {
+    public void updateSumTip() {
         //更新tip数量显示
-        tipCount += count;
+        int tipCount = ShoppingData.getInstance().getTotal();
         if (tipCount == 0) tipTxt.setVisibility(View.GONE);
         else tipTxt.setVisibility(View.VISIBLE);
         String text = tipCount > 99 ? "99+" : String.valueOf(tipCount);
@@ -141,6 +139,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
 
     /**
      * 获取购物车坐标
+     *
      * @return 坐标
      */
     @Override

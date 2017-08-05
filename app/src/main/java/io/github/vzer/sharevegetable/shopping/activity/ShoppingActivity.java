@@ -23,6 +23,7 @@ import io.github.vzer.factory.presenter.shopping.ShoppingPresenter;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.shopping.Adapter.ShoppingContentAdapter;
 import io.github.vzer.sharevegetable.shopping.OnAmountChangeListener;
+import io.github.vzer.sharevegetable.vegetable.ShoppingData;
 import io.github.vzer.sharevegetable.vegetable.VegetableFragment;
 
 /**
@@ -65,7 +66,7 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     protected void initData() {
         final Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        shoppingList = (ArrayList<ShoppingModel>) bundle.get(VegetableFragment.VEGETABLE_SHOPPING);
+        shoppingList = (ArrayList<ShoppingModel>) ShoppingData.getInstance().getShoppingList();
         onAmountChangeListener = this;
     }
 

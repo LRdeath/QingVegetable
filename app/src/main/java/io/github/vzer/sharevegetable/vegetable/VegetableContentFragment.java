@@ -166,7 +166,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
             txtAcount.setText("");
             imgeSub.setVisibility(View.GONE);
         }
-        shoppingChange.setSumTip(-1);
+        shoppingChange.updateSumTip();
 
     }
 
@@ -181,8 +181,8 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
         }
 
         txtAcount.setText(String.valueOf(count));
-        //购物车数量更新
-        shoppingChange.setSumTip(1);
+        //更新购物车提示数量
+        shoppingChange.updateSumTip();
         //开始商品添加动画
         int[] cur = new int[2];
         imgeAdd.getLocationInWindow(cur);
