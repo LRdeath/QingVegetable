@@ -96,7 +96,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
         Glide.with(this)
                 .load(model.getPictureUri())
                 .centerCrop()
-                .placeholder(R.drawable.ic_defaut)
+                .placeholder(R.drawable.ic_default)
                 .into(icImge);
     }
 
@@ -198,7 +198,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
             Glide.with(DetailActivity.this)
                     .load(vegetableEvaModel.getPortraitUri())
                     .centerCrop()
-                    .placeholder(R.drawable.ic_defaut)
+                    .placeholder(R.drawable.ic_default)
                     .into(portraitImage);
         }
     }

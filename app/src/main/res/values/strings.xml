@@ -58,4 +58,9 @@
     <string name="text_title_discuss_product">评价商品</string>
     <string name="text_submit_discuss">提交评价</string>
     <string name="vegetable_evaluation">商品评价</string>
+    <string name="txt_order_info">订单信息</string>
+    <string name="txt_in_all">共</string>
+    <string name="txt_RMB">¥</string>
+    <string name="txt_pay">支付</string>
+    <string name="txt_mul">×</string>
 </resources>

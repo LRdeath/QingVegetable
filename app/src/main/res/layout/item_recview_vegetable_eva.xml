@@ -24,7 +24,7 @@
             android:id="@+id/image_vegetable_eva_portrait"
             android:layout_width="@dimen/len_32"
             android:layout_height="@dimen/len_32"
-            android:src="@drawable/ic_defaut" />
+            android:src="@drawable/ic_default" />
 
         <LinearLayout
             android:layout_width="match_parent"

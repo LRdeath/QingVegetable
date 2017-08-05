@@ -14,7 +14,6 @@
 
     <RelativeLayout
         android:layout_gravity="bottom"
-        android:id="@+id/bottom_check"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_48">
@@ -47,14 +46,15 @@
                 android:textSize="@dimen/font_18"/>
 
             <TextView
+                android:id="@+id/txt_price_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="6"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/font_18"/>
 
             <Button
+                android:id="@+id/btn_checked_to_pay"
                 android:layout_marginLeft="@dimen/len_12"
                 android:layout_width="60dp"
                 android:layout_height="28dp"

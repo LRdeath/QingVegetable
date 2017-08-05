@@ -59,7 +59,7 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/rcview_vegetable_sub"
+                        android:id="@+id/btn_vegetable_sub"
                         android:layout_width="@dimen/len_32"
                         android:layout_height="@dimen/len_32"
                         android:background="@drawable/bg_btn_account_disable"
@@ -69,7 +69,7 @@
                         tools:visibility="visible"/>
 
                     <TextView
-                        android:id="@+id/rcview_vegetable_count"
+                        android:id="@+id/txt_vegetable_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -80,7 +80,7 @@
                         android:textSize="@dimen/font_16"/>
 
                     <ImageButton
-                        android:id="@+id/rcview_vegetable_add"
+                        android:id="@+id/btn_vegetable_add"
                         android:layout_width="@dimen/len_32"
                         android:layout_height="@dimen/len_32"
                         android:layout_marginRight="@dimen/len_16"

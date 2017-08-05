@@ -2,13 +2,15 @@ package io.github.vzer.factory.model.shopping;
 
 import java.io.Serializable;
 
+import io.github.vzer.common.factory.presenter.BaseContract;
+
 /**
  * @author: Vzer.
  * @date: 2017/8/3. 19:27
  * @email: vzer@qq.com
  */
 
-public class ShoppingModel implements Serializable {
+public class ShoppingModel implements Serializable{
     private int pId; //商品id
     private String name; //商品名字
     private double price; //商品价格

@@ -1,6 +1,7 @@
 package io.github.vzer.sharevegetable.shopping.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -12,23 +13,23 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.github.vzer.common.widget.RecyclerViewAdapter;
 import io.github.vzer.factory.model.shopping.ShoppingModel;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.shopping.activity.ShoppingActivity;
+
+import static io.github.vzer.sharevegetable.shopping.activity.ShoppingActivity.onAmountChangeListener;
 
 /**
  * @author abtion.
- * @since 17/8/4 09:43.
+ * @since 17/8/5 16:57.
  */
 
 public class ShoppingContentAdapter extends RecyclerViewAdapter<ShoppingModel> {
 
-    private Context context;
-
     public ShoppingContentAdapter(Context context, List<ShoppingModel> shoppingModels) {
         super(context, shoppingModels);
-        this.context = context;
     }
 
     @Override
@@ -37,15 +38,21 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<ShoppingModel> {
         return new ItemHolder(view);
     }
 
-    public static class ItemHolder extends ViewHolder<ShoppingModel> implements View.OnClickListener {
+    @Override
+    public void refresh() {
+        super.refresh();
+        onAmountChangeListener.onAmountChange();
+    }
+
+    class ItemHolder extends ViewHolder<ShoppingModel>{
         @BindView(R.id.txt_vegetable_name)
         TextView txtVegetableName;
-        @BindView(R.id.rcview_vegetable_sub)
-        ImageButton rcviewVegetableSub;
-        @BindView(R.id.rcview_vegetable_count)
-        TextView rcviewVegetableCount;
-        @BindView(R.id.rcview_vegetable_add)
-        ImageButton rcviewVegetableAdd;
+        @BindView(R.id.btn_vegetable_add)
+        ImageButton btnVegetableAdd;
+        @BindView(R.id.txt_vegetable_count)
+        TextView txtVegetableCount;
+        @BindView(R.id.btn_vegetable_sub)
+        ImageButton btnVegetableSub;
         @BindView(R.id.btn_delete)
         ImageView btnDelete;
         @BindView(R.id.img_vegetable)
@@ -55,29 +62,53 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<ShoppingModel> {
 
         public ItemHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         @Override
         protected void onBind(ShoppingModel shoppingModel) {
+            Log.d("msg", shoppingModel.toString());
             txtVegetableName.setText(shoppingModel.getName());
-            rcviewVegetableCount.setText(shoppingModel.getAmount());
-            txtPrice.setText((int) (shoppingModel.getPrice()*shoppingModel.getAmount()));
+            txtVegetableCount.setText(String.valueOf(shoppingModel.getAmount()));
+            txtPrice.setText("¥" + String.valueOf(shoppingModel.getPrice() * shoppingModel.getAmount()));
+            Glide.with(context)
+                    .load(shoppingModel.getPictureUri())
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_default)
+                    .into(imgVegetable);
         }
 
-        @Override
-        public void onClick(View view) {
+        @OnClick({R.id.btn_delete, R.id.btn_vegetable_sub, R.id.btn_vegetable_add})
+        public void onViewClicked(View view) {
             int position = getAdapterPosition();
             switch (view.getId()) {
-                case R.id.rcview_vegetable_add:
-
-                    break;
-                case R.id.rcview_vegetable_sub:
-                    break;
                 case R.id.btn_delete:
+                    getListData().remove(position);
+                    refresh();
+                    break;
+                case R.id.btn_vegetable_sub:
+                    onClickSub(position,view);
+                    break;
+                case R.id.btn_vegetable_add:
+                    onClickAdd(position,view);
                     break;
                 default:
                     break;
             }
+        }
+
+        void onClickAdd(int pos, View v) {
+            getListData().get(pos).setAmount(getListData().get(pos).getAmount() + 1);
+            refresh();
+        }
+
+        void onClickSub(int pos, View v) {
+            if (getListData().get(pos).getAmount() == 1) {
+                getListData().remove(pos);
+            } else {
+                getListData().get(pos).setAmount(getListData().get(pos).getAmount() - 1);
+            }
+            refresh();
         }
     }
 }

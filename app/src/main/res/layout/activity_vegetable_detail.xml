@@ -38,7 +38,7 @@
                     android:id="@+id/vegetable_detail_imge"
                     android:layout_width="match_parent"
                     android:layout_height="360dp"
-                    android:src="@drawable/ic_defaut" />
+                    android:src="@drawable/ic_default" />
 
                 <TextView
                     android:id="@+id/vegetable_detail_name"
