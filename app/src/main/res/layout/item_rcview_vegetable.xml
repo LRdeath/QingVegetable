@@ -11,7 +11,6 @@
         android:layout_height="111dp"
         android:gravity="center_vertical|bottom"
         android:paddingBottom="@dimen/len_16"
-        android:paddingLeft="@dimen/len_20"
         android:orientation="horizontal">
 
         <ImageView
@@ -90,8 +89,8 @@
 
             <ImageButton
                 android:id="@+id/rcview_vegetable_add"
-                android:layout_width="@dimen/len_24"
-                android:layout_height="@dimen/len_24"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/len_16"
                 android:background="@drawable/bg_btn_account_enable"
                 android:padding="6dp"
