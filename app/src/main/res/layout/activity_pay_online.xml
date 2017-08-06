@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/len_24"
+            android:text="选择支付方式"
+            android:textSize="14sp"/>
+    </LinearLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_56">
+            <ImageView
+                android:src="@drawable/ic_wechat"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/len_24"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+            <TextView
+                android:layout_marginLeft="@dimen/len_12"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/font_16"
+                android:text="微信支付"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="0dp"/>
+            <RadioButton
+                android:layout_marginRight="@dimen/len_24"
+                android:checked="true"
+                android:layout_gravity="right|center_vertical"
+                android:layout_width="28dp"
+                android:layout_height="@dimen/len_24"/>
+            
+        </LinearLayout>
+        
+        
+    </RadioGroup>
+    
+    <android.support.v4.widget.Space
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+    
+    <Button
+        android:textColor="@color/white"
+        android:text="确认支付"
+        android:background="@color/btn_yellow"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"/>
+
+</LinearLayout>

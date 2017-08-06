@@ -11,11 +11,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.factory.model.shopping.ShoppingModel;
 import io.github.vzer.factory.presenter.shopping.ShoppingContract;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.shopping.Adapter.OrderAdapter;
+import io.github.vzer.sharevegetable.shopping.adapter.OrderAdapter;
 
 /**
  * @author abtion.
@@ -56,11 +57,11 @@ public class FirmOrderActivity extends ToolbarActivityPresenter<ShoppingContract
     @Override
     public void initWidget() {
         setActivityTitle("确认订单信息");
-        OrderAdapter adapter = new OrderAdapter(this,orderList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        OrderAdapter adapter = new OrderAdapter(this, orderList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recFirmOrder.setAdapter(adapter);
         recFirmOrder.setLayoutManager(layoutManager);
-        caclulatePayment();
+        calculatePayment();
     }
 
     @Override
@@ -78,7 +79,7 @@ public class FirmOrderActivity extends ToolbarActivityPresenter<ShoppingContract
         return null;
     }
 
-    private void caclulatePayment(){
+    private void calculatePayment() {
         double priceAll = 0.0;
         Iterator<ShoppingModel> iterator = orderList.iterator();
         while (iterator.hasNext()) {
@@ -88,5 +89,15 @@ public class FirmOrderActivity extends ToolbarActivityPresenter<ShoppingContract
         price = priceAll;
         txtPayment.setText(String.valueOf(price));
         txtPriceInAll.setText(String.valueOf(price));
+    }
+
+
+
+    @OnClick(R.id.btn_pay)
+    public void onViewClicked() {
+        Intent intent = new Intent(this,PayOnlineActivity.class);
+        startActivity(intent);
+        finish();
+        // TODO: 17/8/6 将订单数据传给后端 
     }
 }

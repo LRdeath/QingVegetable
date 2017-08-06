@@ -1,10 +1,8 @@
 package io.github.vzer.sharevegetable.shopping.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -21,10 +19,9 @@ import io.github.vzer.factory.model.shopping.ShoppingModel;
 import io.github.vzer.factory.presenter.shopping.ShoppingContract;
 import io.github.vzer.factory.presenter.shopping.ShoppingPresenter;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.shopping.Adapter.ShoppingContentAdapter;
 import io.github.vzer.sharevegetable.shopping.OnAmountChangeListener;
+import io.github.vzer.sharevegetable.shopping.adapter.ShoppingContentAdapter;
 import io.github.vzer.sharevegetable.vegetable.ShoppingData;
-import io.github.vzer.sharevegetable.vegetable.VegetableFragment;
 
 /**
  * @author YangCihang
@@ -64,8 +61,6 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
 
     @Override
     protected void initData() {
-        final Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
         shoppingList = (ArrayList<ShoppingModel>) ShoppingData.getInstance().getShoppingList();
         onAmountChangeListener = this;
     }
@@ -73,7 +68,7 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     @Override
     public void initWidget() {
         setActivityTitle(getResources().getString(R.string.title_shopping));
-        ShoppingContentAdapter adapter = new ShoppingContentAdapter(this, shoppingList);
+        ShoppingContentAdapter adapter = new ShoppingContentAdapter(this,shoppingList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recShopping.setAdapter(adapter);
         recShopping.setLayoutManager(layoutManager);
@@ -97,16 +92,20 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
         List<ShoppingModel> list = shoppingList;
         intent.putExtra(FIRM_ORDER, (Serializable) list);
         startActivity(intent);
+        finish();
+        // TODO: 17/8/6 清空购物车 
     }
 
 
     @Override
     public void onAmountChange() {
         double priceAll = 0.0;
-        Iterator<ShoppingModel> iterator = shoppingList.iterator();
-        while (iterator.hasNext()) {
-            ShoppingModel shoppingModel = iterator.next();
-            priceAll += shoppingModel.getAmount() * shoppingModel.getPrice();
+        if (shoppingList!=null){
+            Iterator<ShoppingModel> iterator = shoppingList.iterator();
+            while (iterator.hasNext()) {
+                ShoppingModel shoppingModel = iterator.next();
+                priceAll += shoppingModel.getAmount() * shoppingModel.getPrice();
+            }
         }
         price = priceAll;
         txtPriceAll.setText(String.valueOf(price));
