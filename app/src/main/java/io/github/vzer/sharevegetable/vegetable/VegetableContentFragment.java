@@ -10,7 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,13 +24,13 @@ import io.github.vzer.factory.model.vegetable.VegetableTypeModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
 import io.github.vzer.factory.presenter.vegetable.VegetablePresenter;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.vegetable.adapter.DetailData;
 import io.github.vzer.sharevegetable.vegetable.adapter.VegetableAdapter;
 import io.github.vzer.sharevegetable.vegetable.adapter.VegetableListener;
 import io.github.vzer.sharevegetable.vegetable.animation.ShoppingCartAnimationView;
 
 /**
  * 商品选购分页
+ *
  * @author: Vzer.
  * @date: 2017/8/1. 18:25
  * @email: vzer@qq.com
@@ -38,7 +38,7 @@ import io.github.vzer.sharevegetable.vegetable.animation.ShoppingCartAnimationVi
 
 @SuppressLint("ValidFragment")
 public class VegetableContentFragment extends FragmentPresenter<VegetableContract.Presenter>
-        implements VegetableContract.View, RecyclerViewAdapter.OnItemClicked<VegetableModel>, SwipeRefreshLayout.OnRefreshListener, VegetableListener{
+        implements VegetableContract.View, RecyclerViewAdapter.OnItemClicked<VegetableModel>, SwipeRefreshLayout.OnRefreshListener, VegetableListener {
     @BindView(R.id.rcview_vegetable)
     RecyclerView vegetableRcview;
     @BindView(R.id.vegetable_refresh)
@@ -46,21 +46,21 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
 
     VegetableAdapter<VegetableModel> adapter;
     List<VegetableModel> modelList = new ArrayList<>();
-    private int curTabType;
+    private int curTabPage;
     private ShoppingChange shoppingChange;
     public static String VEGETABLE_DETAIL = "Vegetable_Detail";//商品详情页传值的key
-    private ShoppingData shoppingData;//选购商品管理类
+    private ShoppingManager shoppingManager;//选购商品管理类
 
-    
+
     @Override
     public void showLoading() {
 
     }
 
-    public VegetableContentFragment(int type,@NonNull VegetableFragment vegetableFragment) {
-        curTabType = type;
+    public VegetableContentFragment(int page, @NonNull VegetableFragment vegetableFragment) {
+        curTabPage = page;
         shoppingChange = vegetableFragment;
-        shoppingData = ShoppingData.getInstance();
+        shoppingManager = ShoppingManager.getInstance();
     }
 
 
@@ -70,8 +70,8 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
     @Override
     public void LoadDatasSuccess(List<VegetableModel> vegetableModels) {
         //取消当前刷新状态
-        if (refreshLayout.isRefreshing())refreshLayout.setRefreshing(false);
-        shoppingData.replaceList(curTabType,vegetableModels);
+        if (refreshLayout.isRefreshing()) refreshLayout.setRefreshing(false);
+
         modelList = vegetableModels;
         adapter.addAll(modelList);
         adapter.notifyDataSetChanged();
@@ -93,12 +93,12 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
      */
     @Override
     protected void initData() {
-        adapter = new VegetableAdapter<VegetableModel>(getContext(),modelList);
+        adapter = new VegetableAdapter<VegetableModel>(getContext(), modelList);
         adapter.setOnItemClickedListener(this);
         adapter.setVegetableListener(this);
         vegetableRcview.setAdapter(adapter);
         mPresenter.LoadType();//获取商品类型
-        mPresenter.LoadDatas(curTabType);
+        mPresenter.LoadDatas(curTabPage);
     }
 
     /**
@@ -110,6 +110,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
     }
+
     @Override
     protected void initArgs(Bundle arguments) {
 
@@ -122,16 +123,17 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
 
     /**
      * 商品点击,进入商品详情界面
+     *
      * @param vegetableModel 点击的商品model
      */
     @Override
     public void onItemClicked(VegetableModel vegetableModel, RecyclerViewAdapter.ViewHolder holder) {
-        Intent intent = new Intent(getContext(),DetailActivity.class);
-        DetailData model = new DetailData();
-        model.setPosition(holder.getAdapterPosition());
-        model.setType(curTabType);
+        Intent intent = new Intent(getContext(), DetailActivity.class);
+        //ShoppingData model = new ShoppingData(curTabPage,holder.getAdapterPosition());
         //添加数据
-       intent.putExtra(VEGETABLE_DETAIL,model);
+        //intent.putExtra(VEGETABLE_DETAIL, vegetableModel);
+        ShoppingManager.model = vegetableModel;
+
         startActivity(intent);
     }
 
@@ -141,7 +143,7 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
     @Override
     public void onResume() {
         super.onResume();
-        adapter.notifyDataSetChanged();
+        adapter.refresh();
     }
 
     /**
@@ -149,16 +151,17 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
      */
     @Override
     public void onRefresh() {
-        mPresenter.LoadDatas(curTabType);
+        mPresenter.LoadDatas(curTabPage);
     }
 
 
     /**
      * 商品减少 逻辑
      */
-    public void onClickSub(TextView txtAcount, int position, ImageButton imgeSub) {
+    public void onClickSub(TextView txtAcount, int position, ImageView imgeSub) {
 
-        int count = shoppingData.sub(curTabType,position);
+        VegetableModel model = modelList.get(position);
+        int count = shoppingManager.sub(model);
 
         if (count > 0) {
             txtAcount.setText(String.valueOf(count));
@@ -167,14 +170,15 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
             imgeSub.setVisibility(View.GONE);
         }
         shoppingChange.updateSumTip();
-
     }
 
     /**
      * 商品添加 逻辑
      */
-    public void onClickAdd(TextView txtAcount, View imgeAdd, ImageButton imgeSub, int position) {
-        int count = shoppingData.add(curTabType,position);
+    public void onClickAdd(TextView txtAcount, View imgeAdd, ImageView imgeSub, int position) {
+
+        VegetableModel model = modelList.get(position);
+        int count = shoppingManager.add(model);
 
         if (count != 0) {
             imgeSub.setVisibility(View.VISIBLE);
@@ -196,9 +200,9 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
         //创建一个执行动画view
         ShoppingCartAnimationView animationView = new ShoppingCartAnimationView(getContext());
         //设置动画的开始与结束坐标
-        animationView.setStartPosition(new Point(position[0],position[1]));
+        animationView.setStartPosition(new Point(position[0], position[1]));
         int[] des = shoppingChange.getShoppingCoord();
-        animationView.setEndPosition(new Point(des[0],des[1]));
+        animationView.setEndPosition(new Point(des[0], des[1]));
         //把view添加到界面中
 
         ViewGroup rootView = (ViewGroup) getActivity().getWindow().getDecorView();
@@ -206,4 +210,5 @@ public class VegetableContentFragment extends FragmentPresenter<VegetableContrac
         //开始动画
         animationView.startBeizerAnimation();
     }
+
 }

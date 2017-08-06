@@ -1,4 +1,4 @@
-package io.github.vzer.sharevegetable.shopping.Adapter;
+package io.github.vzer.sharevegetable.shopping.adapter;
 
 import android.content.Context;
 import android.util.Log;

@@ -231,7 +231,7 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
             // Get Image Path List
             List<String> pathList = data.getStringArrayListExtra(ImageSelectorActivity.EXTRA_RESULT);
             // TODO: 17/7/30 上传图像
-            Glide.with(this).load(pathList.get(0)).error(R.mipmap.ic_launcher).into(avatarImg);
+            Glide.with(this).load(pathList.get(0)).error(R.mipmap.ic_launcher_round).into(avatarImg);
         } else {
             ToastUtil.showToast(getContext().getResources().getString(R.string.toast_logic_error));
         }

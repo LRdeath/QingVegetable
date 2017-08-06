@@ -3,7 +3,6 @@ package io.github.vzer.sharevegetable.vegetable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -25,7 +24,6 @@ import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.presenter.vegetable.EvaVegetableContract;
 import io.github.vzer.factory.presenter.vegetable.EvaVegetablePresenter;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.vegetable.adapter.DetailData;
 
 /**
  * @author: Vzer.
@@ -54,9 +52,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
     RecyclerView evaRec;
 
     private VegetableModel model;//当前商品的model
-    private ShoppingData shoppingData; //购物车管理类
-    private int curType;
-    private int curPosition;
+    private ShoppingManager shoppingManager; //购物车管理类
     private RecyclerViewAdapter<VegetableEvaModel> adapter;
 
     @Override
@@ -81,9 +77,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
         evaRec.setLayoutManager(new LinearLayoutManager(this));
         nameTxt.setText(model.getName());
         //获取当前商品选购的数量
-        int count = 0;
-        if (shoppingData.getVegetableList().containsKey(model))
-            count = shoppingData.getVegetableList().get(model);
+        int count = model.getCount();
 
         if (count == 0) {
             countTxt.setText("");
@@ -92,8 +86,12 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
             countTxt.setText(String.valueOf(count));
             subImageB.setVisibility(View.VISIBLE);
         }
-
-        standardTxt.setText(model.getStandard() + " | 月售" + model.getSales() + "份");
+        //格式化规格
+        standardTxt.setText("");
+        standardTxt.append(model.getStandard());
+        standardTxt.append(getString(R.string.vegetable_sales));
+        standardTxt.append(String.valueOf(model.getSales()));
+        standardTxt.append(getString(R.string.vegetable_kind));
         //格式化价格
         String str = "" + String.valueOf(model.getPrice());
         priceTxt.setText(str);
@@ -117,12 +115,10 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
 
     @Override
     protected boolean initArgs(Bundle extras) {
-        shoppingData = ShoppingData.getInstance();
-        DetailData model = (DetailData) extras.getSerializable(VegetableContentFragment.VEGETABLE_DETAIL);
-        curType = model.getType();
-        curPosition = model.getPosition();
-        Log.d("tag",curType+" "+curPosition);
-        this.model = shoppingData.getList(curType).get(curPosition);
+        shoppingManager = ShoppingManager.getInstance();
+        //model = (VegetableModel) getIntent().getSerializableExtra(VegetableContentFragment.VEGETABLE_DETAIL);
+        model = ShoppingManager.model;
+        ShoppingManager.model = null;
         return super.initArgs(extras);
     }
 
@@ -131,9 +127,10 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
      */
     @OnClick(R.id.vegetable_detail_add)
     void addClick() {
-        int count = shoppingData.add(curType,curPosition);
+        int count = shoppingManager.add(model);
         //把减少buton设置为可见
-        if (subImageB.getVisibility() == View.GONE) subImageB.setVisibility(View.VISIBLE);
+        if (subImageB.getVisibility() == View.GONE)
+            subImageB.setVisibility(View.VISIBLE);
         countTxt.setText(String.valueOf(count));
     }
 
@@ -142,7 +139,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
      */
     @OnClick(R.id.vegetable_detail_sub)
     void subClick() {
-        int count = shoppingData.sub(curType,curPosition);
+        int count = shoppingManager.sub(model);
         String str = "" + count;
         //为0时把减少buton设置为不可见
         if (count == 0) {
@@ -197,6 +194,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
 
         @Override
         protected void onBind(VegetableEvaModel vegetableEvaModel) {
+
             nameTxt.setText(vegetableEvaModel.getName());
             dateTxt.setText(vegetableEvaModel.getDate());
             contentTxt.setText(vegetableEvaModel.getContent());
@@ -211,4 +209,5 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
                     .into(portraitImage);
         }
     }
+
 }

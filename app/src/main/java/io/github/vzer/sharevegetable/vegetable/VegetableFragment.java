@@ -56,17 +56,6 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     @OnClick(R.id.img_shopping)
     void goShopping() {
         Intent intent = new Intent(getContext(), ShoppingActivity.class);
-       /* Iterator<Map.Entry<Integer, ShoppingModel>> iterator = shoppingMap.entrySet().iterator();
-        List<ShoppingModel> list = new ArrayList<>();
-        //遍历选择的商品信息,打包
-        while (iterator.hasNext()) {
-            Map.Entry entry = iterator.next();
-            ShoppingModel model = (ShoppingModel) entry.getValue();
-            if (model.getAmount() > 0) list.add(model);
-        }
-        //Log.d("Tag", list.toString());
-        //把选购的商品传给购物车
-        intent.putExtra(VEGETABLE_SHOPPING, (Serializable) list);*/
         startActivity(intent);
     }
 
@@ -92,9 +81,11 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
 
     @Override
     protected void initWidget(View root) {
+        //添加测试用例
+        // TODO: 2017/8/6 删除测试用例
         fragmentList.add(new VegetableContentFragment(0, this));
         typeList.add(new VegetableTypeModel(0, "常用"));
-        ShoppingData.getInstance().addList(new ArrayList<VegetableModel>());
+
         adapter = new VgFragmentPagerAdapter(getFragmentManager(), fragmentList, typeList);
         vp_content.setAdapter(adapter);
         tabLayout.setupWithViewPager(vp_content);
@@ -118,7 +109,6 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
         for (VegetableTypeModel title :
                 typeModels) {
             fragmentList.add(new VegetableContentFragment(title.getType(), this));
-            ShoppingData.getInstance().addList(new ArrayList<VegetableModel>());
         }
         adapter.notifyDataSetChanged();
     }
@@ -130,7 +120,8 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
     @Override
     public void updateSumTip() {
         //更新tip数量显示
-        int tipCount = ShoppingData.getInstance().getTotal();
+        int tipCount = ShoppingManager.getInstance().getTotal();
+
         if (tipCount == 0) tipTxt.setVisibility(View.GONE);
         else tipTxt.setVisibility(View.VISIBLE);
         String text = tipCount > 99 ? "99+" : String.valueOf(tipCount);
@@ -162,13 +153,7 @@ public class VegetableFragment extends FragmentPresenter<VegetableContract.Prese
             super(fm);
             this.fragmentList = fragmentList;
             this.typeList = typeList;
-            initView();
         }
-
-        private void initView() {
-
-        }
-
 
         @Override
         public Fragment getItem(int position) {

@@ -68,7 +68,7 @@
         app:fabSize="auto"
         app:rippleColor="@color/div_color"
         app:backgroundTint="@color/white"
-        app:pressedTranslationZ="8dp"
+        app:pressedTranslationZ="@dimen/len_8"
         app:elevation="8dp" />
 
     <TextView

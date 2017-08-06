@@ -66,13 +66,12 @@
             android:layout_marginTop="18dp"
             android:orientation="horizontal">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/rcview_vegetable_sub"
-                android:layout_width="@dimen/len_24"
-                android:layout_height="@dimen/len_24"
-                android:background="@drawable/bg_btn_sub"
-                android:padding="6dp"
-                android:src="@drawable/ic_sub"
+                android:layout_width="@dimen/len_40"
+                android:layout_height="@dimen/len_40"
+                android:padding="@dimen/len_8"
+                android:src="@drawable/bg_btn_sub"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -81,20 +80,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/len_8"
-                android:layout_marginRight="@dimen/len_8"
                 android:text="1"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/font_16" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/rcview_vegetable_add"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/len_40"
+                android:layout_height="@dimen/len_40"
                 android:layout_marginRight="@dimen/len_16"
-                android:background="@drawable/bg_btn_add"
-                android:padding="6dp"
-                android:src="@drawable/ic_add" />
+                android:padding="@dimen/len_8"
+                android:src="@drawable/bg_btn_add" />
         </LinearLayout>
 
 

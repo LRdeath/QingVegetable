@@ -1,4 +1,4 @@
-package io.github.vzer.sharevegetable.shopping.Adapter;
+package io.github.vzer.sharevegetable.shopping.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,8 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.vzer.common.widget.RecyclerViewAdapter;
-import io.github.vzer.factory.model.shopping.ShoppingModel;
+import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.sharevegetable.R;
+import io.github.vzer.sharevegetable.vegetable.ShoppingManager;
 
 import static io.github.vzer.sharevegetable.shopping.activity.ShoppingActivity.onAmountChangeListener;
 
@@ -26,14 +27,14 @@ import static io.github.vzer.sharevegetable.shopping.activity.ShoppingActivity.o
  * @since 17/8/5 16:57.
  */
 
-public class ShoppingContentAdapter extends RecyclerViewAdapter<ShoppingModel> {
+public class ShoppingContentAdapter extends RecyclerViewAdapter<VegetableModel> {
 
-    public ShoppingContentAdapter(Context context, List<ShoppingModel> shoppingModels) {
+    public ShoppingContentAdapter(Context context, List<VegetableModel> shoppingModels) {
         super(context, shoppingModels);
     }
 
     @Override
-    public ViewHolder<ShoppingModel> onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder<VegetableModel> onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_recview_shopping_content, parent, false);
         return new ItemHolder(view);
     }
@@ -44,7 +45,7 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<ShoppingModel> {
         onAmountChangeListener.onAmountChange();
     }
 
-    class ItemHolder extends ViewHolder<ShoppingModel>{
+    class ItemHolder extends ViewHolder<VegetableModel> {
         @BindView(R.id.txt_vegetable_name)
         TextView txtVegetableName;
         @BindView(R.id.btn_vegetable_add)
@@ -66,11 +67,11 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<ShoppingModel> {
         }
 
         @Override
-        protected void onBind(ShoppingModel shoppingModel) {
+        protected void onBind(VegetableModel shoppingModel) {
             Log.d("msg", shoppingModel.toString());
             txtVegetableName.setText(shoppingModel.getName());
-            txtVegetableCount.setText(String.valueOf(shoppingModel.getAmount()));
-            txtPrice.setText("¥" + String.valueOf(shoppingModel.getPrice() * shoppingModel.getAmount()));
+            txtVegetableCount.setText(String.valueOf(shoppingModel.getCount()));
+            txtPrice.setText("¥" + String.valueOf(shoppingModel.getPrice() * shoppingModel.getCount()));
             Glide.with(context)
                     .load(shoppingModel.getPictureUri())
                     .centerCrop()
@@ -83,14 +84,14 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<ShoppingModel> {
             int position = getAdapterPosition();
             switch (view.getId()) {
                 case R.id.btn_delete:
-                    getListData().remove(position);
+                    ShoppingManager.getInstance().clearOneModel(getListData().get(position));
                     refresh();
                     break;
                 case R.id.btn_vegetable_sub:
-                    onClickSub(position,view);
+                    onClickSub(position, view);
                     break;
                 case R.id.btn_vegetable_add:
-                    onClickAdd(position,view);
+                    onClickAdd(position, view);
                     break;
                 default:
                     break;
@@ -98,17 +99,23 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<ShoppingModel> {
         }
 
         void onClickAdd(int pos, View v) {
-            getListData().get(pos).setAmount(getListData().get(pos).getAmount() + 1);
+            VegetableModel model = getListData().get(pos);
+            ShoppingManager.getInstance().add(model);
+            //getListData().get(pos).setCount(getListData().get(pos).getCount() + 1);
             refresh();
         }
 
         void onClickSub(int pos, View v) {
-            if (getListData().get(pos).getAmount() == 1) {
-                getListData().remove(pos);
+            VegetableModel model = getListData().get(pos);
+            int count = ShoppingManager.getInstance().sub(model);
+            /*if (model.getCount() == 1) {
+                ShoppingManager.getInstance().clearOneModel(model);
             } else {
-                getListData().get(pos).setAmount(getListData().get(pos).getAmount() - 1);
-            }
+                model.setCount(model.getCount() - 1);
+            }*/
+            if (count ==0) getListData().remove(model);
             refresh();
         }
     }
+
 }

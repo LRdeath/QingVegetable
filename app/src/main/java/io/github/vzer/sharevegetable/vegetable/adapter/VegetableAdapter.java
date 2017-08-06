@@ -16,8 +16,7 @@ import butterknife.BindView;
 import io.github.vzer.common.widget.RecyclerViewAdapter;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.vegetable.ShoppingChange;
-import io.github.vzer.sharevegetable.vegetable.ShoppingData;
+import io.github.vzer.sharevegetable.vegetable.ShoppingManager;
 
 /**
  * @author: Vzer.
@@ -26,12 +25,12 @@ import io.github.vzer.sharevegetable.vegetable.ShoppingData;
  */
 
 public class VegetableAdapter<V> extends RecyclerViewAdapter<VegetableModel> {
-    private ShoppingData shoppingData;
+    private ShoppingManager shoppingManager;
     private VegetableListener vegetableListener;
 
     public VegetableAdapter(Context context, List<VegetableModel> vegetableModels) {
         super(context, vegetableModels);
-        shoppingData = ShoppingData.getInstance();
+        shoppingManager = ShoppingManager.getInstance();
     }
 
     @Override
@@ -58,11 +57,11 @@ public class VegetableAdapter<V> extends RecyclerViewAdapter<VegetableModel> {
         @BindView(R.id.rcview_vegetable_imge)
         ImageView imgeVegetable;  //商品图片
         @BindView(R.id.rcview_vegetable_add)
-        ImageButton imgeAdd;//添加
+        ImageView imgeAdd;//添加
         @BindView(R.id.rcview_vegetable_sub)
-        ImageButton imgeSub;//减少
+        ImageView imgeSub;//减少
         @BindView(R.id.rcview_vegetable_count)
-        TextView txtAcount;//数量
+        TextView txtAccount;//数量
 
 
         VegetableViewHolder(View itemView) {
@@ -74,23 +73,24 @@ public class VegetableAdapter<V> extends RecyclerViewAdapter<VegetableModel> {
 
         @Override
         protected void onBind(VegetableModel vegetableModel) {
-
             //对缓存数据进行处理
-            HashMap<VegetableModel, Integer> dataMap = shoppingData.getVegetableList();
-
-            if (dataMap.containsKey(vegetableModel)) {
-                int count = dataMap.get(vegetableModel);
-                if (count != 0) {
-                    txtAcount.setText(String.valueOf(count));
-                    imgeSub.setVisibility(View.VISIBLE);
-                }
+           // int count = shoppingManager.getCount(vegetableModel);
+            int count = vegetableModel.getCount();
+            if (count != 0) {
+                txtAccount.setText(String.valueOf(count));
+                imgeSub.setVisibility(View.VISIBLE);
             } else {
-                txtAcount.setText("");
+                txtAccount.setText("");
                 imgeSub.setVisibility(View.GONE);
             }
+
             //设置item状态
             txtName.setText(vegetableModel.getName());
-            txtStandard.setText(vegetableModel.getStandard() + " | 月售" + vegetableModel.getSales() + "份");
+            txtStandard.setText("");
+            txtStandard.append(vegetableModel.getStandard());
+            txtStandard.append(context.getString(R.string.vegetable_sales));
+            txtStandard.append(String.valueOf(vegetableModel.getSales()));
+            txtStandard.append(context.getString(R.string.vegetable_kind));
             //格式化价格
             String str = context.getString(R.string.money) + String.valueOf(vegetableModel.getPrice());
             txtPrice.setText(str);
@@ -106,10 +106,10 @@ public class VegetableAdapter<V> extends RecyclerViewAdapter<VegetableModel> {
             int position = getAdapterPosition();
             switch (view.getId()) {
                 case R.id.rcview_vegetable_add:
-                    vegetableListener.onClickAdd(txtAcount, view, imgeSub, position);
+                    vegetableListener.onClickAdd(txtAccount, view, imgeSub, position);
                     break;
                 case R.id.rcview_vegetable_sub:
-                    vegetableListener.onClickSub(txtAcount, position, imgeSub);
+                    vegetableListener.onClickSub(txtAccount, position, imgeSub);
                     break;
                 default:
                     break;

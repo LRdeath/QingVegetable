@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @email: vzer@qq.com
  */
 
-public class VegetableModel implements Serializable{
+public class VegetableModel implements Serializable {
     private int pId; //商品id
     private String name; //商品名字
     private int type; //商品类型
@@ -16,8 +16,8 @@ public class VegetableModel implements Serializable{
     private String standard; //商品规格
     private String pictureUri;  //商品图片
     private String des; //商品描述
-    private int count =0;//当前商品选择数量
-    private int sales =0;//月销量
+    private int count = 0;//当前商品选择数量
+    private int sales = 0;//月销量
 
     public String getDes() {
         return des;
@@ -89,5 +89,11 @@ public class VegetableModel implements Serializable{
 
     public void setPictureUri(String pictureUri) {
         this.pictureUri = pictureUri;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return type << 10 + pId;
     }
 }

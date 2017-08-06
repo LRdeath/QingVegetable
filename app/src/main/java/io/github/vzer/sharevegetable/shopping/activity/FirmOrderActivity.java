@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.factory.model.shopping.ShoppingModel;

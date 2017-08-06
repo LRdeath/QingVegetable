@@ -2,6 +2,7 @@ package io.github.vzer.sharevegetable.vegetable.adapter;
 
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -12,7 +13,7 @@ import android.widget.TextView;
  */
 
 public interface VegetableListener {
-    void onClickSub(TextView txtAcount, int position, ImageButton imgeSub);
+    void onClickSub(TextView txtAcount, int position, ImageView imgeSub);
 
-    void onClickAdd(TextView txtAcount, View imgeAdd, ImageButton imgeSub, int position);
+    void onClickAdd(TextView txtAcount, View imgeAdd, ImageView imgeSub, int position);
 }

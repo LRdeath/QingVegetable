@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,13 +14,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
-import io.github.vzer.factory.model.shopping.ShoppingModel;
+import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.presenter.shopping.ShoppingContract;
 import io.github.vzer.factory.presenter.shopping.ShoppingPresenter;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.shopping.OnAmountChangeListener;
 import io.github.vzer.sharevegetable.shopping.adapter.ShoppingContentAdapter;
-import io.github.vzer.sharevegetable.vegetable.ShoppingData;
+import io.github.vzer.sharevegetable.vegetable.ShoppingManager;
 
 /**
  * @author YangCihang
@@ -41,7 +40,7 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     TextView txtPriceAll;
     @BindView(R.id.btn_checked_to_pay)
     Button btnCheckedToPay;
-    private ArrayList<ShoppingModel> shoppingList;
+    private ArrayList<VegetableModel> shoppingList;
     private double price = 0.0;
 
     @Override
@@ -61,7 +60,7 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
 
     @Override
     protected void initData() {
-        shoppingList = (ArrayList<ShoppingModel>) ShoppingData.getInstance().getShoppingList();
+        shoppingList = (ArrayList<VegetableModel>) ShoppingManager.getInstance().getShoppingList();
         onAmountChangeListener = this;
     }
 
@@ -89,11 +88,12 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     @OnClick(R.id.btn_checked_to_pay)
     public void onViewClicked() {
         Intent intent = new Intent(this, FirmOrderActivity.class);
-        List<ShoppingModel> list = shoppingList;
+        List<VegetableModel> list = shoppingList;
         intent.putExtra(FIRM_ORDER, (Serializable) list);
         startActivity(intent);
         finish();
-        // TODO: 17/8/6 清空购物车 
+        // TODO: 17/8/6 清空购物车
+
     }
 
 
@@ -101,10 +101,10 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     public void onAmountChange() {
         double priceAll = 0.0;
         if (shoppingList!=null){
-            Iterator<ShoppingModel> iterator = shoppingList.iterator();
+            Iterator<VegetableModel> iterator = shoppingList.iterator();
             while (iterator.hasNext()) {
-                ShoppingModel shoppingModel = iterator.next();
-                priceAll += shoppingModel.getAmount() * shoppingModel.getPrice();
+                VegetableModel shoppingModel = iterator.next();
+                priceAll += shoppingModel.getCount() * shoppingModel.getPrice();
             }
         }
         price = priceAll;
