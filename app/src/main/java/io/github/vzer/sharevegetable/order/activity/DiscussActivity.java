@@ -2,7 +2,6 @@ package io.github.vzer.sharevegetable.order.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -37,7 +36,6 @@ public class DiscussActivity extends ToolbarActivityPresenter<OrderContract.Pres
 
     @Override
     public void showError(int strId) {
-
     }
 
     @Override
@@ -46,7 +44,7 @@ public class DiscussActivity extends ToolbarActivityPresenter<OrderContract.Pres
     }
 
     @Override
-    public void loadDataSuccess(List<OrderDetailModel> orderDetailModelList) {
+    public void loadOrderDetailListSuccess(List<OrderDetailModel> orderDetailModelList) {
 
     }
 

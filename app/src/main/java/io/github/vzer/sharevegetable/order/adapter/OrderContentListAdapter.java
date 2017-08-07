@@ -58,45 +58,52 @@ public class OrderContentListAdapter extends RecyclerViewAdapter<OrderDetailMode
         @Override
         protected void onBind(OrderDetailModel orderDetailModel) {
             model = orderDetailModel;
-            switch (model.getState()) {
-                case OrderDetailModel.STATE_SUBMIT:
-                    orderStateView.setHaveSubmitState();
-                    actionBtn.setText(R.string.text_to_pay);
-                    actionBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                        }
-                    });
-                    break;
-                case OrderDetailModel.STATE_PAYMENT:
-                    orderStateView.setPaymentState();
-                    actionBtn.setVisibility(View.GONE);
-                    break;
-                case OrderDetailModel.STATE_DISTRIBUTE:
-                    orderStateView.setPickState();
-                    actionBtn.setText(R.string.text_to_pick);
-                    actionBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                        }
-                    });
-                    break;
-                case OrderDetailModel.STATE_FINISH:
-                    orderStateView.setFinishState();
-                    actionBtn.setText(R.string.text_order_item_evaluate);
-                    actionBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                        }
-                    });
-                    break;
-                default:
-                   // ToastUtil.showToast(R.string.toast_logic_error);
-                    break;
-            }
+            actionBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    context.startActivity(new Intent(context, DiscussActivity.class));
+                }
+            });
+//            switch (model.getState()) {
+//                case OrderDetailModel.STATE_SUBMIT:
+//                    orderStateView.setHaveSubmitState();
+//                    actionBtn.setText(R.string.text_to_pay);
+//                    actionBtn.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            // TODO: 17/8/7 订单支付详情页面
+//                        }
+//                    });
+//                    break;
+//                case OrderDetailModel.STATE_PAYMENT:
+//                    orderStateView.setPaymentState();
+//                    actionBtn.setVisibility(View.GONE);
+//                    break;
+//                case OrderDetailModel.STATE_DISTRIBUTE:
+//                    orderStateView.setPickState();
+//                    actionBtn.setText(R.string.text_to_pick);
+//                    actionBtn.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            // TODO: 17/8/7 到开锁界面
+//                        }
+//                    });
+//                    break;
+//                case OrderDetailModel.STATE_FINISH:
+//                    orderStateView.setFinishState();
+//                    actionBtn.setText(R.string.text_order_item_evaluate);
+//                    actionBtn.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            // TODO: 17/8/7 到评论界面
+//                            context.startActivity(new Intent(context,DiscussActivity.class));
+//                        }
+//                    });
+//                    break;
+//                default:
+//                   // ToastUtil.showToast(R.string.toast_logic_error);
+//                    break;
+//            }
         }
     }
 }

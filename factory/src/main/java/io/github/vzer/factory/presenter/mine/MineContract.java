@@ -18,12 +18,13 @@ public interface MineContract  {
         /**
          * 修改性别，男为true，女为false
          *
-         * @param sex
          */
-        void changeSex(boolean sex);
+        boolean changeSex(boolean sex);
 
-        void changeUserName(String newUserName);
+        boolean changeUserName(String newUserName);
 
-        void changeTrueName(String newTrueName);
+        boolean changeTrueName(String newTrueName);
+
+        boolean changeAvatar(String uri);
     }
 }

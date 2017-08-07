@@ -1,12 +1,11 @@
 package io.github.vzer.sharevegetable.order.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -27,12 +26,13 @@ import io.github.vzer.factory.presenter.order.OrderPresenter;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.order.adapter.OrderDetailListAdapter;
+import io.github.vzer.sharevegetable.widget.NoTouchRecyclerView;
 
 public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.Presenter>
         implements OrderContract.View {
 
     @BindView(R.id.rec_order_detail)
-    RecyclerView orderDetailRec;
+    NoTouchRecyclerView orderDetailRec;
     @BindView(R.id.txt_payment_state)
     TextView paymentStateTxt;
     @BindView(R.id.btn_cancel_order)
@@ -84,36 +84,11 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
         return R.layout.activity_order_detail;
     }
 
-    @Override
-    public void showError(int strId) {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public OrderContract.Presenter initPresenter() {
-        return new OrderPresenter(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //添加到RunnQueue队列
-        orderDetailScroll.post(new Runnable() {
-            @Override
-            public void run() {
-                orderDetailScroll.fullScroll(ScrollView.FOCUS_UP);
-            }
-        });
-
-    }
-
+    /**
+     * 初始化list
+     */
     private void initList() {
-        // TODO: 17/8/4 获取订单信息
+        // TODO: 17/8/4 从intent获取订单信息
 //        orderDetailModel = (OrderDetailModel) getIntent().getSerializableExtra(KeyConstant.KEY_ORDER_DETAIL);
 //        list = orderDetailModel.getpList();
         list = new ArrayList<>();
@@ -128,17 +103,7 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) orderDetailRec.getLayoutParams();
         params.height = ScreenUtil.dip2px(56) * adapter.getItemCount(); //计算rec高度，避免滑动
         orderDetailRec.setLayoutParams(params);
-
-    }
-
-    /**
-     * 数据加载成功回调
-     *
-     * @param orderDetailModelList dataSource
-     */
-    @Override
-    public void loadDataSuccess(List<OrderDetailModel> orderDetailModelList) {
-
+        orderDetailRec.setFocusable(false);
     }
 
     /**
@@ -158,6 +123,56 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
     @OnClick(R.id.btn_to_discuss)
     void toDiscuss() {
         if (toDiscussBtn.getVisibility() == View.VISIBLE) {
+            // TODO: 17/8/7 跳转到去评价界面
         }
     }
+
+    /**
+     * 点击取消订单
+     */
+    @OnClick(R.id.btn_cancel_order)
+    void cancelOrder() {
+        // TODO: 17/8/7 取消订单请求
+//        if (mPresenter.cancelOrderRequest(orderDetailModel)) {
+//
+//        }
+    }
+
+    /**
+     * 点击复制文本
+     */
+    @OnClick(R.id.txt_copy)
+    void copyOrderNum() {
+        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData mClipData = ClipData.newPlainText("Label", orderNumTxt.getText());
+        if (cm != null) {
+            cm.setPrimaryClip(mClipData);
+            ToastUtil.showToast(R.string.toast_copy_success);
+        } else {
+            ToastUtil.showToast(R.string.toast_copy_error);
+        }
+
+    }
+
+
+    @Override
+    public OrderContract.Presenter initPresenter() {
+        return new OrderPresenter(this);
+    }
+
+    @Override
+    public void showError(int strId) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void loadOrderDetailListSuccess(List<OrderDetailModel> orderDetailModelList) {
+
+    }
+
 }

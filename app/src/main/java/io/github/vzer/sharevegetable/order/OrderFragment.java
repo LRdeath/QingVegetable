@@ -67,7 +67,7 @@ public class OrderFragment extends FragmentPresenter<OrderContract.Presenter> im
     }
 
     @Override
-    public void loadDataSuccess(List<OrderDetailModel> orderDetailModelList) {
+    public void loadOrderDetailListSuccess(List<OrderDetailModel> orderDetailModelList) {
 
     }
 }
