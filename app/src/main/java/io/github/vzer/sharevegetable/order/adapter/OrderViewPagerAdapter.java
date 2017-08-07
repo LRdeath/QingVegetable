@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
+import io.github.vzer.common.app.Application;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.order.OrderFragment;
@@ -106,22 +107,21 @@ public class OrderViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         String title = null;
-        // TODO: 17/8/1 标题规范化 
         switch (position) {
             case OrderFragment.PAGER_ALL:
-                title = "全部";
+                title = Application.getInstance().getString(R.string.title_order_all);
                 break;
             case OrderFragment.PAGER_NO_PAYMENT:
-                title = "待付款";
+                title = Application.getInstance().getString(R.string.title_order_pay);
                 break;
             case OrderFragment.PAGER_NO_DISTRIBUTE:
-                title = "待配送";
+                title = Application.getInstance().getString(R.string.title_order_distribute);
                 break;
             case OrderFragment.PAGER_NO_PICK_UP:
-                title = "待取货";
+                title = Application.getInstance().getString(R.string.title_order_pick);
                 break;
             case OrderFragment.PAGER_COMPLETE:
-                title = "已完成";
+                title = Application.getInstance().getString(R.string.title_order_finish);
                 break;
             default:
                 ToastUtil.showToast(R.string.toast_logic_error);

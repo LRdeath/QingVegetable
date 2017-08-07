@@ -11,6 +11,10 @@ import java.util.List;
 
 public class OrderDetailModel implements Serializable {
 
+    public static final int STATE_SUBMIT = 0x12;
+    public static final int STATE_PAYMENT = 0x123;
+    public static final int STATE_DISTRIBUTE = 0x1234;
+    public static final int STATE_FINISH = 0x12345;
     private int orderId; //订单id
     private long createTime; //创建时间
     private long receiveTime;//收货时间

@@ -57,6 +57,7 @@ public class OrderContentFragment extends FragmentPresenter<OrderContract.Presen
         // TODO: 17/8/3 根据不同页面来请求不同数据
         switch (pagerType) {
             case PAGER_ALL:
+               // mPresenter.loadOrderDetails();
                 break;
             case PAGER_NO_PAYMENT:
                 break;

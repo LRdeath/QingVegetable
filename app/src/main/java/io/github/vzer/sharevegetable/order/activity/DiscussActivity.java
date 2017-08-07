@@ -85,6 +85,7 @@ public class DiscussActivity extends ToolbarActivityPresenter<OrderContract.Pres
 
     @OnClick(R.id.txt_submit_discuss)
     void onSubmitDiscussClicked() {
+        // TODO: 17/8/6 model添加订单号等数据
         DiscussModel discussModel = new DiscussModel();
         boolean canSendRequest = true;
         List<DiscussVegetableModel> vegetableList = adapter.getListData();

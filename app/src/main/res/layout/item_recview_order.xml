@@ -74,7 +74,7 @@
         android:textSize="@dimen/font_24"/>
 
     <Button
-        android:id="@+id/btn_discuss"
+        android:id="@+id/btn_action"
         android:layout_width="66dp"
         android:layout_height="28dp"
         android:layout_alignRight="@id/txt_product_money"

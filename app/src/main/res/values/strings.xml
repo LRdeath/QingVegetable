@@ -65,6 +65,13 @@
     <string name="txt_mul">×</string>
     <string name="hint_describe">快来写下您的评价吧</string>
     <string name="toast_please_choose_satisfation">还有未评价的蔬菜</string>
+    <string name="title_order_all">全部</string>
+    <string name="title_order_pay">待付款</string>
+    <string name="title_order_distribute">待配送</string>
+    <string name="title_order_pick">待取货</string>
+    <string name="title_order_finish">已完成</string>
+    <string name="text_to_pay">去付款</string>
+    <string name="text_to_pick">去取货</string>
     <string name="vegetable_sales">| 月售</string>
     <string name="vegetable_kind">份</string>
 </resources>

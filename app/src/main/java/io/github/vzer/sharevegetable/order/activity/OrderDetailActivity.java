@@ -126,7 +126,7 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
 
         orderDetailRec.setLayoutManager(manager);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) orderDetailRec.getLayoutParams();
-        params.height = ScreenUtil.dip2px(56) * adapter.getItemCount();
+        params.height = ScreenUtil.dip2px(56) * adapter.getItemCount(); //计算rec高度，避免滑动
         orderDetailRec.setLayoutParams(params);
 
     }
