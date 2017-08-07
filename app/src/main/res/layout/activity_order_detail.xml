@@ -76,13 +76,13 @@
                 android:textColor="@color/white"/>
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <io.github.vzer.sharevegetable.widget.NoTouchRecyclerView
             android:id="@+id/rec_order_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/len_8"
             android:background="@color/white">
-        </android.support.v7.widget.RecyclerView>
+        </io.github.vzer.sharevegetable.widget.NoTouchRecyclerView>
 
         <RelativeLayout
             android:layout_width="match_parent"

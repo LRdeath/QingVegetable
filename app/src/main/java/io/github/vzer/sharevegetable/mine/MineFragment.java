@@ -107,7 +107,10 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
                 .setPositiveButton(new DialogUtils.OnButtonListener() {
                     @Override
                     public void onButtonClicked(DialogUtils dialogUtils) {
-                        mPresenter.changeUserName(dialogUtils.getInputText());
+                        if (mPresenter.changeUserName(dialogUtils.getInputText())) {
+                            ToastUtil.showToast(R.string.toast_change_success);
+                            userNameTxt.setText(dialogUtils.getInputText());
+                        }
                     }
                 })
                 .showDialog();
@@ -127,7 +130,10 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
                 .setPositiveButton(new DialogUtils.OnButtonListener() {
                     @Override
                     public void onButtonClicked(DialogUtils dialogUtils) {
-                        mPresenter.changeTrueName(dialogUtils.getInputText());
+                        if (mPresenter.changeTrueName(dialogUtils.getInputText())) {
+                            ToastUtil.showToast(R.string.toast_change_success);
+                            trueNameTxt.setText(dialogUtils.getInputText());
+                        }
                     }
                 })
                 .showDialog();
@@ -168,7 +174,10 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
                 .setPositiveButton(new DialogUtils.OnButtonListener() {
                     @Override
                     public void onButtonClicked(DialogUtils dialogUtils) {
-                        mPresenter.changeSex(sex[0]);
+                        if (mPresenter.changeSex(sex[0])) {
+                            ToastUtil.showToast(R.string.toast_change_success);
+                            // TODO: 17/8/7  修改sexTxt
+                        }
                         ToastUtil.showToast("已选择性别");
                     }
                 })
@@ -231,9 +240,16 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
             // Get Image Path List
             List<String> pathList = data.getStringArrayListExtra(ImageSelectorActivity.EXTRA_RESULT);
             // TODO: 17/7/30 上传图像
-            Glide.with(this).load(pathList.get(0)).error(R.mipmap.ic_launcher_round).into(avatarImg);
-        } else {
-            ToastUtil.showToast(getContext().getResources().getString(R.string.toast_logic_error));
+            if (pathList.size() > 0 && pathList.get(0) != null) {
+                if (mPresenter.changeAvatar(pathList.get(0))) {
+                    Glide.with(this).load(pathList.get(0)).error(R.mipmap.ic_launcher_round).into(avatarImg);
+                } else {
+                    ToastUtil.showToast(R.string.toast_avatar_load_error);
+                }
+            } else {
+                ToastUtil.showToast(R.string.toast_avatar_load_error);
+            }
+
         }
     }
 }

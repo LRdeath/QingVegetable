@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
+import io.github.vzer.factory.data.OrderDetailHelper;
 import io.github.vzer.factory.model.order.DiscussModel;
 import io.github.vzer.factory.model.order.OrderDetailModel;
 
@@ -29,9 +30,10 @@ public class OrderPresenter extends BasePresenter<OrderContract.View>
      * 获取订单详情的数据源
      */
     @Override
-    public void loadOrderDetails() {
+    public void loadOrderDetails(int type) {
         //开启p层方法(progressBar)
         start();
+        OrderDetailHelper.getOrderDetailRequest(type, this);
     }
 
     /**
@@ -39,7 +41,18 @@ public class OrderPresenter extends BasePresenter<OrderContract.View>
      */
     @Override
     public void sendDiscussRequest(DiscussModel discussModel) {
+        OrderDetailHelper.sendDiscussRequest(discussModel, this);
+    }
 
+    /**
+     * 发送取消订单的请求
+     *
+     * @param model model
+     */
+    @Override
+    public boolean cancelOrderRequest(OrderDetailModel model) {
+        OrderDetailHelper.sendCancelOrderRequest(model, this);
+        return true;
     }
 
     /**
@@ -59,6 +72,14 @@ public class OrderPresenter extends BasePresenter<OrderContract.View>
      */
     @Override
     public void onDataLoaded(List<OrderDetailModel> orderDetailModelList) {
-        mView.loadDataSuccess(orderDetailModelList);
+        mView.loadOrderDetailListSuccess(orderDetailModelList);
     }
+
+    /**
+     * 发送评论成功时
+     */
+    public void onSendDiscussRequestSuccess() {
+        // TODO: 17/8/7 通知v层跳转
+    }
+
 }

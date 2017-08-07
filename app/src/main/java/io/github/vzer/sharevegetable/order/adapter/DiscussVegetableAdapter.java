@@ -61,7 +61,7 @@ public class DiscussVegetableAdapter extends RecyclerViewAdapter<DiscussVegetabl
         @BindView(R.id.edit_describe)
         EditText describeEdit;
         private int position;
-        DiscussVegetableModel model;
+        private DiscussVegetableModel model;
 
         public ItemHolder(View itemView) {
             super(itemView);
@@ -70,7 +70,7 @@ public class DiscussVegetableAdapter extends RecyclerViewAdapter<DiscussVegetabl
         @Override
         protected void onBind(DiscussVegetableModel discussVegetableModel) {
             position = getAdapterPosition();
-            model = getListData().get(position);
+            model = discussVegetableModel;
             //避免img内容错乱
             switch (flagList.get(position)) {
                 case STATE_UNSELECTED:

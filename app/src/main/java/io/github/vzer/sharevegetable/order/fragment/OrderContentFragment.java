@@ -57,6 +57,7 @@ public class OrderContentFragment extends FragmentPresenter<OrderContract.Presen
         // TODO: 17/8/3 根据不同页面来请求不同数据
         switch (pagerType) {
             case PAGER_ALL:
+               // mPresenter.loadOrderDetails();
                 break;
             case PAGER_NO_PAYMENT:
                 break;
@@ -74,6 +75,7 @@ public class OrderContentFragment extends FragmentPresenter<OrderContract.Presen
     @Override
     protected void initWidget(View root) {
         initList();
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -105,12 +107,12 @@ public class OrderContentFragment extends FragmentPresenter<OrderContract.Presen
     }
 
     /**
-     * 从网络请求获取数据成功时
+     * 从网络请求获取数据成功时回调
      *
      * @param orderDetailModelList dataSource
      */
     @Override
-    public void loadDataSuccess(List<OrderDetailModel> orderDetailModelList) {
+    public void loadOrderDetailListSuccess(List<OrderDetailModel> orderDetailModelList) {
         // TODO: 17/8/4 加载adapter，刷新数据源
     }
 

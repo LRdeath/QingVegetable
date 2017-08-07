@@ -3,6 +3,7 @@ package io.github.vzer.factory.presenter.mine;
 
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
+import io.github.vzer.factory.data.MineHelper;
 import io.github.vzer.factory.utils.ToastUtil;
 
 /**
@@ -30,17 +31,23 @@ public class MinePresenter extends BasePresenter<MineContract.View>
     }
 
     @Override
-    public void changeSex(boolean sex) {
+    public boolean changeSex(boolean sex) {
+        return MineHelper.updateSexRequest(this);
     }
 
 
     @Override
-    public void changeUserName(String newUserName) {
-
+    public boolean changeUserName(String newUserName) {
+        return MineHelper.updateUserNameRequest(this);
     }
 
     @Override
-    public void changeTrueName(String newTrueName) {
+    public boolean changeTrueName(String newTrueName) {
+        return MineHelper.updateUserTrueNameRequest(this);
+    }
 
+    @Override
+    public boolean changeAvatar(String uri) {
+        return MineHelper.updateAvatarRequest(this);
     }
 }

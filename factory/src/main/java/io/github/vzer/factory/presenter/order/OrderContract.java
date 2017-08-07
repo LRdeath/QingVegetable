@@ -14,12 +14,14 @@ import io.github.vzer.factory.model.order.OrderDetailModel;
 
 public interface OrderContract {
     interface View extends BaseContract.View<Presenter>{
-        void loadDataSuccess(List<OrderDetailModel> orderDetailModelList);
+        void loadOrderDetailListSuccess(List<OrderDetailModel> orderDetailModelList);
     }
     interface Presenter extends BaseContract.Presenter{
         // TODO: 17/8/4 发送请求订单信息 
-        void loadOrderDetails();
+        void loadOrderDetails(int type);
 
         void sendDiscussRequest(DiscussModel discussModel);
+
+        boolean cancelOrderRequest(OrderDetailModel model);
     }
 }
