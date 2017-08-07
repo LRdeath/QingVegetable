@@ -1,7 +1,6 @@
 package io.github.vzer.sharevegetable.shopping.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -12,10 +11,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
-import io.github.vzer.factory.model.shopping.ShoppingModel;
+import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.presenter.shopping.ShoppingContract;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.shopping.adapter.OrderAdapter;
+import io.github.vzer.sharevegetable.vegetable.ShoppingManager;
 
 /**
  * @author abtion.
@@ -32,7 +32,7 @@ public class FirmOrderActivity extends ToolbarActivityPresenter<ShoppingContract
     TextView txtPriceInAll;
     @BindView(R.id.txt_payment)
     TextView txtPayment;
-    private List<ShoppingModel> orderList;
+    private List<io.github.vzer.factory.model.vegetable.VegetableModel> orderList;
     private double price = 0.0;
 
     @Override
@@ -48,9 +48,9 @@ public class FirmOrderActivity extends ToolbarActivityPresenter<ShoppingContract
 
     @Override
     protected void initData() {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        orderList = (List<ShoppingModel>) bundle.get(ShoppingActivity.FIRM_ORDER);
+        orderList = ShoppingManager.getInstance().getShoppingList();
+        ShoppingManager.modelList = null;
+
     }
 
     @Override
@@ -80,10 +80,10 @@ public class FirmOrderActivity extends ToolbarActivityPresenter<ShoppingContract
 
     private void calculatePayment() {
         double priceAll = 0.0;
-        Iterator<ShoppingModel> iterator = orderList.iterator();
+        Iterator<VegetableModel> iterator = orderList.iterator();
         while (iterator.hasNext()) {
-            ShoppingModel shoppingModel = iterator.next();
-            priceAll += shoppingModel.getAmount() * shoppingModel.getPrice();
+            VegetableModel vegetableModel = iterator.next();
+            priceAll += vegetableModel.getCount() * vegetableModel.getPrice();
         }
         price = priceAll;
         txtPayment.setText(String.valueOf(price));

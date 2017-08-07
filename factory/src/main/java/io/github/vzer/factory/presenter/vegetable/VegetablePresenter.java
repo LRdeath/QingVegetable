@@ -28,6 +28,8 @@ public class VegetablePresenter extends BasePresenter<VegetableContract.View>
     @Override
     public void LoadDatas(int typeId) {
         List<VegetableModel> models = new ArrayList<>();
+        int pId = 101;
+        if (typeId == 1) pId = 201;
         for (int i = 0; i < 20; i++) {
             VegetableModel model = new VegetableModel();
             model.setName("香菜");
@@ -36,7 +38,7 @@ public class VegetablePresenter extends BasePresenter<VegetableContract.View>
             model.setSales(56);
             model.setPictureUri("http://www.cnlvying.com/upfiles/2014-3-18-15-47-12.jpg");
             model.setType(0);
-            model.setpId(101);
+            model.setpId(pId + i);
             models.add(model);
         }
         mView.LoadDatasSuccess(models);

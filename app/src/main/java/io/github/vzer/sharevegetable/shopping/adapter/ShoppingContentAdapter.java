@@ -85,6 +85,7 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<VegetableModel> 
             switch (view.getId()) {
                 case R.id.btn_delete:
                     ShoppingManager.getInstance().clearOneModel(getListData().get(position));
+                    getListData().remove(position);
                     refresh();
                     break;
                 case R.id.btn_vegetable_sub:
@@ -98,22 +99,24 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<VegetableModel> 
             }
         }
 
+        /**
+         * 商品添加 事件
+         */
         void onClickAdd(int pos, View v) {
             VegetableModel model = getListData().get(pos);
             ShoppingManager.getInstance().add(model);
-            //getListData().get(pos).setCount(getListData().get(pos).getCount() + 1);
+
             refresh();
         }
 
+        /**
+         * 商品减少 事件
+         */
         void onClickSub(int pos, View v) {
             VegetableModel model = getListData().get(pos);
             int count = ShoppingManager.getInstance().sub(model);
-            /*if (model.getCount() == 1) {
-                ShoppingManager.getInstance().clearOneModel(model);
-            } else {
-                model.setCount(model.getCount() - 1);
-            }*/
-            if (count ==0) getListData().remove(model);
+
+            if (count == 0) getListData().remove(model);
             refresh();
         }
     }

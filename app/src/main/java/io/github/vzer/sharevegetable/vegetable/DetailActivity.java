@@ -77,7 +77,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
         evaRec.setLayoutManager(new LinearLayoutManager(this));
         nameTxt.setText(model.getName());
         //获取当前商品选购的数量
-        int count = model.getCount();
+        int count = shoppingManager.getCount(model);
 
         if (count == 0) {
             countTxt.setText("");
@@ -199,7 +199,7 @@ public class DetailActivity extends ActivityPresenter<EvaVegetableContract.Prese
             dateTxt.setText(vegetableEvaModel.getDate());
             contentTxt.setText(vegetableEvaModel.getContent());
             //根据评价等级 加载图片
-            if (vegetableEvaModel.getDegree() == 1) {
+            if (vegetableEvaModel.getSatisfdegree() == 1) {
                 degreeImage.setImageResource(R.drawable.ic_smile_selected);
             } else degreeImage.setImageResource(R.drawable.ic_sad_selected);
             Glide.with(DetailActivity.this)

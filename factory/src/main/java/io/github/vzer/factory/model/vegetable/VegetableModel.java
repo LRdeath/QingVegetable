@@ -91,6 +91,11 @@ public class VegetableModel implements Serializable {
         this.pictureUri = pictureUri;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        VegetableModel model = (VegetableModel) obj;
+        return this == obj || pId == model.pId;
+    }
 
     @Override
     public int hashCode() {

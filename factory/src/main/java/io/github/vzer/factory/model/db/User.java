@@ -12,12 +12,12 @@ public class User {
     public static final int SEX_WOMAN = 2;
 
 
-    private String name;
-    private String portrait;
-    private String realName;
-    private String phone;
-    private int sex =0;
-    private int credits=0;
+    private String name; //用户名
+    private String portrait; //头像地址
+    private String realName;//真实姓名
+    private String phone; //手机号
+    private int sex = 0; //性别
+    private int credits = 0; // 信用积分
 
     public String getName() {
         return name;

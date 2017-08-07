@@ -5,7 +5,6 @@ import java.util.List;
 
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.factory.model.vegetable.VegetableEvaModel;
-import io.github.vzer.factory.network.NetWork;
 
 /**
  * 蔬菜选购模块 网络请求层
@@ -42,7 +41,7 @@ public class VegetableHelper {
             VegetableEvaModel model = new VegetableEvaModel();
             model.setPortraitUri("http://img1.2345.com/duoteimg/qqTxImg/2013/12/ql_2/11-023953_804.jpg");
             model.setContent("香菜超级好吃！！！！！！！希望下次也一样新鲜哦哦哦哦！给店主笔芯！！！然后再凑一下字数，不知道够不够，测试一下xxxx的……");
-            model.setDegree(i%2+1);
+            model.setSatisfdegree(i % 2 + 1);
             model.setName("小芳");
             model.setDate("2017-08-01");
             model.setpId(101);

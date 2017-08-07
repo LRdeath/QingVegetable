@@ -11,7 +11,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.vzer.common.widget.RecyclerViewAdapter;
-import io.github.vzer.factory.model.shopping.ShoppingModel;
+import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.sharevegetable.R;
 
 /**
@@ -20,20 +20,20 @@ import io.github.vzer.sharevegetable.R;
  * email caiheng@hrsoft.net
  */
 
-public class OrderAdapter extends RecyclerViewAdapter<ShoppingModel> {
+public class OrderAdapter extends RecyclerViewAdapter<VegetableModel> {
 
 
-    public OrderAdapter(Context context, List<ShoppingModel> shoppingModels) {
+    public OrderAdapter(Context context, List<VegetableModel> shoppingModels) {
         super(context, shoppingModels);
     }
 
     @Override
-    public ViewHolder<ShoppingModel> onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder<VegetableModel> onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_firm_order, parent, false);
         return new ItemHolder(view);
     }
 
-    class ItemHolder extends ViewHolder<ShoppingModel> {
+    class ItemHolder extends ViewHolder<VegetableModel> {
         @BindView(R.id.txt_vegetable_name)
         TextView txtVegetableName;
         @BindView(R.id.txt_amount)
@@ -43,15 +43,15 @@ public class OrderAdapter extends RecyclerViewAdapter<ShoppingModel> {
 
         public ItemHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         @Override
-        protected void onBind(ShoppingModel shoppingModel) {
+        protected void onBind(VegetableModel shoppingModel) {
             txtVegetableName.setText(shoppingModel.getName());
-            Log.d("msg",shoppingModel.getName());
-            txtAmount.setText(String.valueOf(shoppingModel.getAmount()));
-            txtItemPrice.setText(String.valueOf(shoppingModel.getAmount()*shoppingModel.getPrice()));
+            Log.d("msg", shoppingModel.getName());
+            txtAmount.setText(String.valueOf(shoppingModel.getCount()));
+            txtItemPrice.setText(String.valueOf(shoppingModel.getCount() * shoppingModel.getPrice()));
         }
     }
 }

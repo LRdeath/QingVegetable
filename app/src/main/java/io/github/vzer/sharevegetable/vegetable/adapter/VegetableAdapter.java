@@ -75,7 +75,7 @@ public class VegetableAdapter<V> extends RecyclerViewAdapter<VegetableModel> {
         protected void onBind(VegetableModel vegetableModel) {
             //对缓存数据进行处理
            // int count = shoppingManager.getCount(vegetableModel);
-            int count = vegetableModel.getCount();
+            int count = shoppingManager.getCount(vegetableModel);
             if (count != 0) {
                 txtAccount.setText(String.valueOf(count));
                 imgeSub.setVisibility(View.VISIBLE);

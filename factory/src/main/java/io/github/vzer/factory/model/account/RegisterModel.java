@@ -8,9 +8,9 @@ package io.github.vzer.factory.model.account;
  */
 
 public class RegisterModel {
-    private String phone;
-    private String password;
-    private String code;
+    private String phone; //手机号
+    private String password; //密码
+    private String code; //验证码
 
     public RegisterModel(String phone, String password, String code) {
         this.phone = phone;

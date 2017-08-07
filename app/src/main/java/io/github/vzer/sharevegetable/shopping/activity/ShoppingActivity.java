@@ -6,10 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,6 +40,7 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     Button btnCheckedToPay;
     private ArrayList<VegetableModel> shoppingList;
     private double price = 0.0;
+    private ShoppingContentAdapter adapter;
 
     @Override
     public void showError(int strId) {
@@ -67,7 +66,7 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     @Override
     public void initWidget() {
         setActivityTitle(getResources().getString(R.string.title_shopping));
-        ShoppingContentAdapter adapter = new ShoppingContentAdapter(this,shoppingList);
+        adapter = new ShoppingContentAdapter(this, shoppingList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recShopping.setAdapter(adapter);
         recShopping.setLayoutManager(layoutManager);
@@ -88,8 +87,7 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     @OnClick(R.id.btn_checked_to_pay)
     public void onViewClicked() {
         Intent intent = new Intent(this, FirmOrderActivity.class);
-        List<VegetableModel> list = shoppingList;
-        intent.putExtra(FIRM_ORDER, (Serializable) list);
+        ShoppingManager.modelList = shoppingList;
         startActivity(intent);
         finish();
         // TODO: 17/8/6 清空购物车
@@ -109,5 +107,11 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
         }
         price = priceAll;
         txtPriceAll.setText(String.valueOf(price));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.refresh();
     }
 }

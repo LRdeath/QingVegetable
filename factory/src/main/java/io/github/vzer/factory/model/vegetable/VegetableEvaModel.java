@@ -12,7 +12,7 @@ public class VegetableEvaModel {
     private int uId; //用户id
     private String name; //用户名(默认匿名用户)
     private String date; //评价时间 格式:2017-07-01
-    private int degree; //满意度: 1为满意,2为不满意
+    private int Satisfdegree; //满意度: 1为满意,2为不满意
     private String portraitUri; //用户头像地址
     private String content; //评价内容
 
@@ -48,12 +48,12 @@ public class VegetableEvaModel {
         this.date = date;
     }
 
-    public int getDegree() {
-        return degree;
+    public int getSatisfdegree() {
+        return Satisfdegree;
     }
 
-    public void setDegree(int degree) {
-        this.degree = degree;
+    public void setSatisfdegree(int satisfdegree) {
+        this.Satisfdegree = satisfdegree;
     }
 
     public String getPortraitUri() {
