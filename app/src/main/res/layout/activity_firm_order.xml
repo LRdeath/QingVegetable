@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt_address"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_toolbar"
-        android:paddingBottom="18dp"
-        android:paddingLeft="@dimen/len_56"
-        android:paddingRight="@dimen/len_56"
-        android:paddingTop="18dp"
-        android:text="经文里5号楼2单元楼下蔬菜柜"
-        android:textColor="@color/white"
-        android:textSize="18sp"/>
-
-
+        android:orientation="vertical"
+        android:padding="@dimen/len_8">
     <TextView
-        android:textSize="@dimen/font_16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -27,9 +18,11 @@
         android:paddingLeft="@dimen/len_24"
         android:paddingTop="@dimen/len_12"
         android:text="@string/txt_order_info"
-        android:textColor="@color/text_primary"/>
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/font_16" />
 
-    <android.support.v7.widget.RecyclerView
+
+        <android.support.v7.widget.RecyclerView
         android:id="@+id/rec_firm_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -53,57 +46,64 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_in_all"
+                android:paddingRight="@dimen/len_4"
                 android:textColor="@color/text_primary"
-                android:textSize="@dimen/font_18"/>
+                android:textSize="@dimen/font_18" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_RMB"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/font_18"/>
+                android:textSize="@dimen/font_18" />
 
             <TextView
                 android:id="@+id/txt_price_in_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/font_18"/>
+                android:textSize="@dimen/font_18" />
         </LinearLayout>
 
     </RelativeLayout>
 
     <LinearLayout
-        android:background="@color/white"
-        android:layout_marginTop="12dp"
+        android:id="@+id/go_shopping_remark"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white">
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/len_24"
-            android:text="备注"
+            android:id="@+id/txt_remark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/font_16"/>
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/textDark"
+            android:layout_marginLeft="@dimen/len_24"
+            android:text="备注"
+            android:textSize="@dimen/font_16" />
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_marginRight="24dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_forward"
-            android:layout_width="8dp"
-            android:layout_height="13dp"/>
+            android:layout_weight="1" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/ic_forward" />
+
+    </LinearLayout>
     </LinearLayout>
 
     <android.support.v4.widget.Space
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_48"
@@ -117,38 +117,36 @@
             android:layout_weight="2">
 
             <TextView
-                android:text="@string/txt_RMB"
-                android:layout_marginLeft="@dimen/len_24"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/len_24"
+                android:text="@string/txt_RMB"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_18" />
+
             <TextView
                 android:id="@+id/txt_payment"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_18" />
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/btn_pay"
+        <TextView
+            android:id="@+id/txt_pay"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/btn_yellow">
-
-            <TextView
-                android:textSize="@dimen/font_18"
-                android:textColor="@color/white"
+            android:background="@color/btn_yellow"
+            android:layout_centerInParent="true"
+            android:gravity="center"
                 android:text="@string/txt_pay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_18" />
+
 
     </LinearLayout>
 

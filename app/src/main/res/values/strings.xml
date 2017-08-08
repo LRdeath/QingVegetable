@@ -59,7 +59,7 @@
     <string name="text_submit_discuss">提交评价</string>
     <string name="vegetable_evaluation">商品评价</string>
     <string name="txt_order_info">订单信息</string>
-    <string name="txt_in_all">共</string>
+    <string name="txt_in_all">合计</string>
     <string name="txt_RMB">¥</string>
     <string name="txt_pay">支付</string>
     <string name="txt_mul">×</string>
@@ -79,4 +79,7 @@
     <string name="toast_copy_success">复制成功</string>
     <string name="toast_copy_error">复制失败</string>
     <string name="text_mine_credit">信誉积分</string>
+    <string name="make_sure">确定</string>
+    <string name="shopping_remark">请写下备注内容(可不填)</string>
+    <string name="title_remark">订单备注</string>
 </resources>

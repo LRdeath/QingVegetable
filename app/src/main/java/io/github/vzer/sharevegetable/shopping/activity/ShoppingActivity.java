@@ -27,7 +27,7 @@ import io.github.vzer.sharevegetable.vegetable.ShoppingManager;
  */
 
 public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.Presenter>
-        implements ShoppingContract.View, OnAmountChangeListener {
+        implements OnAmountChangeListener {
 
     public static OnAmountChangeListener onAmountChangeListener;
     public static String FIRM_ORDER = "firmOrder";
@@ -42,19 +42,11 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     private double price = 0.0;
     private ShoppingContentAdapter adapter;
 
-    @Override
-    public void showError(int strId) {
 
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
 
     @Override
     public ShoppingContract.Presenter initPresenter() {
-        return new ShoppingPresenter(this);
+        return null;
     }
 
     @Override
@@ -113,5 +105,15 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     protected void onResume() {
         super.onResume();
         adapter.refresh();
+    }
+
+    @Override
+    public void showError(int strId) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
     }
 }

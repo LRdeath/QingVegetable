@@ -35,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="共"
+                android:text="@string/txt_in_all"
+                android:layout_marginRight="@dimen/len_4"
                 android:textSize="@dimen/font_18" />
 
 
@@ -58,8 +59,8 @@
 
             <Button
                 android:id="@+id/btn_checked_to_pay"
-                android:layout_width="60dp"
-                android:layout_height="28dp"
+                android:layout_width="@dimen/len_64"
+                android:layout_height="@dimen/len_32"
                 android:layout_marginLeft="@dimen/len_12"
                 android:background="@drawable/bg_btn_pay"
                 android:text="去结算"
