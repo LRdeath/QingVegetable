@@ -1,5 +1,7 @@
 package io.github.vzer.factory.model.shopping;
 
+import java.io.Serializable;
+
 /**
  * 购物车商品Model
  *
@@ -8,7 +10,7 @@ package io.github.vzer.factory.model.shopping;
  * @email: vzer@qq.com
  */
 
-public class ShoppingModel {
+public class ShoppingModel implements Serializable {
     private int pId;//商品id
     private int count;//商品数量
     private double price;//合计总价

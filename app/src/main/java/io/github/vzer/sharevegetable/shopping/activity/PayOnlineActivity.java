@@ -3,6 +3,7 @@ package io.github.vzer.sharevegetable.shopping.activity;
 import android.content.Intent;
 
 import io.github.vzer.common.app.ToolbarActivityPresenter;
+import io.github.vzer.factory.model.shopping.ShoppingOrderModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.order.activity.OrderDetailActivity;
@@ -15,6 +16,7 @@ import io.github.vzer.sharevegetable.order.activity.OrderDetailActivity;
 
 public class PayOnlineActivity extends ToolbarActivityPresenter<VegetableContract.Presenter> {
 
+    private ShoppingOrderModel orderModel;
     @Override
     public void showError(int strId) {
 
@@ -32,7 +34,7 @@ public class PayOnlineActivity extends ToolbarActivityPresenter<VegetableContrac
 
     @Override
     protected void initData() {
-
+        orderModel = (ShoppingOrderModel) getIntent().getSerializableExtra(FirmOrderActivity.PAY_ORDER);
     }
 
     @Override
@@ -50,11 +52,4 @@ public class PayOnlineActivity extends ToolbarActivityPresenter<VegetableContrac
         return R.layout.activity_pay_online;
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, OrderDetailActivity.class);
-        startActivity(intent);
-        finish();
-        // TODO: 17/8/6 接入微信支付sdk 
-    }
 }

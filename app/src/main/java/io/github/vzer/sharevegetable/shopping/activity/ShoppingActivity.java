@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.github.vzer.common.app.ToolbarActivity;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.presenter.shopping.ShoppingContract;
@@ -26,7 +27,7 @@ import io.github.vzer.sharevegetable.vegetable.ShoppingManager;
  * email yangcihang@hrsoft.net
  */
 
-public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.Presenter>
+public class ShoppingActivity extends ToolbarActivity
         implements OnAmountChangeListener {
 
     public static OnAmountChangeListener onAmountChangeListener;
@@ -43,11 +44,6 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     private ShoppingContentAdapter adapter;
 
 
-
-    @Override
-    public ShoppingContract.Presenter initPresenter() {
-        return null;
-    }
 
     @Override
     protected void initData() {
@@ -76,6 +72,9 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
     }
 
 
+    /**
+     * 跳转订单确认界面
+     */
     @OnClick(R.id.btn_checked_to_pay)
     public void onViewClicked() {
         Intent intent = new Intent(this, FirmOrderActivity.class);
@@ -86,7 +85,9 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
 
     }
 
-
+    /**
+     * 更新总金额
+     */
     @Override
     public void onAmountChange() {
         double priceAll = 0.0;
@@ -107,13 +108,4 @@ public class ShoppingActivity extends ToolbarActivityPresenter<ShoppingContract.
         adapter.refresh();
     }
 
-    @Override
-    public void showError(int strId) {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
 }

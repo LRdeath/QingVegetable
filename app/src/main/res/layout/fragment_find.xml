@@ -3,9 +3,18 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="发现"/>
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/len_56"
+       android:textColor="@color/white"
+       android:gravity="center"
+       android:textSize="@dimen/font_18"
+       android:background="@drawable/bg_toolbar"
+       android:text="@string/text_tab_find" />
+
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/find_rec"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
 </LinearLayout>

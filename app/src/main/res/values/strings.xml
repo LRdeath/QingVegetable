@@ -82,4 +82,5 @@
     <string name="make_sure">确定</string>
     <string name="shopping_remark">请写下备注内容(可不填)</string>
     <string name="title_remark">订单备注</string>
+    <string name="remark">备注</string>
 </resources>

@@ -39,7 +39,7 @@ public class ShoppingPresenter extends BasePresenter<ShoppingContract.View>
      */
     @Override
     public void onDataLoaded(Integer integer) {
-        //mView.CreateOrderSuccess();
+        mView.CreateOrderSuccess();
     }
 
     @Override

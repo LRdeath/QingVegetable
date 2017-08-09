@@ -45,6 +45,7 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<VegetableModel> 
         onAmountChangeListener.onAmountChange();
     }
 
+
     class ItemHolder extends ViewHolder<VegetableModel> {
         @BindView(R.id.txt_vegetable_name)
         TextView txtVegetableName;
@@ -85,8 +86,7 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<VegetableModel> 
             switch (view.getId()) {
                 case R.id.btn_delete:
                     ShoppingManager.getInstance().clearOneModel(getListData().get(position));
-                    getListData().remove(position);
-                    refresh();
+                    itemRefresh(position);
                     break;
                 case R.id.btn_vegetable_sub:
                     onClickSub(position, view);
@@ -116,8 +116,23 @@ public class ShoppingContentAdapter extends RecyclerViewAdapter<VegetableModel> 
             VegetableModel model = getListData().get(pos);
             int count = ShoppingManager.getInstance().sub(model);
 
-            if (count == 0) getListData().remove(model);
-            refresh();
+            if (count == 0) {
+                itemRefresh(pos);
+                /*getListData().remove(model);
+                notifyItemRemoved(pos);
+                onAmountChangeListener.onAmountChange();*/
+            } else {
+                refresh();
+            }
+        }
+
+        /**
+         * 清除一项商品
+         */
+        void itemRefresh(int pos) {
+            getListData().remove(pos);
+            notifyItemRemoved(pos);
+            onAmountChangeListener.onAmountChange();
         }
     }
 

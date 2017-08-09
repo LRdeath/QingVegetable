@@ -21,6 +21,7 @@ import io.github.vzer.sharevegetable.R;
 public class RemarkActivity extends ToolbarActivity {
     @BindView(R.id.edit_shopping_remark)
     EditText remarkEdit;
+    String remarkStr;
 
 
     @OnClick(R.id.btn_remark_submit)
@@ -38,12 +39,16 @@ public class RemarkActivity extends ToolbarActivity {
 
     @Override
     protected void initData() {
-
+        remarkStr = getIntent().getExtras().getString(FirmOrderActivity.REMARK_CODE);
     }
 
     @Override
     public void initWidget() {
         setActivityTitle(getString(R.string.title_remark));
+        if (!TextUtils.isEmpty(remarkStr)) {
+            remarkEdit.setText(remarkStr);
+        }
+        remarkEdit.setSelection(remarkStr.length());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package io.github.vzer.factory.model.shopping;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,11 +11,14 @@ import java.util.List;
  * @email: vzer@qq.com
  */
 
-public class ShoppingOrderModel {
+public class ShoppingOrderModel implements Serializable {
     private int uId;//用户id
     private List<ShoppingModel> modelList;//商品列表
     private double totalPrice;//合计
     private String remark; //备注
+    private int state = 0; //订单状态： 0代表未付款，1代表已付款
+
+
 
     public ShoppingOrderModel(int uId, List<ShoppingModel> modelList, double totalPrice, String remark) {
         this.uId = uId;
@@ -23,6 +27,13 @@ public class ShoppingOrderModel {
         this.remark = remark;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
     public int getuId() {
         return uId;
     }
