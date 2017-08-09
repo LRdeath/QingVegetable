@@ -205,6 +205,12 @@
                 android:text="15028595851"/>
         </RelativeLayout>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/bg_background"/>
 
     <RelativeLayout
         android:id="@+id/ly_credit"

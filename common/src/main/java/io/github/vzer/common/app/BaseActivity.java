@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 
+
 /**
  * Activity的基本封装
  *
@@ -31,6 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             finish();
         }
 
+        //为第三方自定义推送服务
     }
 
     /**
