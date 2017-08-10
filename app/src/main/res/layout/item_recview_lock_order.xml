@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_order_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单12937128936178456"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_16"/>
+
+    <TextView
+        android:id="@+id/txt_order_owner"
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/font_14"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_lock_order_vegetable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_order_number"
+        android:layout_marginTop="11dp">
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"/>
+
+</RelativeLayout>

@@ -17,10 +17,9 @@ public class OrderDetailHelper {
     /**
      * 获取orderDetail的ModelList
      *
-     * @param type     类型：全部、待付款、待配送、待取货、已完成
      * @param callback dataCallback
      */
-    public static void getOrderDetailRequest(int type, DataCallback.Callback<List<OrderDetailModel>> callback) {
+    public static void getOrderDetailRequest(DataCallback.Callback<List<OrderDetailModel>> callback) {
         // TODO: 17/8/4 发送网络请求
 
         //回调到P层的onDataLoaded
@@ -35,13 +34,5 @@ public class OrderDetailHelper {
      */
     public static void sendDiscussRequest(DiscussModel model, OrderPresenter callback) {
         callback.onSendDiscussRequestSuccess();
-    }
-
-    /**
-     * 取消订单
-     *
-     * @param model 被取消订单的model
-     */
-    public static void sendCancelOrderRequest(OrderDetailModel model, OrderPresenter callback) {
     }
 }

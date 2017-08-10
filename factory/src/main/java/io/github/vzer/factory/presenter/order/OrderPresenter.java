@@ -30,10 +30,10 @@ public class OrderPresenter extends BasePresenter<OrderContract.View>
      * 获取订单详情的数据源
      */
     @Override
-    public void loadOrderDetails(int type) {
+    public void loadOrderDetails() {
         //开启p层方法(progressBar)
         start();
-        OrderDetailHelper.getOrderDetailRequest(type, this);
+        OrderDetailHelper.getOrderDetailRequest(this);
     }
 
     /**
@@ -42,17 +42,6 @@ public class OrderPresenter extends BasePresenter<OrderContract.View>
     @Override
     public void sendDiscussRequest(DiscussModel discussModel) {
         OrderDetailHelper.sendDiscussRequest(discussModel, this);
-    }
-
-    /**
-     * 发送取消订单的请求
-     *
-     * @param model model
-     */
-    @Override
-    public boolean cancelOrderRequest(OrderDetailModel model) {
-        OrderDetailHelper.sendCancelOrderRequest(model, this);
-        return true;
     }
 
     /**

@@ -29,5 +29,6 @@
     <color name="text_order_selected">#FF169B49</color>
     <color name="text_money">#FF1FBC5B</color>
     <color name="btn_yellow">#ffc738</color>
+    <color name="btn_deep_yellow">#ffb000</color>
     <color name="edt_hint">#D1D1D1</color>
 </resources>

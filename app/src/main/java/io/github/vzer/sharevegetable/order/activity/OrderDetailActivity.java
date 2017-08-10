@@ -35,10 +35,6 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
     NoTouchRecyclerView orderDetailRec;
     @BindView(R.id.txt_payment_state)
     TextView paymentStateTxt;
-    @BindView(R.id.btn_cancel_order)
-    Button cancelBtn;
-    @BindView(R.id.btn_to_pay)
-    Button toPayBtn;
     @BindView(R.id.txt_order_state_describe)
     TextView describeStateTxt;
     @BindView(R.id.txt_contract)
@@ -71,7 +67,7 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
     public void initWidget() {
         setActivityTitle(getResources().getString(R.string.title_order_detail));
         initList();
-
+        // TODO: 17/8/9 其他控件的内容初始化 
     }
 
     @Override
@@ -125,17 +121,6 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
         if (toDiscussBtn.getVisibility() == View.VISIBLE) {
             // TODO: 17/8/7 跳转到去评价界面
         }
-    }
-
-    /**
-     * 点击取消订单
-     */
-    @OnClick(R.id.btn_cancel_order)
-    void cancelOrder() {
-        // TODO: 17/8/7 取消订单请求
-//        if (mPresenter.cancelOrderRequest(orderDetailModel)) {
-//
-//        }
     }
 
     /**

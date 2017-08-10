@@ -18,10 +18,9 @@ public interface OrderContract {
     }
     interface Presenter extends BaseContract.Presenter{
         // TODO: 17/8/4 发送请求订单信息 
-        void loadOrderDetails(int type);
+        void loadOrderDetails();
 
         void sendDiscussRequest(DiscussModel discussModel);
 
-        boolean cancelOrderRequest(OrderDetailModel model);
     }
 }

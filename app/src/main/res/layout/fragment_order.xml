@@ -1,83 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-    <android.support.design.widget.AppBarLayout
+    <TextView
+        android:id="@+id/txt_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_toolbar">
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/ly_order_label"
-            android:layout_width="match_parent"
-            android:layout_height="108dp"
-            android:background="@drawable/bg_mine_layout_normal"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-            <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-            </android.support.v7.widget.Toolbar>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                app:layout_collapseMode="none"
-                android:text="@string/label_order"
-                android:textColor="@color/white"
-                android:textSize="@dimen/label_text_size"/>
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                app:layout_collapseMode="pin"
-                android:background="@drawable/bg_mine_layout_normal"
-                app:tabMode="fixed"
-                app:tabIndicatorHeight="2dp"
-                android:scrollbarSize="@dimen/len_2"
-                app:tabIndicatorColor="@color/color_white"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/colorPrimaryLight">
+        android:layout_height="@dimen/len_48"
+        android:background="@drawable/bg_mine_layout_normal"
+        android:gravity="center"
+        android:text="@string/label_order"
+        android:textColor="@color/white"
+        android:textSize="@dimen/label_text_size"/>
 
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="全部"/>
-
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="待付款"/>
-
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="待配送"/>
-
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="待取货"/>
-
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="已完成"/>
-            </android.support.design.widget.TabLayout>
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_order"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refresh_ly"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    </android.support.v4.view.ViewPager>
+        android:layout_below="@id/txt_title">
 
-
-</android.support.design.widget.CoordinatorLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rec_order_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

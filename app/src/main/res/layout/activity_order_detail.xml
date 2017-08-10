@@ -22,46 +22,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/len_16"
                 android:gravity="center"
-                android:text="等待支付>"
+                android:text="等待配送>"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_18"/>
-
-            <LinearLayout
-                android:id="@+id/ly_order_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txt_payment_state"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_cancel_order"
-                    android:layout_width="74dp"
-                    android:layout_height="@dimen/len_32"
-                    android:layout_marginTop="@dimen/len_16"
-                    android:background="@drawable/bg_btn_cancel_order"
-                    android:text="@string/text_cancel_order"
-                    android:textColor="@color/text_secondary"/>
-
-                <Button
-                    android:id="@+id/btn_to_pay"
-                    android:layout_width="74dp"
-                    android:layout_height="@dimen/len_32"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="@dimen/len_16"
-                    android:background="@color/btn_yellow"
-                    android:text="@string/text_go_payment"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/txt_order_state_describe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary"
+                android:text="订单将配送至xxxxxxxxxxxx"
                 android:layout_below="@id/txt_payment_state"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/len_16"
-                android:visibility="gone"/>
+                android:layout_marginTop="@dimen/len_16"/>
 
             <Button
                 android:id="@+id/btn_to_discuss"
@@ -71,7 +44,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/len_16"
                 android:layout_height="@dimen/len_32"
-                android:background="@color/btn_yellow"
+                android:background="@drawable/bg_btn_yelllow"
                 android:text="@string/text_go_discuss"
                 android:textColor="@color/white"/>
         </RelativeLayout>

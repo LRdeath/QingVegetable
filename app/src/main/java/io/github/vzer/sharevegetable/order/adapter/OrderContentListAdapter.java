@@ -75,10 +75,6 @@ public class OrderContentListAdapter extends RecyclerViewAdapter<OrderDetailMode
 //                        }
 //                    });
 //                    break;
-//                case OrderDetailModel.STATE_PAYMENT:
-//                    orderStateView.setPaymentState();
-//                    actionBtn.setVisibility(View.GONE);
-//                    break;
 //                case OrderDetailModel.STATE_DISTRIBUTE:
 //                    orderStateView.setPickState();
 //                    actionBtn.setText(R.string.text_to_pick);

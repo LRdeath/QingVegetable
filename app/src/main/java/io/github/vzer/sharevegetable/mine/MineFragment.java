@@ -49,8 +49,6 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     TextView trueNameTxt;
     @BindView(R.id.txt_sex)
     TextView sexTxt;
-    @BindView(R.id.txt_mobile)
-    TextView mobileTxt;
     @BindView(R.id.txt_logout)
     TextView exitTxt;
     @BindView(R.id.txt_contract)
@@ -61,8 +59,6 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     RelativeLayout trueNameLy;
     @BindView(R.id.ly_sex)
     RelativeLayout sexLy;
-    @BindView(R.id.ly_mobile)
-    RelativeLayout mobileLy;
 
     @Override
     public void showLoading() {
@@ -184,13 +180,6 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
                 .showDialog();
     }
 
-    /**
-     * 点击手机号
-     */
-    @OnClick(R.id.ly_mobile)
-    void changeMobile() {
-        ToastUtil.showToast("点击了手机号");
-    }
 
     /**
      * 登出

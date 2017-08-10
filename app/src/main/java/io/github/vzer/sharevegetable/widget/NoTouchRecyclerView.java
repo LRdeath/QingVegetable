@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
 /**
+ * 只展示内容的RecyclerView
+ *
  * @author YangCihang
  * @since 17/8/7.
  * email yangcihang@hrsoft.net

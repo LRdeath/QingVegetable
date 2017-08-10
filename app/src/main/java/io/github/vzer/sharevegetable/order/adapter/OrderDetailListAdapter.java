@@ -37,6 +37,7 @@ public class OrderDetailListAdapter extends RecyclerViewAdapter<Vegetable> {
         TextView numTxt;
         @BindView(R.id.txt_vegetable_name)
         TextView nameTxt;
+
         public ItemViewHolder(View itemView) {
             super(itemView);
         }

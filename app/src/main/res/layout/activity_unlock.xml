@@ -1,7 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_lock">
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_24"
+        android:layout_marginTop="@dimen/len_16"
+        android:background="@drawable/ic_back"/>
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="开锁地点"
+        android:textSize="@dimen/font_18"
+        android:layout_marginTop="@dimen/len_16"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_pickup_location"
+        android:layout_below="@id/txt_title"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18"
+        android:layout_marginTop="@dimen/len_32"
+        android:text="经文里五号楼二单元二六一"
+        />
+
+    <RelativeLayout
+        android:id="@+id/ly_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txt_pickup_location"
+        android:layout_marginTop="44dp">
+
+        <ImageView
+            android:id="@+id/img_lock_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_lock_board"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/img_lock_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_lock_selector"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_clicked_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ly_circle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/len_20"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_16"
+        android:text="@string/text_click_to_unlock"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/len_32"
+        android:layout_width="312dp"
+        android:layout_height="200dp"
+        android:paddingLeft="@dimen/len_12"
+        android:paddingRight="@dimen/len_12"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txt_clicked_lock"
+        android:background="#18ffffff">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_16"
+            android:textColor="@color/white"
+            android:text="-可取货订单-"
+            android:gravity="center"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rec_lock_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</RelativeLayout>
