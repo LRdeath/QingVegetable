@@ -60,6 +60,7 @@ public class FirmOrderActivity extends ToolbarActivity {
         Intent intent = new Intent(this, RemarkActivity.class);
         intent.putExtra(REMARK_CODE, remarkStr);
         startActivityForResult(intent, 1);
+
     }
 
     /**

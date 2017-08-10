@@ -16,6 +16,7 @@ import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.presenter.shopping.ShoppingContract;
 import io.github.vzer.factory.presenter.shopping.ShoppingPresenter;
+import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.shopping.OnAmountChangeListener;
 import io.github.vzer.sharevegetable.shopping.adapter.ShoppingContentAdapter;
@@ -77,6 +78,10 @@ public class ShoppingActivity extends ToolbarActivity
      */
     @OnClick(R.id.btn_checked_to_pay)
     public void onViewClicked() {
+        if(shoppingList==null ||shoppingList.isEmpty()){
+            ToastUtil.showToast(R.string.shopping_empty);
+            return;
+        }
         Intent intent = new Intent(this, FirmOrderActivity.class);
         ShoppingManager.modelList = shoppingList;
         startActivity(intent);

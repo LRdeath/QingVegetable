@@ -67,11 +67,12 @@
         android:layout_marginLeft="@dimen/len_16"
         android:layout_marginBottom="@dimen/len_56"
         android:src="@drawable/ic_shopping"
+        android:elevation="8dp"
         app:fabSize="auto"
         app:rippleColor="@color/div_color"
         app:backgroundTint="@color/white"
-        app:pressedTranslationZ="@dimen/len_8"
-        app:elevation="9dp" />
+        app:pressedTranslationZ="6dp"
+        app:elevation="8dp" />
 
     <TextView
         android:id="@+id/tip_sum"
@@ -87,6 +88,7 @@
         android:visibility="gone"
         android:gravity="center"
         android:textStyle="bold"
-        android:elevation="9dp" />
+        android:elevation="8dp"
+        tools:targetApi="lollipop" />
 
 </android.support.design.widget.CoordinatorLayout>
