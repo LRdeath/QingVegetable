@@ -110,7 +110,7 @@ public class FirmOrderActivity extends ToolbarActivity {
 
     @Override
     public void initWidget() {
-        setActivityTitle("订单预计送到");
+        setActivityTitle("结算中心");
         OrderAdapter adapter = new OrderAdapter(this, orderList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recFirmOrder.setAdapter(adapter);

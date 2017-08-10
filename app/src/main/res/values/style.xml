@@ -88,4 +88,19 @@
     <style name="txt_order_tab">
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <!--订单确认界面-->
+    <style name="firm_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/len_48</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/color_white</item>
+    </style>
+
+    <style name="firm_default_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_16</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
 </resources>

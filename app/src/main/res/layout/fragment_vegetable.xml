@@ -67,11 +67,9 @@
         android:layout_marginLeft="@dimen/len_16"
         android:layout_marginBottom="@dimen/len_56"
         android:src="@drawable/ic_shopping"
-        android:elevation="8dp"
         app:fabSize="auto"
         app:rippleColor="@color/div_color"
         app:backgroundTint="@color/white"
-        app:pressedTranslationZ="6dp"
         app:elevation="8dp" />
 
     <TextView
@@ -79,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="14dp"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="102dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginRight="@dimen/len_16"
         android:layout_marginLeft="54dp"
         android:background="@drawable/bg_shape_new_tip_red_solid_ring"
