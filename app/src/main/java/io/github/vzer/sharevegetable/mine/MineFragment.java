@@ -41,24 +41,29 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
 
     @BindView(R.id.img_circle_avatar)
     ImageView avatarImg;
-    @BindView(R.id.txt_user_name)
-    TextView userNameTxt;
     @BindView(R.id.txt_nickname)
     TextView nicknameTxt;
-    @BindView(R.id.txt_true_name)
-    TextView trueNameTxt;
-    @BindView(R.id.txt_sex)
-    TextView sexTxt;
     @BindView(R.id.txt_logout)
     TextView exitTxt;
-    @BindView(R.id.txt_contract)
-    TextView contractTxt;
-    @BindView(R.id.ly_user_name)
-    RelativeLayout userNameLy;
-    @BindView(R.id.ly_true_name)
-    RelativeLayout trueNameLy;
-    @BindView(R.id.ly_sex)
-    RelativeLayout sexLy;
+    @BindView(R.id.txt_about)
+    TextView aboutTxt;
+    @BindView(R.id.ly_contract)
+    RelativeLayout contractLy;
+    @BindView(R.id.ly_user_detail)
+    RelativeLayout userDetailLy;
+
+    @BindView(R.id.ly_credit)
+    RelativeLayout creditLy;
+    @BindView(R.id.ly_coupon)
+    RelativeLayout couponLy;
+    @BindView(R.id.ly_wallet)
+    RelativeLayout walletLy;
+    @BindView(R.id.txt_credit_num)
+    TextView creditNumTxt;
+    @BindView(R.id.txt_coupon_num)
+    TextView couponNumTxt;
+    @BindView(R.id.txt_money)
+    TextView moneyTxt;
 
     @Override
     public void showLoading() {
@@ -77,7 +82,7 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
 
     @Override
     protected void initWidget(View root) {
-
+        // TODO: 17/8/10 初始化用户图像和用户名信息
     }
 
     @Override
@@ -88,96 +93,6 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     @Override
     protected int getContentLayoutId() {
         return R.layout.fragment_mine;
-    }
-
-    /**
-     * 改变用户名
-     */
-    @OnClick(R.id.ly_user_name)
-    void changeUserName() {
-        new DialogUtils(getContext())
-                .setCancelable(false)
-                .setInputEditView()
-                .setNegativeButton(null)
-                .setTitleText("修改用户名")
-                .setPositiveButton(new DialogUtils.OnButtonListener() {
-                    @Override
-                    public void onButtonClicked(DialogUtils dialogUtils) {
-                        if (mPresenter.changeUserName(dialogUtils.getInputText())) {
-                            ToastUtil.showToast(R.string.toast_change_success);
-                            userNameTxt.setText(dialogUtils.getInputText());
-                        }
-                    }
-                })
-                .showDialog();
-
-    }
-
-    /**
-     * 改变真实姓名
-     */
-    @OnClick(R.id.ly_true_name)
-    void changeTrueName() {
-        new DialogUtils(getContext())
-                .setCancelable(false)
-                .setInputEditView()
-                .setNegativeButton(null)
-                .setTitleText("修改真实姓名")
-                .setPositiveButton(new DialogUtils.OnButtonListener() {
-                    @Override
-                    public void onButtonClicked(DialogUtils dialogUtils) {
-                        if (mPresenter.changeTrueName(dialogUtils.getInputText())) {
-                            ToastUtil.showToast(R.string.toast_change_success);
-                            trueNameTxt.setText(dialogUtils.getInputText());
-                        }
-                    }
-                })
-                .showDialog();
-    }
-
-    /**
-     * 改变性别
-     */
-    @OnClick(R.id.ly_sex)
-    void changeSex() {
-        final boolean[] sex = {true}; //男为true，女为false默认为男;
-        new DialogUtils(getContext())
-                .setCancelable(false)
-                .setNegativeButton(null)
-                .setTitleText("修改性别")
-                .setCustomView(R.layout.view_dialog_choose_sex, new DialogUtils.OnViewListener() {
-                    @Override
-                    public void onViewEventSetting(View view) {
-                        RadioGroup sexGroup = view.findViewById(R.id.group_sex);
-                        sexGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                                switch (i) {
-                                    case R.id.btn_man:
-                                        sex[0] = true;
-                                        break;
-                                    case R.id.btn_woman:
-                                        sex[0] = false;
-                                        break;
-                                    default:
-                                        ToastUtil.showToast(getActivity().getResources().getString(R.string.toast_logic_error));
-                                        break;
-                                }
-                            }
-                        });
-                    }
-                })
-                .setPositiveButton(new DialogUtils.OnButtonListener() {
-                    @Override
-                    public void onButtonClicked(DialogUtils dialogUtils) {
-                        if (mPresenter.changeSex(sex[0])) {
-                            ToastUtil.showToast(R.string.toast_change_success);
-                            // TODO: 17/8/7  修改sexTxt
-                        }
-                        ToastUtil.showToast("已选择性别");
-                    }
-                })
-                .showDialog();
     }
 
 
@@ -194,7 +109,7 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     /**
      * 跳转到拨号
      */
-    @OnClick(R.id.txt_contract)
+    @OnClick(R.id.ly_contract)
     void onContract() {
         String phoneNum = getResources().getString(R.string.text_phone_num);
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNum));
@@ -203,42 +118,38 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     }
 
     /**
-     * 修改用户图像
+     * 点击钱包
      */
-    @OnClick(R.id.img_circle_avatar)
-    void onChangeAvatar() {
-        new RxPermissions(getActivity()).request(Manifest.permission.READ_EXTERNAL_STORAGE
-                , Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        if (aBoolean) {
-                            new ImageSelectorUtils().singleLoadCustomImage(getContext())
-                                    .selectImageInFragment(MineFragment.this);
-                        } else {
-                            ToastUtil.showToast("请确认权限后再选择图片");
-                        }
-                    }
-                });
+    @OnClick(R.id.ly_wallet)
+    void onCheckWallet() {
+        // TODO: 17/8/10 到查看钱包详情页面
+        ToastUtil.showToast("敬请期待");
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ImageSelector.IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            // Get Image Path List
-            List<String> pathList = data.getStringArrayListExtra(ImageSelectorActivity.EXTRA_RESULT);
-            // TODO: 17/7/30 上传图像
-            if (pathList.size() > 0 && pathList.get(0) != null) {
-                if (mPresenter.changeAvatar(pathList.get(0))) {
-                    Glide.with(this).load(pathList.get(0)).error(R.mipmap.ic_launcher_round).into(avatarImg);
-                } else {
-                    ToastUtil.showToast(R.string.toast_avatar_load_error);
-                }
-            } else {
-                ToastUtil.showToast(R.string.toast_avatar_load_error);
-            }
+    /**
+     * 点击优惠券
+     */
+    @OnClick(R.id.ly_coupon)
+    void onCheckCoupon() {
+        // TODO: 17/8/10 到查看优惠券页面
+        ToastUtil.showToast("敬请期待");
+    }
 
-        }
+    /**
+     * 点击信用积分
+     */
+    @OnClick(R.id.ly_credit)
+    void onCheckCredit() {
+        // TODO: 17/8/10 到查看信用积分页面
+        ToastUtil.showToast("敬请期待");
+    }
+
+
+    /**
+     * 修改用户详细信息
+     */
+    @OnClick(R.id.ly_user_detail)
+    void toDetailActivity() {
+        startActivity(new Intent(getContext(), UserDetailActivity.class));
     }
 }

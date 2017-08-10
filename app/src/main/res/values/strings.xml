@@ -22,7 +22,7 @@
     <!--各个页面的label-->
     <string name="label_vegetable">秦菜</string>
     <string name="label_order">订单</string>
-    <string name="label_mine">个人信息</string>
+    <string name="label_mine">我的</string>
     <!--mine页面的text-->
     <string name="text_mine_user_name">用户名</string>
     <string name="text_mine_true_name">真实姓名</string>
@@ -85,4 +85,5 @@
     <string name="text_click_to_unlock">点击开锁</string>
     <string name="text_click_to_lock">开锁中</string>
     <string name="remark">备注</string>
+    <string name="text_mine_user_avatar">头像</string>
 </resources>

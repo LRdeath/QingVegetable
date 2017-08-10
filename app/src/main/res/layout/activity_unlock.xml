@@ -36,18 +36,18 @@
 
     <RelativeLayout
         android:id="@+id/ly_circle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="196dp"
+        android:layout_height="196dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/txt_pickup_location"
         android:layout_marginTop="44dp">
 
         <ImageView
             android:id="@+id/img_lock_circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="185dp"
+            android:layout_height="185dp"
             android:background="@drawable/ic_lock_board"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerInParent="true"/>
 
         <ImageView
             android:id="@+id/img_lock_content"

@@ -32,6 +32,7 @@ public class MinePresenter extends BasePresenter<MineContract.View>
 
     @Override
     public boolean changeSex(boolean sex) {
+        // TODO: 17/8/10 在缓存区改变用户信息
         return MineHelper.updateSexRequest(this);
     }
 

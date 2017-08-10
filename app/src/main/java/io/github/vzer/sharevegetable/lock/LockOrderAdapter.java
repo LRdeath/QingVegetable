@@ -46,7 +46,7 @@ public class LockOrderAdapter extends RecyclerViewAdapter<OrderDetailModel> {
 
         @Override
         protected void onBind(OrderDetailModel model) {
-            ownerTxt.setText("奥特曼");
+            ownerTxt.setText("刘明好");
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 list.add("香菜x5");

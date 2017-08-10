@@ -53,6 +53,10 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
     Button toDiscussBtn;
     @BindView(R.id.scroll_order_detail)
     ScrollView orderDetailScroll;
+    @BindView(R.id.btn_order_cancel)
+    Button cancelBtn;
+    @BindView(R.id.btn_to_pay)
+    Button payBtn;
     private OrderDetailListAdapter adapter;
     private List<Vegetable> list;
     private OrderDetailModel orderDetailModel; //订单
@@ -121,6 +125,22 @@ public class OrderDetailActivity extends ToolbarActivityPresenter<OrderContract.
         if (toDiscussBtn.getVisibility() == View.VISIBLE) {
             // TODO: 17/8/7 跳转到去评价界面
         }
+    }
+
+    /**
+     * 点击取消
+     */
+    @OnClick(R.id.btn_order_cancel)
+    void toCancel() {
+        // TODO: 17/8/10 发送取消订单的请求(订单有时间限制 )
+    }
+
+    /**
+     * 点击去付款
+     */
+    @OnClick(R.id.btn_to_pay)
+    void toPay() {
+        ToastUtil.showToast("去付款");
     }
 
     /**
