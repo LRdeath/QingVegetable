@@ -32,7 +32,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             finish();
         }
 
-        //为第三方自定义推送服务
     }
 
     /**

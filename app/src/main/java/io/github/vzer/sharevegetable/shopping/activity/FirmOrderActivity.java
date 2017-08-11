@@ -1,10 +1,9 @@
 package io.github.vzer.sharevegetable.shopping.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,13 +13,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivity;
-import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.common.widget.ScreenUtil;
 import io.github.vzer.factory.model.shopping.ShoppingModel;
 import io.github.vzer.factory.model.shopping.ShoppingOrderModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
-import io.github.vzer.factory.presenter.shopping.ShoppingContract;
-import io.github.vzer.factory.presenter.shopping.ShoppingPresenter;
+import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.shopping.adapter.OrderAdapter;
 import io.github.vzer.sharevegetable.vegetable.ShoppingManager;
@@ -37,13 +34,38 @@ import io.github.vzer.sharevegetable.widget.NoTouchRecyclerView;
 public class FirmOrderActivity extends ToolbarActivity {
 
     @BindView(R.id.rec_firm_order)
-    NoTouchRecyclerView recFirmOrder;
+    NoTouchRecyclerView recFirmOrder; //蔬菜列表RecyclerView
     @BindView(R.id.txt_price_in_all)
-    TextView txtPriceInAll;
-    @BindView(R.id.txt_payment)
-    TextView txtPayment;
+    TextView txtPriceInAll; //显示 蔬菜金额合计
+    @BindView(R.id.txt_firm_payment)
+    TextView txtPayment;  //显示 底部应付金额
     @BindView(R.id.txt_remark)
-    TextView remarkTxt;
+    TextView remarkTxt; //显示 备注txt
+    @BindView(R.id.txt_firm_pickup_name)
+    TextView namePickupTxt; //显示收货人姓名
+    @BindView(R.id.txt_firm_phone)
+    TextView phoneTxt; //显示收货人电话
+    @BindView(R.id.txt_firm_place)
+    TextView placeTxt; //显示收货地点
+    @BindView(R.id.txt_firm_balance)
+    TextView balanceTxt; //显示账户余额
+    @BindView(R.id.txt_firm_price_real)
+    TextView realPriceTxt; //显示应付金额
+    @BindView(R.id.txt_firm_type)
+    TextView selectTypeTxt; //显示 选择的支付方式
+    @BindView(R.id.txt_firm_discount)
+    TextView discountTxt; //显示 优惠券信息
+    @BindView(R.id.txt_firm_gift)
+    TextView giftTxt; //显示 礼品卡信息
+    @BindView(R.id.txt_firm_credits)
+    TextView creditsTxt; //显示积分
+    @BindView(R.id.txt_firm_credits_money)
+    TextView creditsMoneyTxt; // 显示积分抵钱金额
+    @BindView(R.id.cb_firm_balance)
+    CheckBox balanceCBox; //是否使用余额支付
+    @BindView(R.id.cb_firm_credits)
+    CheckBox creditsCBox; //是否使用积分
+
 
     private List<io.github.vzer.factory.model.vegetable.VegetableModel> orderList;
     private double mPrice = 0.0;//商品总价
@@ -51,7 +73,43 @@ public class FirmOrderActivity extends ToolbarActivity {
     public static String PAY_ORDER = "PayOrder";
     private List<ShoppingModel> list = new ArrayList<>();//商品列表
     private String remarkStr = "";//商品备注
+    private int curPayType = SelectPayActivity.WECHAT_PAY;
 
+
+    /**
+     * 跳转选择收货地点
+     */
+    @OnClick(R.id.firm_location)
+    void goLocation() {
+
+    }
+
+    /**
+     * 跳转选择优惠券
+     */
+    @OnClick(R.id.firm_discount)
+    void goDiscount() {
+
+    }
+
+    /**
+     * 跳转选择礼品卡
+     */
+    @OnClick(R.id.firm_gift)
+    void goGift() {
+
+    }
+
+    /**
+     * 跳转选择支付方式
+     */
+    @OnClick(R.id.firm_pay_type)
+    void goPayType() {
+        Intent intent = new Intent(this, SelectPayActivity.class);
+        intent.putExtra(SelectPayActivity.PAY_TYPE, curPayType);
+        startActivityForResult(intent, 2);
+
+    }
     /**
      * 跳转备注页面
      */

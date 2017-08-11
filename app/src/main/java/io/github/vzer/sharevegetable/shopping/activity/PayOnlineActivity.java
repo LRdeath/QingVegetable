@@ -1,12 +1,9 @@
 package io.github.vzer.sharevegetable.shopping.activity;
 
-import android.content.Intent;
-
 import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.factory.model.shopping.ShoppingOrderModel;
 import io.github.vzer.factory.presenter.vegetable.VegetableContract;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.order.activity.OrderDetailActivity;
 
 /**
  * @author abtion.

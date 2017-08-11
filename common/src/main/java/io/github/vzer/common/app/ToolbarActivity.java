@@ -4,12 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import butterknife.ButterKnife;
 import io.github.vzer.common.R;
@@ -20,7 +21,7 @@ import io.github.vzer.common.R;
  * @email: vzer@qq.com
  */
 
-public abstract class ToolbarActivity extends BaseActivity {
+public abstract class ToolbarActivity extends AppCompatActivity {
 
     /**
      * activity 页面Toolbar
@@ -30,7 +31,34 @@ public abstract class ToolbarActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getToolbarView());
+        initWindows();
+        if (initArgs(getIntent().getExtras())) {
+            LinearLayout root = (LinearLayout) getToolbarView();
+            setContentView(root);
+            ButterKnife.bind(this, root);
+            initData();
+            initWidget();
+        } else {
+            finish();
+        }
+
+    }
+
+    /**
+     * 初始化相关参数
+     * 需要则重写
+     *
+     * @param extras 参数bundle
+     * @return 参数正确返回true，错误返回false
+     */
+    protected boolean initArgs(Bundle extras) {
+        return true;
+    }
+
+    /**
+     * 初始化窗口
+     */
+    protected void initWindows() {
     }
 
     /**
@@ -40,15 +68,29 @@ public abstract class ToolbarActivity extends BaseActivity {
      */
     private View getToolbarView() {
         LayoutInflater inflater = getLayoutInflater();
-        @SuppressLint("InflateParams") RelativeLayout viewRoot = (RelativeLayout) inflater.inflate(R.layout.base_toolbar_layout, null);
+        @SuppressLint("InflateParams") LinearLayout viewRoot = (LinearLayout) inflater.inflate(R.layout.base_toolbar_layout, null);
         FrameLayout viewContainer = viewRoot.findViewById(R.id.view_container);
         viewContainer.addView(inflater.inflate(getContentLayoutId(), null));
         initToolbar(viewRoot);
-        ButterKnife.bind(this, viewRoot);
-        initData();
-        initWidget();
         return viewRoot;
     }
+
+    /**
+     * 初始化控件
+     */
+    protected abstract void initWidget();
+
+    /**
+     * 初始化数据
+     */
+    protected abstract void initData();
+
+    /**
+     * 返回当前的布局id
+     *
+     * @return 当前布局id
+     */
+    protected abstract int getContentLayoutId();
 
     /**
      * 初始化设置toolbar.

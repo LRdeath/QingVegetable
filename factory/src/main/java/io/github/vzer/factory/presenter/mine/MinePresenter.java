@@ -3,7 +3,9 @@ package io.github.vzer.factory.presenter.mine;
 
 import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
+import io.github.vzer.factory.Factory;
 import io.github.vzer.factory.data.MineHelper;
+import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.factory.utils.ToastUtil;
 
 /**
@@ -27,6 +29,7 @@ public class MinePresenter extends BasePresenter<MineContract.View>
     @Override
     public void goLogin() {
         // TODO: 17/7/29 完成退出登录
+        Account.exitLogin(Factory.getAppInstance());//清除用户信息
         ToastUtil.showToast("用户已经退出登录了...");
     }
 

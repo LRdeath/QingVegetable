@@ -30,7 +30,7 @@ public class DistributeView extends LinearLayout {
     ImageView finishImage;
     @BindView(R.id.txt_submit)
     TextView submitTxt;
-    @BindView(R.id.txt_payment)
+    @BindView(R.id.txt_firm_payment)
     TextView paymentTxt;
     @BindView(R.id.txt_pick)
     TextView pickTxt;

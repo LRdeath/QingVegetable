@@ -9,6 +9,7 @@ import io.github.vzer.factory.model.account.LoginModel;
 import io.github.vzer.factory.model.account.RegisterModel;
 import io.github.vzer.factory.network.NetWork;
 import io.github.vzer.factory.network.RemoteService;
+import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.factory.presenter.account.RegisterPresenter;
 import io.github.vzer.factory.presenter.account.RetrivePresenter;
 import retrofit2.Call;
@@ -47,7 +48,14 @@ public class AccountHelper {
                        }
                     }
                 });*/
-        callback.onDataLoaded(null);
+        User user = new User();
+        user.setBind(true);
+        user.setMobile(model.getPhone());
+        user.setName("未设置");
+        user.setRealName(null);
+        user.setToken("u5fjgh9f6hfd21bduik8723d8ty");
+        Account.login(user);
+        callback.onDataLoaded(user);
 
     }
 

@@ -57,6 +57,10 @@
         <service android:name=".service.AppIntentService"/>
 
         <activity android:name=".mine.UserDetailActivity"/>
+        <activity android:name=".shopping.activity.SelectPayActivity" />
+        <activity android:name=".shopping.activity.PlaceActivity" />
+        <activity android:name=".shopping.activity.GiftActivity" />
+        <activity android:name=".shopping.activity.DiscountActivity" />
     </application>
 
 </manifest>

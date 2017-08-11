@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import io.github.vzer.common.app.Application;
+import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.factory.utils.CacheUtil;
 
 /**
@@ -27,7 +28,8 @@ public class Factory {
      */
     public static void setup() {
         // TODO: 2017/7/25  数据库的初始化
-
+        //持久化数据初始化
+        Account.load(getAppInstance());
     }
 
     public Factory() {

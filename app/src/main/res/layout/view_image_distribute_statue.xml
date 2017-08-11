@@ -43,7 +43,7 @@
             android:background="@drawable/bg_payment_state_selector"/>
 
         <TextView
-            android:id="@+id/txt_payment"
+            android:id="@+id/txt_firm_payment"
             android:textSize="@dimen/font_8"
             android:textColor="@color/def_text_menu_selector"
             android:layout_width="wrap_content"

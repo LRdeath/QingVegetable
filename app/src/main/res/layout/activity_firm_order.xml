@@ -355,7 +355,7 @@
                     android:textSize="@dimen/font_18" />
 
                 <TextView
-                    android:id="@+id/txt_price_real"
+                    android:id="@+id/txt_firm_price_real"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_red"
@@ -413,13 +413,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/len_24"
+                android:paddingLeft="@dimen/len_24"
                 android:text="@string/txt_RMB"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_18" />
 
             <TextView
-                android:id="@+id/txt_payment"
+                android:id="@+id/txt_firm_payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -432,9 +432,8 @@
             android:id="@+id/txt_pay"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
             android:layout_weight="1"
-            android:background="@color/btn_yellow"
+            android:background="@drawable/bg_btn_yellow"
             android:gravity="center"
             android:text="@string/txt_pay"
             android:textColor="@color/white"

@@ -62,7 +62,7 @@
                 android:layout_width="@dimen/len_64"
                 android:layout_height="@dimen/len_32"
                 android:layout_marginLeft="@dimen/len_12"
-                android:background="@drawable/bg_btn_pay"
+                android:background="@drawable/bg_btn_yellow"
                 android:text="去结算"
                 android:textColor="@color/textPrimary" />
         </LinearLayout>

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import io.github.vzer.common.app.BaseActivity;
+import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.sharevegetable.account.AccountActivity;
 import io.github.vzer.sharevegetable.main.MainActivity;
 import io.github.vzer.sharevegetable.vegetable.animation.ShoppingCartAnimationView;
@@ -30,7 +31,7 @@ public class LaunchActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!isLogin) {
+                if (!Account.isLogin()) {
                     AccountActivity.show(LaunchActivity.this);
 
                 } else MainActivity.show(LaunchActivity.this);

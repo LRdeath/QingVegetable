@@ -36,7 +36,7 @@ public class FindAdapter extends RecyclerViewAdapter<FindModel> {
         @BindView(R.id.find_rec_title)
         TextView titleTxt;
         @BindView(R.id.find_rec_imge)
-        ImageView contnetImge;
+        ImageView contentImage;
 
         public FindViewHolder(View itemView) {
             super(itemView);
@@ -49,7 +49,7 @@ public class FindAdapter extends RecyclerViewAdapter<FindModel> {
                     .load(findModel.getContentUri())
                     .centerCrop()
                     .placeholder(R.drawable.ic_default)
-                    .into(contnetImge);
+                    .into(contentImage);
         }
     }
 }

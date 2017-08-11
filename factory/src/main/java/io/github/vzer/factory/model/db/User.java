@@ -2,6 +2,7 @@ package io.github.vzer.factory.model.db;
 
 /**
  * 用户基本信息表
+ *
  * @author: Vzer.
  * @date: 2017/7/25. 16:43
  * @email: vzer@qq.com
@@ -13,11 +14,40 @@ public class User {
 
 
     private String name; //用户名
-    private String portrait; //头像地址
+    private String portrait; //头像url
     private String realName;//真实姓名
-    private String phone; //手机号
+    private String mobile; //手机号
     private int sex = 0; //性别
     private int credits = 0; // 信用积分
+    private String pushId;  // 设备的推送Id
+    private boolean isBind;// 设备Id是否已经绑定到了服务器
+    private String token; // 登录状态的Token，用来接口请求
+
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
+    public boolean isBind() {
+        return isBind;
+    }
+
+    public void setBind(boolean bind) {
+        isBind = bind;
+    }
+
 
     public String getName() {
         return name;
@@ -35,12 +65,12 @@ public class User {
         this.realName = realName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getPortrait() {
@@ -72,7 +102,7 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", realName='" + realName + '\'' +
-                ", phone='" + phone + '\'' +
+                ", mobile='" + mobile + '\'' +
                 ", portrait='" + portrait + '\'' +
                 ", sex=" + sex +
                 ", credits=" + credits +
