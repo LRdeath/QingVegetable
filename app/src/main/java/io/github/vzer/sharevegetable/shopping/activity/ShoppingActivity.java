@@ -3,7 +3,9 @@ package io.github.vzer.sharevegetable.shopping.activity;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -40,6 +42,8 @@ public class ShoppingActivity extends ToolbarActivity
     TextView txtPriceAll;
     @BindView(R.id.btn_checked_to_pay)
     Button btnCheckedToPay;
+    @BindView(R.id.layl_shoppint_empty)
+    LinearLayout emptyLayl;
     private ArrayList<VegetableModel> shoppingList;
     private double price = 0.0;
     private ShoppingContentAdapter adapter;
@@ -60,6 +64,8 @@ public class ShoppingActivity extends ToolbarActivity
         recShopping.setAdapter(adapter);
         recShopping.setLayoutManager(layoutManager);
         onAmountChange();
+        if (shoppingList.isEmpty()) emptyLayl.setVisibility(View.VISIBLE);
+
     }
 
     @Override

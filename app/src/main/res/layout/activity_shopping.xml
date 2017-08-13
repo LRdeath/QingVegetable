@@ -8,65 +8,65 @@
         android:id="@+id/rec_shopping"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
+    <include
+        android:id="@+id/layl_shoppint_empty"
+        layout="@layout/layout_empty" />
 
-    <RelativeLayout
-        android:id="@+id/bottom_check"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_gravity="start"
+        android:background="@color/div_color" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_48"
-        android:layout_gravity="bottom"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_gravity="start"
-            android:background="@color/div_color" />
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-        <LinearLayout
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/len_24">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/txt_in_all"
-                android:layout_marginRight="@dimen/len_4"
-                android:textSize="@dimen/font_18" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/len_4"
+            android:text="@string/txt_in_all"
+            android:textSize="@dimen/font_18" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="¥"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/font_18" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="¥"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18" />
 
-            <TextView
-                android:id="@+id/txt_price_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="6"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/font_18" />
+        <TextView
+            android:id="@+id/txt_price_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="6"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_18" />
 
-            <Button
-                android:id="@+id/btn_checked_to_pay"
-                android:layout_width="@dimen/len_64"
-                android:layout_height="@dimen/len_32"
-                android:layout_marginLeft="@dimen/len_12"
-                android:background="@drawable/bg_btn_yellow"
-                android:text="去结算"
-                android:textColor="@color/textPrimary" />
-        </LinearLayout>
-
-
-    </RelativeLayout>
+        <Button
+            android:id="@+id/btn_checked_to_pay"
+            android:layout_width="@dimen/len_64"
+            android:layout_height="@dimen/len_32"
+            android:layout_marginLeft="@dimen/len_16"
+            android:layout_marginRight="@dimen/len_16"
+            android:background="@drawable/bg_btn_yellow"
+            android:text="去结算"
+            android:textColor="@color/textPrimary" />
+    </LinearLayout>
 </LinearLayout>

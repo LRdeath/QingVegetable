@@ -86,8 +86,11 @@
     <string name="text_click_to_lock">开锁中</string>
     <string name="remark">备注</string>
     <string name="text_mine_user_avatar">头像</string>
-    <string name="shopping_empty">购物车空空哦~~快去选点东西吧！</string>
+    <string name="shopping_empty">购物车空空如已~~</string>
     <string name="firm_pay_msg">支付信息</string>
     <string name="firm_location_msg">收货信息</string>
     <string name="txt_firm_price">应付金额</string>
+    <string name="wechat">微信支付</string>
+    <string name="alipay">支付宝</string>
+    <string name="empty">空空如也~~</string>
 </resources>

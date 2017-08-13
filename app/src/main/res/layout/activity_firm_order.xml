@@ -60,7 +60,6 @@
             <LinearLayout
                 android:id="@+id/firm_location"
                 style="@style/firm_item"
-                android:layout_marginTop="1px"
                 android:gravity="center_vertical"
                 android:padding="@dimen/font_12">
 
@@ -70,19 +69,17 @@
 
                 <TextView
                     android:id="@+id/txt_firm_place"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:ellipsize="end"
-                    android:maxLength="14"
+                    android:maxLines="1"
                     android:paddingLeft="@dimen/len_8"
                     android:text="家属区5栋2单元蔬菜柜家属区5栋2单元蔬菜柜"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/font_16" />
 
-                <android.support.v4.widget.Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -139,7 +136,6 @@
             <LinearLayout
                 android:id="@+id/firm_pay_type"
                 style="@style/firm_item"
-                android:layout_marginTop="1px"
                 android:gravity="center_vertical"
                 android:padding="@dimen/font_12">
 
@@ -170,7 +166,6 @@
             <LinearLayout
                 android:id="@+id/firm_discount"
                 style="@style/firm_item"
-                android:layout_marginTop="1px"
                 android:gravity="center_vertical"
                 android:padding="@dimen/font_12">
 
@@ -201,7 +196,6 @@
             <LinearLayout
                 android:id="@+id/firm_gift"
                 style="@style/firm_item"
-                android:layout_marginTop="1px"
                 android:gravity="center_vertical"
                 android:padding="@dimen/font_12">
 
@@ -269,14 +263,13 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/len_48"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/len_4"
-                android:background="@color/color_white"
                 android:gravity="center_vertical"
-                android:paddingLeft="@dimen/len_12"
+                android:padding="@dimen/len_8"
                 android:text="优惠券、礼品卡和积分只能使用其中一种"
                 android:textColor="@color/red_dark"
-                android:textSize="@dimen/font_16" />
+                android:textSize="@dimen/font_14" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -288,78 +281,84 @@
                 android:textSize="@dimen/font_16" />
 
 
-            <io.github.vzer.sharevegetable.widget.NoTouchRecyclerView
-                android:id="@+id/rec_firm_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/len_40"
-                android:background="@color/color_white"
-                android:padding="@dimen/len_8">
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_firm_default"
+                android:orientation="vertical">
 
-                <android.support.v4.widget.Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                <io.github.vzer.sharevegetable.widget.NoTouchRecyclerView
+                    android:id="@+id/rec_firm_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_in_all"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/font_18" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/money"
-                    android:paddingLeft="@dimen/len_8"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/font_18" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/len_40"
+                    android:background="@color/color_white"
+                    android:padding="@dimen/len_8">
 
-                <TextView
-                    android:id="@+id/txt_price_in_all"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/font_18" />
-            </LinearLayout>
+                    <android.support.v4.widget.Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/len_40"
-                android:background="@color/color_white"
-                android:padding="@dimen/len_8">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_in_all"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/font_18" />
 
-                <android.support.v4.widget.Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/money"
+                        android:paddingLeft="@dimen/len_8"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/font_18" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_firm_price"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/font_18" />
+                    <TextView
+                        android:id="@+id/txt_price_in_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/font_18" />
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/money"
-                    android:paddingLeft="@dimen/len_8"
-                    android:textColor="@color/text_red"
-                    android:textSize="@dimen/font_18" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/len_40"
+                    android:padding="@dimen/len_8">
 
-                <TextView
-                    android:id="@+id/txt_firm_price_real"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_red"
-                    android:textSize="@dimen/font_18" />
+                    <android.support.v4.widget.Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_firm_price"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/font_18" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/money"
+                        android:paddingLeft="@dimen/len_8"
+                        android:textColor="@color/text_red"
+                        android:textSize="@dimen/font_18" />
+
+                    <TextView
+                        android:id="@+id/txt_firm_price_real"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_red"
+                        android:textSize="@dimen/font_18" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -367,7 +366,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/len_48"
                 android:layout_marginTop="12dp"
-                android:background="@color/white">
+                android:background="@drawable/bg_firm_default">
 
                 <TextView
                     android:id="@+id/txt_remark"

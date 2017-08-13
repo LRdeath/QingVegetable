@@ -12,7 +12,7 @@ public class User {
     public static final int SEX_MAN = 1;
     public static final int SEX_WOMAN = 2;
 
-
+    private int uId; //用户id
     private String name; //用户名
     private String portrait; //头像url
     private String realName;//真实姓名
@@ -23,6 +23,13 @@ public class User {
     private boolean isBind;// 设备Id是否已经绑定到了服务器
     private String token; // 登录状态的Token，用来接口请求
 
+    public int getuId() {
+        return uId;
+    }
+
+    public void setuId(int uId) {
+        this.uId = uId;
+    }
 
     public String getToken() {
         return token;

@@ -49,6 +49,7 @@ public class AccountHelper {
                     }
                 });*/
         User user = new User();
+        user.setuId(1234567890);
         user.setBind(true);
         user.setMobile(model.getPhone());
         user.setName("未设置");

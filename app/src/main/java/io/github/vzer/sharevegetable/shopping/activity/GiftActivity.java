@@ -1,7 +1,10 @@
 package io.github.vzer.sharevegetable.shopping.activity;
 
 import io.github.vzer.common.app.ActivityPresenter;
+import io.github.vzer.common.app.ToolbarActivity;
+import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.common.factory.presenter.BaseContract;
+import io.github.vzer.sharevegetable.R;
 
 /**
  * 选择礼品卡Activity
@@ -11,7 +14,29 @@ import io.github.vzer.common.factory.presenter.BaseContract;
  * @email: vzer@qq.com
  */
 
-public class GiftActivity extends ActivityPresenter {
+public class GiftActivity extends ToolbarActivityPresenter {
+
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public void initWidget() {
+        setActivityTitle("选择礼品卡");
+    }
+
+    @Override
+    protected void initWindows() {
+
+    }
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_firm_gift;
+    }
+
     @Override
     public void showError(int strId) {
 
@@ -23,27 +48,7 @@ public class GiftActivity extends ActivityPresenter {
     }
 
     @Override
-    protected BaseContract.Presenter initPresenter() {
+    public BaseContract.Presenter initPresenter() {
         return null;
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    public void initWidget() {
-
-    }
-
-    @Override
-    protected void initWindows() {
-
-    }
-
-    @Override
-    protected int getContentLayoutId() {
-        return 0;
     }
 }

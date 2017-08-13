@@ -13,6 +13,8 @@ import java.util.List;
 
 public class ShoppingOrderModel implements Serializable {
     private int uId;//用户id
+    private PayModel payModel; //支付信息
+    private ReceiveModel receiveModel; //支付信息
     private List<ShoppingModel> modelList;//商品列表
     private double totalPrice;//合计
     private String remark; //备注

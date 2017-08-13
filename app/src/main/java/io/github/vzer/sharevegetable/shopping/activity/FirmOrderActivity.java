@@ -13,11 +13,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivity;
+import io.github.vzer.common.app.ToolbarActivityPresenter;
+import io.github.vzer.common.factory.presenter.BaseContract;
 import io.github.vzer.common.widget.ScreenUtil;
 import io.github.vzer.factory.model.shopping.ShoppingModel;
 import io.github.vzer.factory.model.shopping.ShoppingOrderModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.persistence.Account;
+import io.github.vzer.factory.presenter.shopping.FirmOrderContract;
+import io.github.vzer.factory.presenter.shopping.FirmOrderPresenter;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.shopping.adapter.OrderAdapter;
 import io.github.vzer.sharevegetable.vegetable.ShoppingManager;
@@ -31,7 +35,7 @@ import io.github.vzer.sharevegetable.widget.NoTouchRecyclerView;
  * email caiheng@hrsoft.net
  */
 
-public class FirmOrderActivity extends ToolbarActivity {
+public class FirmOrderActivity extends ToolbarActivityPresenter<FirmOrderContract.Presenter> implements FirmOrderContract.View {
 
     @BindView(R.id.rec_firm_order)
     NoTouchRecyclerView recFirmOrder; //蔬菜列表RecyclerView
@@ -81,7 +85,7 @@ public class FirmOrderActivity extends ToolbarActivity {
      */
     @OnClick(R.id.firm_location)
     void goLocation() {
-
+        // TODO: 2017/8/13  收货选择待定
     }
 
     /**
@@ -89,7 +93,8 @@ public class FirmOrderActivity extends ToolbarActivity {
      */
     @OnClick(R.id.firm_discount)
     void goDiscount() {
-
+        Intent intent = new Intent(this, DiscountActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -97,7 +102,8 @@ public class FirmOrderActivity extends ToolbarActivity {
      */
     @OnClick(R.id.firm_gift)
     void goGift() {
-
+        Intent intent = new Intent(this, GiftActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -110,6 +116,7 @@ public class FirmOrderActivity extends ToolbarActivity {
         startActivityForResult(intent, 2);
 
     }
+
     /**
      * 跳转备注页面
      */
@@ -126,9 +133,9 @@ public class FirmOrderActivity extends ToolbarActivity {
      */
     @OnClick(R.id.txt_pay)
     public void onViewClicked() {
+        // TODO: 2017/8/13 对结算信息进行判断
         //拿到用户id
-        // TODO: 2017/8/8
-        int uId = 0;
+        int uId = Account.getuId();
         ShoppingOrderModel orderModel = new ShoppingOrderModel(uId, list, mPrice, remarkStr);
         Intent intent = new Intent(this, PayOnlineActivity.class);
         intent.putExtra(PAY_ORDER, orderModel);
@@ -137,18 +144,50 @@ public class FirmOrderActivity extends ToolbarActivity {
     }
 
     /**
-     * 备注页面回传备注内容
+     *接收Activity回传数据
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 3) {
-            remarkStr = data.getExtras().getString(REMARK_CODE);
-            if (!TextUtils.isEmpty(remarkStr)) {
-                remarkTxt.setText(remarkStr);
-            } else {
-                remarkTxt.setText(getResources().getString(R.string.remark));
-            }
+        switch (resultCode) {
+            //备注的回传
+            case 3:
+                remarkStr = data.getExtras().getString(REMARK_CODE);
+
+                break;
+            //选择支付方式的回传
+            case 4:
+                curPayType = data.getIntExtra(SelectPayActivity.PAY_TYPE, SelectPayActivity.WECHAT_PAY);
+                break;
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateRemark();
+        updatePayType();
+    }
+
+    //更新支付方式
+    private void updatePayType() {
+        switch (curPayType) {
+            case SelectPayActivity.WECHAT_PAY:
+                selectTypeTxt.setText(getResources().getString(R.string.wechat));
+                break;
+            case SelectPayActivity.ALI_PAY:
+                selectTypeTxt.setText(getResources().getString(R.string.alipay));
+                break;
+        }
+    }
+
+    //更新备注
+    private void updateRemark() {
+        if (!TextUtils.isEmpty(remarkStr)) {
+            remarkTxt.setText(remarkStr);
+        } else {
+            remarkTxt.setText(getResources().getString(R.string.remark));
         }
     }
 
@@ -193,5 +232,24 @@ public class FirmOrderActivity extends ToolbarActivity {
     }
 
 
+    @Override
+    public void showError(int strId) {
 
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+
+    @Override
+    public void submitSuccess(ShoppingOrderModel orderModel) {
+
+    }
+
+    @Override
+    public FirmOrderContract.Presenter initPresenter() {
+        return new FirmOrderPresenter(this);
+    }
 }

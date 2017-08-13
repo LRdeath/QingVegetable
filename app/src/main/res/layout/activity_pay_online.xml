@@ -12,6 +12,8 @@
         android:padding="@dimen/len_8"
         android:text="订单提交成功"
         android:textColor="@color/textDark"
+        android:drawableRight="@drawable/pay_select"
+        android:drawablePadding="@dimen/len_8"
         android:textSize="@dimen/font_18" />
 
     <TextView

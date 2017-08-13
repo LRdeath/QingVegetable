@@ -26,6 +26,7 @@ public class Account {
     private static final String KEY_REAL_NAME = "KEY_REAL_NAME";
     private static final String KEY_SEX = "KEY_SEX";
     private static final String KEY_PORTRAIT = "KEY_PORTRAIT";
+    private static final String KEY_UID = "KEY_UID";
 
 
     private static String pushId;  // 设备的推送Id
@@ -33,6 +34,7 @@ public class Account {
     private static String token; // 登录状态的Token，用来接口请求
     private static String account;// 登录的账户(手机号)
     private static int sex; //用户性别
+    private static int uId; //用户id
     private static String name; // 用户昵称
     private static String realName; //真实姓名
     private static String portrait;//头像url
@@ -53,6 +55,7 @@ public class Account {
                 .putString(KEY_REAL_NAME, realName)
                 .putInt(KEY_SEX, sex)
                 .putString(KEY_PORTRAIT, portrait)
+                .putInt(KEY_UID, uId)
                 .apply();
     }
 
@@ -69,6 +72,7 @@ public class Account {
         realName = sp.getString(KEY_REAL_NAME, "");
         sex = sp.getInt(KEY_SEX, 1);
         portrait = sp.getString(KEY_PORTRAIT, "");
+        uId = sp.getInt(KEY_UID, 0);
     }
 
     /**
@@ -115,6 +119,7 @@ public class Account {
         Account.sex = user.getSex();
         Account.name = user.getName();
         Account.realName = user.getRealName();
+        Account.uId = user.getuId();
         save(Factory.getAppInstance());
     }
 
@@ -134,6 +139,10 @@ public class Account {
     public static void exitLogin(Context context) {
         SharedPreferences sp = context.getSharedPreferences(Account.class.getName(), Context.MODE_PRIVATE);
         sp.edit().clear().apply();
+    }
+
+    public static int getuId() {
+        return uId;
     }
 
     public static String getAccount() {

@@ -94,7 +94,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/len_48</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:background">@color/color_white</item>
+        <item name="android:background">@drawable/bg_firm_default</item>
     </style>
 
     <style name="firm_default_txt">
