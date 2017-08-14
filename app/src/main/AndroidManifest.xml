@@ -63,7 +63,6 @@
         <activity android:name=".shopping.activity.DiscountActivity" />
         <activity android:name=".mine.LocationActivity"/>
         <activity android:name=".mine.LocationDetailActivity"/>
-        <activity android:name=".mine.LocationSelectActivity"/>
     </application>
 
 </manifest>
