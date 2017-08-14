@@ -9,4 +9,5 @@ package io.github.vzer.factory.constant;
 
 public class KeyConstant {
     public static final String KEY_ORDER_DETAIL = "orderDetail";
+    public static final String KEY_START_LOCATION_TYPE = "locationType";
 }

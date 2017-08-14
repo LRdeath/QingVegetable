@@ -34,9 +34,12 @@ public class UnlockActivity extends ActivityPresenter<UnlockContract.Presenter>
     ImageView lockContentImg;
     @BindView(R.id.txt_clicked_lock)
     TextView clickedLockTxt;
+    @BindView(R.id.img_back)
+    ImageView backImg;
     private Animation animation;
     private boolean isLockStart = false;
     private LockOrderAdapter adapter;
+
     @Override
     public void showError(int strId) {
     }
@@ -86,6 +89,9 @@ public class UnlockActivity extends ActivityPresenter<UnlockContract.Presenter>
         return R.layout.activity_unlock;
     }
 
+    /**
+     * 点击开锁的图标
+     */
     @OnClick(R.id.img_lock_content)
     void onLockClicked() {
         if (isLockStart) {
@@ -99,5 +105,13 @@ public class UnlockActivity extends ActivityPresenter<UnlockContract.Presenter>
             isLockStart = !isLockStart;
             clickedLockTxt.setText(R.string.text_click_to_lock);
         }
+    }
+
+    /**
+     * 点击返回
+     */
+    @OnClick(R.id.img_back)
+    void onBackClicked() {
+        this.finish();
     }
 }

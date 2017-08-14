@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_background"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ly_receiver"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/len_8">
+
+        <TextView
+            android:id="@+id/txt_receiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="收货人"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/font_14"/>
+
+        <EditText
+            android:id="@+id/edit_location_receiver"
+            style="?android:attr/textViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/len_8"
+            android:layout_toRightOf="@id/txt_receiver"
+            android:background="@null"
+            android:gravity="left"
+            android:inputType="text"
+            android:maxLength="11"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ly_phone_num"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/len_8">
+
+        <TextView
+            android:id="@+id/txt_phone_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="联系电话"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/font_14"/>
+
+        <EditText
+            android:id="@+id/edit_phone_num"
+            style="?android:attr/textViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/len_8"
+            android:layout_toRightOf="@id/txt_phone_num"
+            android:background="@null"
+            android:gravity="left"
+            android:inputType="phone"
+            android:maxLength="11"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ly_location"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/len_8"
+        android:paddingRight="@dimen/len_8">
+
+        <TextView
+            android:id="@+id/txt_title_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="所在区域"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/font_14"/>
+
+        <TextView
+            android:id="@+id/txt_location"
+            style="?android:attr/textViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/len_8"
+            android:layout_toRightOf="@id/txt_title_location"
+            android:background="@null"
+            android:drawableRight="@drawable/ic_forward"
+            android:gravity="right"
+            android:maxLength="11"
+            android:text="M78星云"/>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edit_detail_location"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="1dp"
+        android:paddingTop="@dimen/len_4"
+        android:background="@color/white"
+        android:gravity="left|top"
+        android:hint="详细地址"
+        android:paddingLeft="@dimen/len_8"
+        android:textSize="@dimen/font_14"/>
+
+    <TextView
+
+        android:id="@+id/txt_delete_location"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/len_14"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="@color/text_red"/>
+
+    <TextView
+        android:id="@+id/txt_location_save"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/len_8"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/len_14"
+        />
+</LinearLayout>

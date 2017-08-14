@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/white"
+                android:paddingRight="@dimen/len_4"
+                android:paddingTop="@dimen/len_8"
+                android:layout_marginBottom="4dp">
+
+    <TextView
+        android:id="@+id/txt_location_address"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="@dimen/len_8"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="M78星云经文里五号路二单元"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/font_14"/>
+
+    <TextView
+        android:id="@+id/txt_location_user_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_location_address"
+        android:layout_below="@id/txt_location_address"
+        android:layout_marginTop="@dimen/len_4"
+        android:text="奥特曼（先生） 15028595851"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/font_12"/>
+
+    <ImageView
+        android:layout_marginRight="@dimen/len_8"
+        android:id="@+id/img_change_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_mobile"/>
+</RelativeLayout>

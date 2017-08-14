@@ -6,6 +6,7 @@
                 android:background="@drawable/bg_lock">
 
     <ImageView
+        android:id="@+id/img_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/len_24"

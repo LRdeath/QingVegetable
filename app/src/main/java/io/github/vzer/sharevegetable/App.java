@@ -1,5 +1,7 @@
 package io.github.vzer.sharevegetable;
 
+import android.bluetooth.BluetoothAdapter;
+
 import com.igexin.sdk.PushManager;
 
 import io.github.vzer.common.app.Application;

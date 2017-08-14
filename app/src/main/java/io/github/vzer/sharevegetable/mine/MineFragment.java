@@ -1,35 +1,22 @@
 package io.github.vzer.sharevegetable.mine;
 
-import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.yancy.imageselector.ImageSelector;
-import com.yancy.imageselector.ImageSelectorActivity;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.FragmentPresenter;
-import io.github.vzer.common.widget.DialogUtils;
 import io.github.vzer.factory.presenter.mine.MineContract;
 import io.github.vzer.factory.presenter.mine.MinePresenter;
-import io.github.vzer.factory.utils.Image.ImageSelectorUtils;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.account.AccountActivity;
-import io.reactivex.functions.Consumer;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * @author YangCihang
@@ -51,7 +38,6 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     RelativeLayout contractLy;
     @BindView(R.id.ly_user_detail)
     RelativeLayout userDetailLy;
-
     @BindView(R.id.ly_credit)
     RelativeLayout creditLy;
     @BindView(R.id.ly_coupon)
@@ -64,6 +50,8 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     TextView couponNumTxt;
     @BindView(R.id.txt_money)
     TextView moneyTxt;
+    @BindView(R.id.ly_location)
+    RelativeLayout locationLy;
 
     @Override
     public void showLoading() {
@@ -144,6 +132,13 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
         ToastUtil.showToast("敬请期待");
     }
 
+    /**
+     * 点击配送地址
+     */
+    @OnClick(R.id.ly_location)
+    void onClickedLocation() {
+        startActivity(new Intent(getContext(), LocationActivity.class));
+    }
 
     /**
      * 修改用户详细信息

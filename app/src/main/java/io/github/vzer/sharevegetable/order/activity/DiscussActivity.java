@@ -90,12 +90,13 @@ public class DiscussActivity extends ToolbarActivityPresenter<OrderContract.Pres
         for (DiscussVegetableModel model : vegetableList) {
             if (model.getSatisfation() == DiscussVegetableModel.STATE_UNSELECTED) {
                 canSendRequest = false;
-                ToastUtil.showToast(R.string.toast_please_choose_satisfation);
             }
         }
         if (canSendRequest) {
             discussModel.setVegetableModelList(vegetableList);
             mPresenter.sendDiscussRequest(discussModel);
+        } else {
+            ToastUtil.showToast(R.string.toast_please_choose_satisfation);
         }
     }
 }
