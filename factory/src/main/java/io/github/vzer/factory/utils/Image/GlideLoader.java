@@ -21,4 +21,5 @@ public class GlideLoader implements ImageLoader {
                 .centerCrop()
                 .into(imageView);
     }
+
 }

@@ -2,6 +2,7 @@ package io.github.vzer.sharevegetable.mine;
 
 import android.Manifest;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -19,6 +20,8 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.common.widget.DialogUtils;
+import io.github.vzer.factory.network.UploadHelper;
+import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.factory.presenter.mine.MineContract;
 import io.github.vzer.factory.presenter.mine.MinePresenter;
 import io.github.vzer.factory.utils.Image.ImageSelectorUtils;
@@ -75,6 +78,11 @@ public class UserDetailActivity extends ToolbarActivityPresenter<MineContract.Pr
     @Override
     public void initWidget() {
         setActivityTitle("用户详情");
+        String url = Account.getPortrait();
+        Glide.with(this)
+                .load(url)
+                .centerCrop()
+                .into(avatarImg);
     }
 
     @Override
@@ -203,6 +211,7 @@ public class UserDetailActivity extends ToolbarActivityPresenter<MineContract.Pr
             // Get Image Path List
             List<String> pathList = data.getStringArrayListExtra(ImageSelectorActivity.EXTRA_RESULT);
             // TODO: 17/7/30 上传图像
+            //ToastUtil.showToast(pathList.get(0));
             if (pathList.size() > 0 && pathList.get(0) != null) {
                 if (mPresenter.changeAvatar(pathList.get(0))) {
                     Glide.with(this).load(pathList.get(0)).error(R.mipmap.ic_launcher_round).into(avatarImg);

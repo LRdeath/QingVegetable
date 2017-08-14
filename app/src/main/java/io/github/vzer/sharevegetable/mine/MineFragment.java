@@ -9,9 +9,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.FragmentPresenter;
+import io.github.vzer.common.widget.DialogUtils;
+import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.factory.presenter.mine.MineContract;
 import io.github.vzer.factory.presenter.mine.MinePresenter;
 import io.github.vzer.factory.utils.ToastUtil;
@@ -71,6 +75,11 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     @Override
     protected void initWidget(View root) {
         // TODO: 17/8/10 初始化用户图像和用户名信息
+        String url = Account.getPortrait();
+        Glide.with(getContext())
+                .load(url)
+                .centerCrop()
+                .into(avatarImg);
     }
 
     @Override

@@ -5,6 +5,7 @@ import io.github.vzer.common.factory.data.DataCallback;
 import io.github.vzer.common.factory.presenter.BasePresenter;
 import io.github.vzer.factory.Factory;
 import io.github.vzer.factory.data.MineHelper;
+import io.github.vzer.factory.network.UploadHelper;
 import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.factory.utils.ToastUtil;
 
@@ -52,6 +53,6 @@ public class MinePresenter extends BasePresenter<MineContract.View>
 
     @Override
     public boolean changeAvatar(String uri) {
-        return MineHelper.updateAvatarRequest(this);
+        return MineHelper.updateAvatarRequest(uri,this);
     }
 }

@@ -89,6 +89,13 @@ public class Account {
         Account.pushId = pushId;
         Account.save(Factory.getAppInstance());
     }
+    /**
+     * 设置头像uri
+     */
+    public static void setPortrait(String portrait) {
+        Account.portrait = portrait;
+        Account.save(Factory.getAppInstance());
+    }
 
     /**
      * 是否已经绑定到服务器
