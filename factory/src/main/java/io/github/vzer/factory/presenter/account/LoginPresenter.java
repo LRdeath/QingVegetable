@@ -77,6 +77,6 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
         if (view == null) return;
         view.showError(error);
         //提示错误信息
-        ToastUtil.showToast(error);
+        //ToastUtil.showToast(error);
     }
 }

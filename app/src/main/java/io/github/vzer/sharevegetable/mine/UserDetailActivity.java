@@ -1,32 +1,34 @@
 package io.github.vzer.sharevegetable.mine;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.lwkandroid.imagepicker.ImagePicker;
+import com.lwkandroid.imagepicker.data.ImageBean;
+import com.lwkandroid.imagepicker.data.ImagePickType;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.yancy.imageselector.ImageSelector;
-import com.yancy.imageselector.ImageSelectorActivity;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.github.vzer.common.app.Application;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.common.widget.DialogUtils;
-import io.github.vzer.factory.network.UploadHelper;
 import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.factory.presenter.mine.MineContract;
 import io.github.vzer.factory.presenter.mine.MinePresenter;
-import io.github.vzer.factory.utils.Image.ImageSelectorUtils;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
+import io.github.vzer.sharevegetable.widget.ImageDisplayer;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -53,6 +55,7 @@ public class UserDetailActivity extends ToolbarActivityPresenter<MineContract.Pr
     RelativeLayout avatarLy;
     @BindView(R.id.img_user_avatar)
     CircleImageView avatarImg;
+    private static final int REQUEST_CODE = 0;
 
     @Override
 
@@ -98,6 +101,7 @@ public class UserDetailActivity extends ToolbarActivityPresenter<MineContract.Pr
     /**
      * 修改用户图像
      */
+    @SuppressLint("InlinedApi")
     @OnClick(R.id.ly_user_avatar)
     void changeUserAvatar() {
         new RxPermissions(this).request(Manifest.permission.READ_EXTERNAL_STORAGE
@@ -106,8 +110,16 @@ public class UserDetailActivity extends ToolbarActivityPresenter<MineContract.Pr
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean) {
-                            new ImageSelectorUtils().singleLoadCustomImage(UserDetailActivity.this)
-                                    .selectImageInActivity(UserDetailActivity.this);
+//                            new ImageSelectorUtils().singleLoadCustomImage(UserDetailActivity.this)
+//                                    .selectImageInActivity(UserDetailActivity.this);
+                            new ImagePicker()
+                                    .pickType(ImagePickType.SINGLE) //设置选取类型(拍照ONLY_CAMERA、单选SINGLE、多选MUTIL)
+                                    .maxNum(9) //设置最大选择数量(此选项只对多选生效，拍照和单选都是1，修改后也无效)
+                                    .needCamera(true) //是否需要在界面中显示相机入口
+                                    .cachePath(Application.getInstance().getCachePath()) //自定义缓存路径(拍照和裁剪都需要用到缓存)
+                                    .doCrop(1, 1, 500, 500) //裁剪功能需要调用这个方法，多选模式下无效
+                                    .displayer(new ImageDisplayer()) //自定义图片加载器，默认是Glide实现的,可自定义图片加载器
+                                    .start(UserDetailActivity.this, REQUEST_CODE); //自定义RequestCode
                         } else {
                             ToastUtil.showToast("请确认权限后再选择图片");
                         }
@@ -204,17 +216,21 @@ public class UserDetailActivity extends ToolbarActivityPresenter<MineContract.Pr
                 .showDialog();
     }
 
+    /**
+     * 选择图片后的处理
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ImageSelector.IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             // Get Image Path List
-            List<String> pathList = data.getStringArrayListExtra(ImageSelectorActivity.EXTRA_RESULT);
+            List<ImageBean> resultList = data.getParcelableArrayListExtra(ImagePicker.INTENT_RESULT_DATA);
+            String imagePath = resultList.get(0).getImagePath();
             // TODO: 17/7/30 上传图像
             //ToastUtil.showToast(pathList.get(0));
-            if (pathList.size() > 0 && pathList.get(0) != null) {
-                if (mPresenter.changeAvatar(pathList.get(0))) {
-                    Glide.with(this).load(pathList.get(0)).error(R.mipmap.ic_launcher_round).into(avatarImg);
+            if (!TextUtils.isEmpty(imagePath)) {
+                if (mPresenter.changeAvatar(imagePath)) {
+                    Glide.with(this).load(imagePath).error(R.mipmap.ic_launcher_round).into(avatarImg);
                 } else {
                     ToastUtil.showToast(R.string.toast_avatar_load_error);
                 }

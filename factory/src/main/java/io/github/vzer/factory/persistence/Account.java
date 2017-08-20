@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import io.github.vzer.factory.Factory;
-import io.github.vzer.factory.model.RspModel;
 import io.github.vzer.factory.model.db.User;
 
 /**
@@ -27,6 +26,8 @@ public class Account {
     private static final String KEY_SEX = "KEY_SEX";
     private static final String KEY_PORTRAIT = "KEY_PORTRAIT";
     private static final String KEY_UID = "KEY_UID";
+    private static final String KEY_CREATEAT = "KEY_CREATE_AT";
+    private static final String KEY_UPDATEDAT = "KEY_UPDATE_AT";
 
 
     private static String pushId;  // 设备的推送Id
@@ -38,6 +39,8 @@ public class Account {
     private static String name; // 用户昵称
     private static String realName; //真实姓名
     private static String portrait;//头像url
+    private static long createAt; //创建时间
+    private static long updatedAt;//更新时间
 
     /**
      * 存储数据到XML文件，持久化
@@ -56,6 +59,8 @@ public class Account {
                 .putInt(KEY_SEX, sex)
                 .putString(KEY_PORTRAIT, portrait)
                 .putInt(KEY_UID, uId)
+                .putLong(KEY_CREATEAT, createAt)
+                .putLong(KEY_UPDATEDAT, updatedAt)
                 .apply();
     }
 
@@ -73,6 +78,8 @@ public class Account {
         sex = sp.getInt(KEY_SEX, 1);
         portrait = sp.getString(KEY_PORTRAIT, "");
         uId = sp.getInt(KEY_UID, 0);
+        createAt = sp.getLong(KEY_CREATEAT, 0);
+        updatedAt = sp.getLong(KEY_UPDATEDAT, 0);
     }
 
     /**
@@ -126,7 +133,8 @@ public class Account {
         Account.sex = user.getSex();
         Account.name = user.getName();
         Account.realName = user.getRealName();
-        Account.uId = user.getuId();
+        Account.uId = user.getId();
+        Account.
         save(Factory.getAppInstance());
     }
 
@@ -170,5 +178,9 @@ public class Account {
 
     public static String getPortrait() {
         return portrait;
+    }
+
+    public static String getToken() {
+        return token;
     }
 }

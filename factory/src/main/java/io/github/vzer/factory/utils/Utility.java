@@ -56,24 +56,4 @@ public final class Utility {
         new Thread(runnable).start();
     }
 
-    /**
-     * check if network avalable
-     */
-    public static boolean isNetWorkConnected() {
-        Context context = Application.getInstance();
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
-            if (mNetworkInfo != null) {
-                return mNetworkInfo.isAvailable() && mNetworkInfo.isConnected();
-            }
-        }
-
-        return false;
-    }
-
-
-    public static boolean isSpeakerOpened() {
-        return true;
-    }
 }

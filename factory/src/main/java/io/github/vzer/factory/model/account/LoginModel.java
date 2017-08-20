@@ -8,26 +8,27 @@ package io.github.vzer.factory.model.account;
  */
 
 public class LoginModel {
-    private String phone;
+    private String mobile;
     private String password;
     private String pushId;
+    private int client; //端口号，1表示安卓端，2表示网络端
 
-    public LoginModel(String phone, String password) {
-        this(phone,password,null);
+    public LoginModel(String mobile, String password) {
+        this(mobile, password, 1);
     }
 
-    public LoginModel(String phone, String password, String pushId) {
-        this.phone = phone;
+    public LoginModel(String mobile, String password, int client) {
+        this.mobile = mobile;
         this.password = password;
-        this.pushId = pushId;
+        this.client = client;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getPassword() {
@@ -46,10 +47,18 @@ public class LoginModel {
         this.pushId = pushId;
     }
 
+    public int getClient() {
+        return client;
+    }
+
+    public void setClient(int client) {
+        this.client = client;
+    }
+
     @Override
     public String toString() {
         return "LoginModel{" +
-                "phone='" + phone + '\'' +
+                "mobile='" + mobile + '\'' +
                 ", password='" + password + '\'' +
                 ", pushId='" + pushId + '\'' +
                 '}';

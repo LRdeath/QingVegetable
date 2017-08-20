@@ -165,7 +165,7 @@
                         android:layout_alignParentTop="true"
                         android:gravity="center|bottom"
                         android:text="100分"
-                        android:textColor="@color/yancy_green500"
+                        android:textColor="@color/imagepicker_transblack_75"
                         android:textSize="@dimen/font_16"/>
 
                     <TextView

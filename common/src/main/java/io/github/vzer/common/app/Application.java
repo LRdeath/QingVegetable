@@ -18,11 +18,13 @@ public class Application extends android.app.Application {
 
     private static Application instance;//实例对象
     private static List<Activity> activityList = new ArrayList<>();
+    private String cachePath; //缓存路径（绝对路径）
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        cachePath = getExternalCacheDir().getAbsolutePath();
     }
 
     /**
@@ -78,7 +80,7 @@ public class Application extends android.app.Application {
      * @param activity
      */
     public static void removeActivity(Activity activity) {
-        if (activity!=null&&!activity.isFinishing()){
+        if (activity != null && !activity.isFinishing()) {
             activity.finish();
         }
     }
@@ -92,6 +94,7 @@ public class Application extends android.app.Application {
                 activity.finish();
         }
     }
+
     /**
      * 退出应用
      */
@@ -108,4 +111,7 @@ public class Application extends android.app.Application {
         // TODO: 2017/7/25 到登陆界面 ,清理缓存
     }
 
+    public String getCachePath() {
+        return cachePath;
+    }
 }

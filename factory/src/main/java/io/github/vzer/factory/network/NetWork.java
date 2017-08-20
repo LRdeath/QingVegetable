@@ -1,9 +1,17 @@
 package io.github.vzer.factory.network;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import io.github.vzer.factory.constant.CommonConstant;
 import io.github.vzer.factory.Factory;
+import io.github.vzer.factory.model.db.User;
+import io.github.vzer.factory.persistence.Account;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -13,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * 网络请求类的封装
+ *
  * @author: Vzer.
  * @date: 2017/7/25. 15:04
  * @email: vzer@qq.com
@@ -33,22 +42,38 @@ public class NetWork {
 
     /**
      * 封装Retrofit
+     *
      * @return Retrofit
      */
     public static Retrofit getRetrofit() {
         if (instance.retrofit != null) return instance.retrofit;
 
         OkHttpClient client = new OkHttpClient.Builder()
-                //给所有请求添加拦截器
-                .addInterceptor(new Interceptor() {
+                //在发送和响应时拦截
+                .addNetworkInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-                        Request request = chain.request();//拿到我们的请求
-                        Request.Builder builder = request.newBuilder();//重新进行build
-                        builder.addHeader("Content-Type","application/json");
-                        Request newRequest = builder.build();//重建请求
-
-                        return chain.proceed(newRequest);
+                        String token = Account.getToken();
+                        Request request = chain.
+                                request().
+                                newBuilder().
+                                //请求时带入token
+                                        addHeader("token", token).
+                                        build();
+                        Response response = chain.proceed(request);
+//                        //获取响应json数据
+//                        String json = response.body().string();
+//                        try {
+//                            JSONObject obj = new JSONObject(json);
+//                            if (response.code() != 200) {
+//                                // TODO: 17/8/20 网络请求失败时,做全局处理
+//                            } else if (obj.get("code") != 0) {
+//                                // TODO: 17/8/20 请求响应异常时，做处理
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+                        return response;
                     }
                 })
                 .build();
@@ -65,9 +90,10 @@ public class NetWork {
 
     /**
      * 返回封装后的网络接口类
+     *
      * @return RemoteService
      */
-    public static RemoteService getService(){
+    public static RemoteService getService() {
         return getRetrofit().create(RemoteService.class);
     }
 }

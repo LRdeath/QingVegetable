@@ -10,7 +10,7 @@ package io.github.vzer.factory.constant;
 public class CommonConstant {
 
     //基础网络请求地址
-    public static final String API_URL = "https://biubiu.com/";
+    public static final String API_URL = " http://192.168.1.217:3010/";
 
 
 

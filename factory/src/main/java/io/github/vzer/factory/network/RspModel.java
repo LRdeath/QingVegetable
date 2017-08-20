@@ -1,4 +1,4 @@
-package io.github.vzer.factory.model;
+package io.github.vzer.factory.network;
 
 /**
  *  响应基类
@@ -10,7 +10,7 @@ package io.github.vzer.factory.model;
 public class RspModel<T> {
 
     private int code; //返回码
-    private T result;
+    private T data;
 
 
     public int getCode() {
@@ -21,11 +21,11 @@ public class RspModel<T> {
         this.code = code;
     }
 
-    public T getResult() {
-        return result;
+    public T getData() {
+        return data;
     }
 
-    public void setResult(T result) {
-        this.result = result;
+    public void setData(T data) {
+        this.data = data;
     }
 }

@@ -14,12 +14,12 @@
             android:id="@+id/edit_shopping_remark"
             android:layout_width="match_parent"
             android:layout_height="@dimen/len_96"
-            android:background="@color/yancy_grey100"
+            android:background="@color/imagepicker_text_gray"
             android:gravity="top"
             android:hint="@string/shopping_remark"
             android:maxLength="50"
             android:padding="@dimen/len_8"
-            android:shadowColor="@color/yancy_grey300"
+            android:shadowColor="@color/div_color"
             android:textSize="@dimen/font_14" />
     </FrameLayout>
 

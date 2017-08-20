@@ -12,31 +12,25 @@ public class User {
     public static final int SEX_MAN = 1;
     public static final int SEX_WOMAN = 2;
 
-    private int uId; //用户id
+    private int id; //用户id
     private String name; //用户名
     private String portrait; //头像url
     private String realName;//真实姓名
     private String mobile; //手机号
     private int sex = 0; //性别
     private int credits = 0; // 信用积分
+    private long createdAt; //用户创建时间
+    private long updatedAt; //用户更新时间
+    private String token; //token
     private String pushId;  // 设备的推送Id
     private boolean isBind;// 设备Id是否已经绑定到了服务器
-    private String token; // 登录状态的Token，用来接口请求
 
-    public int getuId() {
-        return uId;
+    public int getId() {
+        return id;
     }
 
-    public void setuId(int uId) {
-        this.uId = uId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPushId() {
@@ -102,6 +96,30 @@ public class User {
 
     public void setCredits(int credits) {
         this.credits = credits;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
     }
 
     @Override

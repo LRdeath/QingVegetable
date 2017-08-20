@@ -12,9 +12,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //以下为推送配置：id key secret
         manifestPlaceholders = [
-                GETUI_APP_ID : "OpvqZSRvev7nJjEXuxfOY8",
-                GETUI_APP_KEY : "eceWK65gze9oxgc7ahyvm",
-                GETUI_APP_SECRET : "EtwC6KFrfW7kmdxQNn80Z2"
+                GETUI_APP_ID    : "OpvqZSRvev7nJjEXuxfOY8",
+                GETUI_APP_KEY   : "eceWK65gze9oxgc7ahyvm",
+                GETUI_APP_SECRET: "EtwC6KFrfW7kmdxQNn80Z2"
         ]
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86_64"
@@ -47,6 +47,12 @@ dependencies {
     implementation 'com.android.support:support-v4:26.0.0-beta2'
     //城市选择器
     compile 'liji.library.dev:citypickerview:1.1.0'
+    //图片选择
+    compile('com.lwkandroid:ImagePicker:1.3.2') {
+        //去掉包中的两个依赖
+        exclude module: 'support-v4'
+        exclude module: 'glide'
+    }
 
 
 }

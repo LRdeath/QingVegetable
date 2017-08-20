@@ -125,7 +125,7 @@ public class LoginFragment extends FragmentPresenter<LoginContract.Presenter>
         goRegisterTxt.setEnabled(true);
         submitBtn.setEnabled(true);
         //提示错误信息
-        ToastUtil.showToast(strId);
+        //ToastUtil.showToast(strId);
         loadingProgress.setVisibility(View.GONE);
     }
 
