@@ -4,4 +4,27 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_48">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_item_pay_online"
+            android:text="线上支付"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_item_gift_card"
+            android:text="礼品卡"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>

@@ -1,9 +1,16 @@
 package io.github.vzer.sharevegetable.mine.activity;
 
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
 import io.github.vzer.factory.presenter.mine.UserAmountContract;
 import io.github.vzer.factory.presenter.mine.UserAmountPresenter;
 import io.github.vzer.sharevegetable.R;
+import io.github.vzer.sharevegetable.mine.adapter.RechargePagerAdapter;
 
 /**
  * @author YangCihang
@@ -13,6 +20,12 @@ import io.github.vzer.sharevegetable.R;
 
 public class RechargeActivity extends ToolbarActivityPresenter<UserAmountContract.Presenter>
         implements UserAmountContract.View {
+    @BindView(R.id.tabs_recharge)
+    TabLayout tabsRecharge;
+    @BindView(R.id.pager_recharge)
+    ViewPager pagerRecharge;
+
+
     @Override
     public void showError(int strId) {
 
@@ -31,6 +44,10 @@ public class RechargeActivity extends ToolbarActivityPresenter<UserAmountContrac
     @Override
     protected void initWidget() {
         setActivityTitle("充值");
+        RechargePagerAdapter rechargePagerAdapter = new RechargePagerAdapter(getSupportFragmentManager());
+        pagerRecharge.setAdapter(rechargePagerAdapter);
+        tabsRecharge.setupWithViewPager(pagerRecharge);
+
     }
 
     @Override
@@ -42,4 +59,5 @@ public class RechargeActivity extends ToolbarActivityPresenter<UserAmountContrac
     protected int getContentLayoutId() {
         return R.layout.activity_recharge;
     }
+
 }
