@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_mine_layout_normal">
+
+        <RelativeLayout
+            android:id="@+id/rl_title"
+            android:layout_marginTop="@dimen/len_16"
+            android:layout_width="match_parent"
+            android:layout_height="32dp">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/len_24"
+                android:background="@drawable/ic_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/len_24"
+                android:layout_toRightOf="@id/img_back"
+                android:text="@string/text_wallet"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_18"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txt_wallet_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_title"
+            android:gravity="center"
+            android:text="￥666"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            android:layout_marginBottom="28dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/rl_wallet"
+        android:id="@+id/ly_recharge"
+        style="@style/mine_item">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/ic_credit"/>
+
+        <TextView
+            style="@style/mine_item_label_text"
+            android:layout_centerVertical="true"
+            android:text="充值"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/len_8"
+            android:background="@drawable/ic_forward"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/ly_recharge"
+        android:id="@+id/ly_withdraw"
+        style="@style/mine_item"
+        android:layout_marginTop="0.5dp">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/ic_credit"/>
+
+        <TextView
+            style="@style/mine_item_label_text"
+            android:layout_centerVertical="true"
+            android:text="提现"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/len_8"
+            android:background="@drawable/ic_forward"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/ly_withdraw"
+        android:id="@+id/ly_wallet_order"
+        style="@style/mine_item"
+        android:layout_marginTop="0.5dp">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/ic_credit"/>
+
+        <TextView
+            style="@style/mine_item_label_text"
+            android:layout_centerVertical="true"
+            android:text="账单明细"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/len_8"
+            android:background="@drawable/ic_forward"/>
+    </RelativeLayout>
+</RelativeLayout>

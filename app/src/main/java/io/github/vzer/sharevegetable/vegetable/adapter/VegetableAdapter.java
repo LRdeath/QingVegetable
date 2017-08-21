@@ -3,17 +3,15 @@ package io.github.vzer.sharevegetable.vegetable.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerViewAdapter;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.vegetable.ShoppingManager;

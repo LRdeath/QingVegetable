@@ -13,9 +13,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import io.github.vzer.common.app.FragmentPresenter;
-import io.github.vzer.common.widget.RecyclerFooterAdapter;
-import io.github.vzer.common.widget.RecyclerScrollListener;
-import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerFooterAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerScrollListener;
 import io.github.vzer.factory.constant.KeyConstant;
 import io.github.vzer.factory.model.order.OrderDetailModel;
 import io.github.vzer.factory.presenter.order.OrderContract;

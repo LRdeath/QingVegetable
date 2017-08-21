@@ -1,4 +1,4 @@
-package io.github.vzer.common.widget;
+package io.github.vzer.common.widget.recycler;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

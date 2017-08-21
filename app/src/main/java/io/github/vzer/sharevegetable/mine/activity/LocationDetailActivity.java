@@ -1,16 +1,13 @@
-package io.github.vzer.sharevegetable.mine;
+package io.github.vzer.sharevegetable.mine.activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.lljjcoder.citylist.CityListSelectActivity;
-import com.lljjcoder.citylist.bean.CityInfoBean;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 
 import butterknife.BindView;

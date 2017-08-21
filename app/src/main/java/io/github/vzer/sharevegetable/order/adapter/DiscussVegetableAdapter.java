@@ -9,14 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerViewAdapter;
 import io.github.vzer.factory.model.order.DiscussVegetableModel;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;

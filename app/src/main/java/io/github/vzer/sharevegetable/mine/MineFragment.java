@@ -14,13 +14,15 @@ import com.bumptech.glide.Glide;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.FragmentPresenter;
-import io.github.vzer.common.widget.DialogUtils;
 import io.github.vzer.factory.persistence.Account;
 import io.github.vzer.factory.presenter.mine.MineContract;
 import io.github.vzer.factory.presenter.mine.MinePresenter;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.account.AccountActivity;
+import io.github.vzer.sharevegetable.mine.activity.LocationActivity;
+import io.github.vzer.sharevegetable.mine.activity.UserDetailActivity;
+import io.github.vzer.sharevegetable.mine.activity.WalletActivity;
 
 /**
  * @author YangCihang
@@ -120,7 +122,7 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     @OnClick(R.id.ly_wallet)
     void onCheckWallet() {
         // TODO: 17/8/10 到查看钱包详情页面
-        ToastUtil.showToast("敬请期待");
+        startActivity(new Intent(getContext(), WalletActivity.class));
     }
 
     /**
@@ -156,4 +158,11 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     void toDetailActivity() {
         startActivity(new Intent(getContext(), UserDetailActivity.class));
     }
+
+    @Override
+    public void onResume() {
+        // TODO: 17/8/21 重新加载时的操作
+        super.onResume();
+    }
+
 }

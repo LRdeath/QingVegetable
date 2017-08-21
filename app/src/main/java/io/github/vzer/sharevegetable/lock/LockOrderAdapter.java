@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerViewAdapter;
 import io.github.vzer.factory.model.order.OrderDetailModel;
 import io.github.vzer.sharevegetable.R;
 

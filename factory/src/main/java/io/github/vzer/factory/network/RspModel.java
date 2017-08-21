@@ -1,7 +1,8 @@
 package io.github.vzer.factory.network;
 
 /**
- *  响应基类
+ * 响应基类
+ *
  * @author: Vzer.
  * @date: 2017/7/25. 16:11
  * @email: vzer@qq.com

@@ -1,4 +1,4 @@
-package io.github.vzer.sharevegetable.mine;
+package io.github.vzer.sharevegetable.mine.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +11,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
-import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerViewAdapter;
 import io.github.vzer.factory.model.mine.LocationModel;
 import io.github.vzer.factory.presenter.mine.LocationContract;
 import io.github.vzer.factory.presenter.mine.LocationPresenter;

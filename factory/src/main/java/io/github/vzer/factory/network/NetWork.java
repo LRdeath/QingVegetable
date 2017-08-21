@@ -11,6 +11,7 @@ import java.io.IOException;
 import io.github.vzer.factory.constant.CommonConstant;
 import io.github.vzer.factory.Factory;
 import io.github.vzer.factory.model.db.User;
+import io.github.vzer.factory.network.convert.ResponseConverterFactory;
 import io.github.vzer.factory.persistence.Account;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -82,7 +83,7 @@ public class NetWork {
                 .baseUrl(CommonConstant.API_URL)
                 .client(client)
                 //设置Json解析器
-                .addConverterFactory(GsonConverterFactory.create(Factory.getGson()))
+                .addConverterFactory(ResponseConverterFactory.create())
                 .build();
 
         return instance.retrofit;

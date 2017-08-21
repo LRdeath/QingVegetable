@@ -1,6 +1,8 @@
 package io.github.vzer.factory.network;
 
 /**
+ * Http状态码
+ *
  * @author YangCihang
  * @since 17/8/20.
  * email yangcihang@hrsoft.net

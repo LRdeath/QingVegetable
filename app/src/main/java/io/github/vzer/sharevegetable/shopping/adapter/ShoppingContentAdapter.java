@@ -15,7 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerViewAdapter;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.vegetable.ShoppingManager;

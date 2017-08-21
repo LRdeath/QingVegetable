@@ -59,13 +59,17 @@
         </service>
         <service android:name=".service.AppIntentService"/>
 
-        <activity android:name=".mine.UserDetailActivity"/>
+        <activity android:name=".mine.activity.UserDetailActivity"/>
         <activity android:name=".shopping.activity.SelectPayActivity" />
         <activity android:name=".shopping.activity.PlaceActivity" />
         <activity android:name=".shopping.activity.GiftActivity" />
         <activity android:name=".shopping.activity.DiscountActivity" />
-        <activity android:name=".mine.LocationActivity"/>
-        <activity android:name=".mine.LocationDetailActivity"/>
+        <activity android:name=".mine.activity.LocationActivity"/>
+        <activity android:name=".mine.activity.LocationDetailActivity"/>
+        <activity android:name=".mine.activity.WalletActivity"/>
+        <activity android:name=".mine.activity.WithdrawActivity"/>
+        <activity android:name=".mine.activity.RechargeActivity"/>
+        <activity android:name=".mine.activity.WalletOrderActivity"/>
     </application>
 
 </manifest>

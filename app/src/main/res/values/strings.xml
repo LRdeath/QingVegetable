@@ -93,4 +93,5 @@
     <string name="wechat">微信支付</string>
     <string name="alipay">支付宝</string>
     <string name="empty">空空如也~~</string>
+    <string name="text_wallet">钱包</string>
 </resources>

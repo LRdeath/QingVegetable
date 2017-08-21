@@ -6,8 +6,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import io.github.vzer.common.widget.RecyclerViewAdapter;
-import io.github.vzer.factory.model.db.User;
+import io.github.vzer.common.widget.recycler.RecyclerViewAdapter;
 import io.github.vzer.factory.model.mine.LocationModel;
 import io.github.vzer.sharevegetable.R;
 

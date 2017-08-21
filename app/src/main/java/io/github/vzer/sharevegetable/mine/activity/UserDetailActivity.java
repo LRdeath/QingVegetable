@@ -1,4 +1,4 @@
-package io.github.vzer.sharevegetable.mine;
+package io.github.vzer.sharevegetable.mine.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -32,6 +32,8 @@ import io.github.vzer.sharevegetable.widget.ImageDisplayer;
 import io.reactivex.functions.Consumer;
 
 /**
+ * 用户详情
+ *
  * @author YangCihang
  * @since 17/8/10.
  * email yangcihang@hrsoft.net

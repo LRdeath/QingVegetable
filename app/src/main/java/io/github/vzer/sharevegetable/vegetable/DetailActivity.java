@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.vzer.common.app.ActivityPresenter;
-import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerViewAdapter;
 import io.github.vzer.factory.model.vegetable.VegetableEvaModel;
 import io.github.vzer.factory.model.vegetable.VegetableModel;
 import io.github.vzer.factory.presenter.vegetable.EvaVegetableContract;

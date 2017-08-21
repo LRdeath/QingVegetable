@@ -12,11 +12,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-import io.github.vzer.common.widget.RecyclerFooterAdapter;
-import io.github.vzer.common.widget.RecyclerViewAdapter;
+import io.github.vzer.common.widget.recycler.RecyclerFooterAdapter;
 import io.github.vzer.factory.model.order.OrderDetailModel;
-import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.order.activity.DiscussActivity;
 import io.github.vzer.sharevegetable.widget.DistributeView;
