@@ -10,6 +10,11 @@ import java.io.Serializable;
 
 public class UserWalletOrderModel implements Serializable {
     //type 1-5分别为购物，充值，提现，退货，礼品卡
+    public static final int SHOPPING_TYPE = 1;
+    public static final int RECHARGE_TYPE = 2;
+    public static final int WITHDRAW_TYPE = 3;
+    public static final int REFUNDS_TYPE = 4;
+    public static final int GIFT_TYPE = 5;
     private int amount;
     private boolean checked;
     private long createdAt;
@@ -17,7 +22,7 @@ public class UserWalletOrderModel implements Serializable {
     private String description;
     private int type;
     private int id;
-    private long orderId;
+    private String orderId;
     private int userId;
 
     public int getAmount() {
@@ -76,11 +81,11 @@ public class UserWalletOrderModel implements Serializable {
         this.id = id;
     }
 
-    public long getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(long orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 

@@ -1,25 +1,15 @@
 package io.github.vzer.sharevegetable.mine.activity;
 
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.vzer.common.app.ActivityPresenter;
-import io.github.vzer.common.app.ToolbarActivityPresenter;
-import io.github.vzer.common.widget.recycler.RecyclerScrollListener;
-import io.github.vzer.factory.model.mine.wallet.UserWalletOrderModel;
 import io.github.vzer.factory.presenter.mine.WalletContract;
 import io.github.vzer.factory.presenter.mine.WalletPresenter;
-import io.github.vzer.factory.utils.Utility;
 import io.github.vzer.sharevegetable.R;
-import io.github.vzer.sharevegetable.mine.adapter.WalletOrderAdapter;
 
 /**
  * 钱包详情
@@ -35,8 +25,6 @@ public class WalletActivity extends ActivityPresenter<WalletContract.Presenter>
     ImageView backImg;
     @BindView(R.id.ly_recharge)
     RelativeLayout rechargeLy;
-    @BindView(R.id.ly_withdraw)
-    RelativeLayout withdrawLy;
     @BindView(R.id.ly_wallet_order)
     RelativeLayout orderLy;
 
@@ -80,14 +68,6 @@ public class WalletActivity extends ActivityPresenter<WalletContract.Presenter>
     @OnClick(R.id.img_back)
     void onBackClicked() {
         this.finish();
-    }
-
-    /**
-     * 点击提现
-     */
-    @OnClick(R.id.ly_withdraw)
-    void onWithdraw() {
-        startActivity(new Intent(this, WithdrawActivity.class));
     }
 
     /**

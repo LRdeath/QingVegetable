@@ -20,6 +20,7 @@ import io.github.vzer.factory.presenter.mine.MinePresenter;
 import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 import io.github.vzer.sharevegetable.account.AccountActivity;
+import io.github.vzer.sharevegetable.mine.activity.CouponActivity;
 import io.github.vzer.sharevegetable.mine.activity.LocationActivity;
 import io.github.vzer.sharevegetable.mine.activity.UserDetailActivity;
 import io.github.vzer.sharevegetable.mine.activity.WalletActivity;
@@ -131,7 +132,7 @@ public class MineFragment extends FragmentPresenter<MineContract.Presenter> impl
     @OnClick(R.id.ly_coupon)
     void onCheckCoupon() {
         // TODO: 17/8/10 到查看优惠券页面
-        ToastUtil.showToast("敬请期待");
+        startActivity(new Intent(getContext(), CouponActivity.class));
     }
 
     /**

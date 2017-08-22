@@ -41,9 +41,6 @@ class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         } else {
             //定义错误响应体，并通过抛出自定义异常传递错误码及错误信息
             ErrorResponse errorResponse = gson.fromJson(response, ErrorResponse.class);
-            if (TextUtils.isEmpty(errorResponse.getData())) {
-                errorResponse.setData("未知错误");
-            }
             throw new ResultException(errorResponse.getCode(), errorResponse.getData());
         }
     }

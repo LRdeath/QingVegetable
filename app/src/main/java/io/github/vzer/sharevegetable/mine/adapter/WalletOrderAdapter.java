@@ -2,6 +2,7 @@ package io.github.vzer.sharevegetable.mine.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -12,6 +13,8 @@ import java.util.List;
 import butterknife.BindView;
 import io.github.vzer.common.widget.recycler.RecyclerFooterAdapter;
 import io.github.vzer.factory.model.mine.wallet.UserWalletOrderModel;
+import io.github.vzer.factory.utils.TimeUtil;
+import io.github.vzer.factory.utils.ToastUtil;
 import io.github.vzer.sharevegetable.R;
 
 import static android.view.View.GONE;
@@ -43,12 +46,76 @@ public class WalletOrderAdapter extends RecyclerFooterAdapter<UserWalletOrderMod
     }
 
     class ItemHolder extends ViewHolder<UserWalletOrderModel> {
+        @BindView(R.id.txt_wallet_order_create_time)
+        TextView createTimeTxt;
+        @BindView(R.id.txt_wallet_order_description)
+        TextView descriptionTxt;
+        @BindView(R.id.txt_wallet_order_id)
+        TextView orderIdTxt;
+        @BindView(R.id.txt_wallet_order_type)
+        TextView orderTypeTxt;
+        @BindView(R.id.txt_wallet_order_id_title)
+        TextView orderIdTxtTitleTxt;
+        @BindView(R.id.txt_wallet_order_update_time)
+        TextView updateTimeTxt;
+        @BindView(R.id.txt_wallet_order_state)
+        TextView stateTxt;
+        @BindView(R.id.txt_wallet_order_money)
+        TextView moneyTxt;
+
         public ItemHolder(View itemView) {
             super(itemView);
         }
 
         @Override
         protected void onBind(UserWalletOrderModel userWalletOrderModel) {
+            String createTime;
+            String updateTime;
+            //时间
+            createTime = TimeUtil.setStampToString(userWalletOrderModel.getCreatedAt(), TimeUtil.DATE_DEFAULT_FORMAT);
+            updateTime = TimeUtil.setStampToString(userWalletOrderModel.getUpdatedAt(), TimeUtil.DATE_DEFAULT_FORMAT);
+            createTimeTxt.setText(createTime);
+            updateTimeTxt.setText(updateTime);
+            descriptionTxt.setText(userWalletOrderModel.getDescription());
+            moneyTxt.setText(String.valueOf(userWalletOrderModel.getAmount()));
+            //类型
+            switch (userWalletOrderModel.getType()) {
+                case UserWalletOrderModel.SHOPPING_TYPE:
+                    orderTypeTxt.setText(R.string.text_wallet_order_type_shopping);
+                    break;
+                case UserWalletOrderModel.RECHARGE_TYPE:
+                    orderTypeTxt.setText(R.string.text_wallet_order_type_recharge);
+                    break;
+                case UserWalletOrderModel.WITHDRAW_TYPE:
+                    orderTypeTxt.setText(R.string.text_wallet_order_type_withdraw);
+                    break;
+                case UserWalletOrderModel.REFUNDS_TYPE:
+                    orderTypeTxt.setText(R.string.text_wallet_order_type_refunds);
+                    break;
+                case UserWalletOrderModel.GIFT_TYPE:
+                    orderTypeTxt.setText(R.string.text_wallet_order_type_gift_recharge);
+                    break;
+                default:
+                    ToastUtil.showToast(R.string.toast_logic_error);
+                    break;
+
+            }
+            //是否完成
+            if (userWalletOrderModel.isChecked()) {
+                stateTxt.setText(R.string.text_wallet_order_state_finished);
+            } else {
+                stateTxt.setText(R.string.text_wallet_order_state_unfinished);
+            }
+            //orderId（有则显示，无则隐藏）
+            if (TextUtils.isEmpty(String.valueOf(userWalletOrderModel.getOrderId()))) {
+                orderIdTxt.setVisibility(GONE);
+                orderIdTxtTitleTxt.setVisibility(GONE);
+            } else {
+                orderIdTxtTitleTxt.setVisibility(View.VISIBLE);
+                orderIdTxt.setVisibility(View.VISIBLE);
+                orderIdTxt.setText(userWalletOrderModel.getOrderId());
+            }
+
 
         }
     }

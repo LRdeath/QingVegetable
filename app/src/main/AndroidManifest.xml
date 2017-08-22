@@ -67,9 +67,9 @@
         <activity android:name=".mine.activity.LocationActivity"/>
         <activity android:name=".mine.activity.LocationDetailActivity"/>
         <activity android:name=".mine.activity.WalletActivity"/>
-        <activity android:name=".mine.activity.WithdrawActivity"/>
         <activity android:name=".mine.activity.RechargeActivity"/>
         <activity android:name=".mine.activity.WalletOrderActivity"/>
+        <activity android:name=".mine.activity.CouponActivity"/>
     </application>
 
 </manifest>

@@ -1,6 +1,8 @@
 package io.github.vzer.factory.network;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.text.TextUtils;
 
 import java.net.ConnectException;
 
@@ -49,15 +51,18 @@ public class ResponseCallback<T> implements Callback<RspModel<T>> {
     @Override
     public void onFailure(Call<RspModel<T>> call, Throwable t) {
         if (t instanceof ResultException) {
-            ToastUtil.showToast(((ResultException) t).getMsg(), ((ResultException) t).getCode());
+            if (TextUtils.isEmpty(((ResultException) t).getMsg())) {
+                GlobalAPIErrorHandler.handle(((ResultException) t).getCode());
+            } else {
+                ToastUtil.showToast(((ResultException) t).getMsg(), ((ResultException) t).getCode());
+            }
             onDataCallback.onDataFailed(((ResultException) t).getCode());
         } else if (t instanceof ConnectException) {
             // TODO: 17/8/21 网络连接错误 
-            ToastUtil.showToast(t.getMessage());
+            ToastUtil.showToast(R.string.data_network_error + t.getMessage());
             onDataCallback.onDataFailed(-1);
         } else {
-            //未知失败时统一传入的code
-            GlobalAPIErrorHandler.handle(-1);
+            ToastUtil.showToast(t.getMessage());
             onDataCallback.onDataFailed(-1);
         }
     }

@@ -74,36 +74,9 @@
             android:background="@drawable/ic_forward"/>
     </RelativeLayout>
 
+
     <RelativeLayout
         android:layout_below="@id/ly_recharge"
-        android:id="@+id/ly_withdraw"
-        style="@style/mine_item"
-        android:layout_marginTop="0.5dp">
-
-        <ImageView
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
-            android:background="@drawable/ic_credit"/>
-
-        <TextView
-            style="@style/mine_item_label_text"
-            android:layout_centerVertical="true"
-            android:text="提现"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/len_8"
-            android:background="@drawable/ic_forward"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_below="@id/ly_withdraw"
         android:id="@+id/ly_wallet_order"
         style="@style/mine_item"
         android:layout_marginTop="0.5dp">

@@ -31,6 +31,7 @@
     <string name="text_mine_contract">联系商家</string>
     <string name="text_mine_exit">退出登录</string>
     <string name="text_order_item_order_title">订单号</string>
+
     <string name="label_go_retrive">忘记密码？</string>
     <string name="label_retrive">重置密码</string>
     <string name="label_new_password">新密码</string>
@@ -94,4 +95,15 @@
     <string name="alipay">支付宝</string>
     <string name="empty">空空如也~~</string>
     <string name="text_wallet">钱包</string>
+    <string name="text_wallet_order_type">类型:</string>
+    <string name="text_wallet_order_create_time">创建时间:</string>
+    <string name="text_wallet_order_id">订单号:</string>
+    <string name="text_wallet_order_updata_time">最近更新:</string>
+    <string name="text_wallet_order_state_finished">已完成</string>
+    <string name="text_wallet_order_state_unfinished">未完成</string>
+    <string name="text_wallet_order_type_shopping">购物</string>
+    <string name="text_wallet_order_type_recharge">现金充值</string>
+    <string name="text_wallet_order_type_withdraw">提现</string>
+    <string name="text_wallet_order_type_refunds">退货</string>
+    <string name="text_wallet_order_type_gift_recharge">礼品卡充值</string>
 </resources>

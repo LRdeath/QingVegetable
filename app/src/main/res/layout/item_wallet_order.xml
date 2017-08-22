@@ -1,7 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/len_4"
+                android:layout_marginBottom="1dp"
+                android:background="@color/white">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/txt_wallet_order_type_title"
+        style="@style/wallet_order"
+        android:text="@string/text_wallet_order_type"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_type"
+        style="@style/wallet_order"
+        android:layout_marginLeft="@dimen/len_4"
+        android:layout_toRightOf="@id/txt_wallet_order_type_title"
+        android:text="退款"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_state_title"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_type_title"
+        android:text="状态:"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_state"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_type"
+        android:layout_toRightOf="@id/txt_wallet_order_state_title"
+        android:text="已完成"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_description_title"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_state_title"
+        android:text="描述:"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_description"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_state_title"
+        android:layout_toRightOf="@id/txt_wallet_order_description_title"
+        android:text="我就是想退款，不服？"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_create_time_title"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_id"
+        android:layout_marginTop="@dimen/len_4"
+        android:text="@string/text_wallet_order_create_time"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_create_time"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_id"
+        android:layout_toRightOf="@id/txt_wallet_order_create_time_title"
+        android:text="2018-12-3"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_money_title"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_description_title"
+        android:text="金额:"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_money"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_description_title"
+        android:layout_toRightOf="@id/txt_wallet_order_money_title"
+        android:text="100￥"
+        />
+
+    <TextView
+        android:id="@+id/txt_wallet_order_id_title"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_money_title"
+        android:text="@string/text_wallet_order_id"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_id"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_money"
+        android:layout_toRightOf="@id/txt_wallet_order_id_title"
+        android:text="1230489u38905"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_update_time_title"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_create_time"
+        android:text="@string/text_wallet_order_updata_time"/>
+
+    <TextView
+        android:id="@+id/txt_wallet_order_update_time"
+        style="@style/wallet_order"
+        android:layout_below="@id/txt_wallet_order_create_time_title"
+        android:layout_toRightOf="@id/txt_wallet_order_update_time_title"
+        android:text="2033-9-2"/>
+</RelativeLayout>

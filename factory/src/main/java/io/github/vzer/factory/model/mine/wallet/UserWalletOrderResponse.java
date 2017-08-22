@@ -10,13 +10,22 @@ import java.util.ArrayList;
  */
 
 public class UserWalletOrderResponse implements Serializable {
-    private ArrayList<UserWalletOrderModel> tradeList;
+    private ArrayList<UserWalletOrderModel> list;
+    private boolean isLastPage;
 
-    public ArrayList<UserWalletOrderModel> getTradeList() {
-        return tradeList;
+    public ArrayList<UserWalletOrderModel> getList() {
+        return list;
     }
 
-    public void setTradeList(ArrayList<UserWalletOrderModel> tradeList) {
-        this.tradeList = tradeList;
+    public void setList(ArrayList<UserWalletOrderModel> list) {
+        this.list = list;
+    }
+
+    public void setLastPage(boolean lastPage) {
+        isLastPage = lastPage;
+    }
+
+    public boolean isLastPage() {
+        return isLastPage;
     }
 }

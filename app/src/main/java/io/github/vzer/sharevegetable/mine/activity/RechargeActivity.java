@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.vzer.common.app.ToolbarActivityPresenter;
+import io.github.vzer.factory.model.mine.wallet.UserWalletOrderModel;
 import io.github.vzer.factory.presenter.mine.UserAmountContract;
 import io.github.vzer.factory.presenter.mine.UserAmountPresenter;
 import io.github.vzer.sharevegetable.R;
@@ -60,4 +63,13 @@ public class RechargeActivity extends ToolbarActivityPresenter<UserAmountContrac
         return R.layout.activity_recharge;
     }
 
+    @Override
+    public void onLoadSuccess(List<UserWalletOrderModel> tradeList, boolean isLastPage) {
+
+    }
+
+    @Override
+    public void onLoadFailed() {
+
+    }
 }
