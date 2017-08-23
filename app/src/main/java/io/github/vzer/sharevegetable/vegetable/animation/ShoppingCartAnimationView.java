@@ -94,8 +94,8 @@ public class ShoppingCartAnimationView extends TextView implements ValueAnimator
         if (startPosition == null || endPosition == null) return;
         int pointX = (startPosition.x + endPosition.x) / 2;
         int pointY = (int) (startPosition.y - convertDpToPixel(100, mContext));
-        Point controllPoint = new Point(pointX, pointY);
-        BezierEvaluator bezierEvaluator = new BezierEvaluator(controllPoint);
+        Point controlPoint = new Point(pointX, pointY);
+        BezierEvaluator bezierEvaluator = new BezierEvaluator(controlPoint);
         ValueAnimator anim = ValueAnimator.ofObject(bezierEvaluator, startPosition, endPosition);
         anim.addUpdateListener(this);
         anim.setDuration(400);
@@ -122,16 +122,16 @@ public class ShoppingCartAnimationView extends TextView implements ValueAnimator
 
     public class BezierEvaluator implements TypeEvaluator<Point> {
 
-        private Point controllPoint;
+        private Point controlPoint;
 
-        public BezierEvaluator(Point controllPoint) {
-            this.controllPoint = controllPoint;
+        BezierEvaluator(Point controlPoint) {
+            this.controlPoint = controlPoint;
         }
 
         @Override
         public Point evaluate(float t, Point startValue, Point endValue) {
-            int x = (int) ((1 - t) * (1 - t) * startValue.x + 2 * t * (1 - t) * controllPoint.x + t * t * endValue.x);
-            int y = (int) ((1 - t) * (1 - t) * startValue.y + 2 * t * (1 - t) * controllPoint.y + t * t * endValue.y);
+            int x = (int) ((1 - t) * (1 - t) * startValue.x + 2 * t * (1 - t) * controlPoint.x + t * t * endValue.x);
+            int y = (int) ((1 - t) * (1 - t) * startValue.y + 2 * t * (1 - t) * controlPoint.y + t * t * endValue.y);
             return new Point(x, y);
         }
 

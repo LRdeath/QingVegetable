@@ -4,6 +4,7 @@ package io.github.vzer.sharevegetable.account;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -81,6 +82,8 @@ public class RegisterFragment extends FragmentPresenter<RegisterContract.Present
         String password = passwordEdit.getText().toString();
         String verify = verifyEdit.getText().toString();
         String rePassword = rePasswordEdit.getText().toString();
+        Handler handler;
+        handler.sendMessage()
         //通知P层进行注册
         mPresenter.register(phone, password, rePassword, verify);
     }

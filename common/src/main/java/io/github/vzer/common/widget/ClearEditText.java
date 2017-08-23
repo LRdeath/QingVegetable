@@ -49,9 +49,7 @@ public class ClearEditText extends EditText implements TextWatcher, View.OnFocus
 
     //初始化删除按钮 及删除事件
     private void addDeleteView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mDelete = getResources().getDrawable(R.drawable.edit_clear, null);
-        }
+        mDelete = getResources().getDrawable(R.drawable.edit_clear);
         //添加文本变化监听 以及焦点变化的监听
         addTextChangedListener(this);
         setOnFocusChangeListener(this);
@@ -90,7 +88,7 @@ public class ClearEditText extends EditText implements TextWatcher, View.OnFocus
     }
 
     /**
-     *文本变化的监听
+     * 文本变化的监听
      */
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
